@@ -1,21 +1,29 @@
 package test;
 
+import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="Member")
-public class Person
+@Named
+public class Member
 {
     @Id
     @GeneratedValue
     private Long id;
-    private String username;
-    private String firstName;
-    private String lastName;
+
+    @NotNull
+    private String firstname;
+    @NotNull
+    private String lastname;
+    @NotNull
     private String password;
+
+    @NotNull
+    private String username;
 
     public Long getId(){
         return this.id;
@@ -26,11 +34,11 @@ public class Person
     }
 
     public String getFirstName(){
-        return this.firstName;
+        return this.firstname;
     }
 
     public String getLastName() {
-        return this.lastName;
+        return this.lastname;
     }
 
 
@@ -47,11 +55,11 @@ public class Person
 
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstname = firstName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastname = lastName;
     }
 
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="psql" uuid="cd7cc510-41d7-4330-ac31-0f453a98ca0b">
+      <driver-ref>derby.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/psql</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="datasource.ds.xml" uuid="0672b3e1-9a0b-4fe7-9723-61d04bd18533">
+      <driver-ref>derby.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/src/main/webapp/WEB-INF/datasource.ds.xml</jdbc-url>
+    </data-source>
+  </component>
+</project>

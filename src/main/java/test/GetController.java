@@ -16,60 +16,48 @@
  */
 package test;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+
+
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.Serializable;
 
-/**
- * <p>
- * {@link RichBean} is the JSF backing bean for the application, holding the input data to be
- * re-displayed.
- * </p>
- */
 @Named
-@SessionScoped
-public class RichBean implements Serializable {
+@RequestScoped
+public class GetController {
 
-    private static final long serialVersionUID = -6239437588285327644L;
+    @Inject
+    private ManagedUser cu;
 
-    private String name1;
+    private String username;
+
 
     FacesContext fc = FacesContext.getCurrentInstance();
     ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
-
-    @PostConstruct
-    public void postContruct() {
-        name1 = "John";
-
+    public void greet() {
+        Member user = cu.getForUsername(username);
+        if (user != null) {
+            nav.performNavigation("admin.xhtml");
+        } else {
+            String message = "Error";
+            fc.addMessage(null, new FacesMessage(message));
+        }
     }
 
-    public String getName1() {
-        return name1;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 
-    public void setName1() {
-        this.name1 = "John";
-    }
-    public void setName2() {
-        this.name1 = "Kris";
-    }
-    public void setName3() {
-        this.name1 = "Tina";
-    }
 
-    public void openAdmin(){
-        System.out.println("Admin");
-        nav.performNavigation("admin.xhtml");
-    }
-    public void openStudent(){
-        nav.performNavigation("student.xhtml");
-    }
-    public void openTeacher(){
-        nav.performNavigation("teacher.xhtml");
-    }
+
+
 }

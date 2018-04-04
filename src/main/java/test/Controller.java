@@ -20,7 +20,7 @@ public class Controller {
     @Named
     @Produces
     @RequestScoped
-    private Person newPerson=new Person();
+    private Member newPerson=new Member();
 
     public void create(){
         try{

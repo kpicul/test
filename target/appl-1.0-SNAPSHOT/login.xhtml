@@ -28,18 +28,18 @@
 
             <rich:panel header="Ajax enabled inputText">
                 <h:form id="helloWorldJsf">
-                    <h:inputText id="username" value="#{login.name}">
+                    <h:inputText id="username" value="#{getController.username}">
                     </h:inputText>
                     <br/>
-                    <h:inputSecret id="password" value="#{login.password}">
+                    <h:inputSecret id="password" value="#{member.password}">
                     </h:inputSecret>
                     <br/>
-                    <h:commandButton value="Login" id="login" action="#{login.login}">
+                    <h:commandButton value="Login" id="login" action="#{getController.greet}">
                         <a4j:ajax event="click" render="output1"/>
                     </h:commandButton>
                     <br/>
                     <h:panelGroup id="output1">
-                        <h:outputText value="Wrong username or password!"
+                        <h:outputText value="Null"
                                       rendered="#{not empty login.password}"/>
                     </h:panelGroup>
                 </h:form>

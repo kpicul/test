@@ -1,7 +1,9 @@
 /home/kristjan/Parsek/test/src/main/java/test/RichBean.java
 /home/kristjan/Parsek/test/src/main/java/test/CreateUser.java
+/home/kristjan/Parsek/test/src/main/java/test/Member.java
+/home/kristjan/Parsek/test/src/main/java/test/GetController.java
 /home/kristjan/Parsek/test/src/main/java/test/Helper.java
 /home/kristjan/Parsek/test/src/main/java/test/Login.java
 /home/kristjan/Parsek/test/src/main/java/test/Resources.java
 /home/kristjan/Parsek/test/src/main/java/test/Controller.java
-/home/kristjan/Parsek/test/src/main/java/test/Person.java
+/home/kristjan/Parsek/test/src/main/java/test/ManagedUser.java
