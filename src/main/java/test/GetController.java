@@ -18,6 +18,8 @@ package test;
 
 
 
+import test.database.Member;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
@@ -34,13 +36,17 @@ public class GetController {
 
     private String username;
 
+    private String password;
+
 
     FacesContext fc = FacesContext.getCurrentInstance();
     ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
     public void greet() {
         Member user = cu.getForUsername(username);
-        if (user != null) {
+        System.out.println(password);
+        boolean checkPassword=Helper.checkPass(user,password);
+        if (user != null && checkPassword) {
             nav.performNavigation("admin.xhtml");
         } else {
             String message = "Error";
@@ -56,6 +62,14 @@ public class GetController {
         this.username = username;
     }
 
+    public void setPassword(String pass){
+        System.out.println(pass);
+        this.password=pass; //set to Hash later
+    }
+
+    public String getPassword(){
+        return password;
+    }
 
 
 

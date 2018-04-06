@@ -1,19 +1,20 @@
-package test;
+package test.database;
+
+import test.Helper;
 
 import javax.inject.Named;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @Entity
 @Named
+//@Table(name="Member")
 public class Member
 {
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     @NotNull
     private String firstname;
@@ -23,9 +24,17 @@ public class Member
     private String password;
 
     @NotNull
+    @Column(unique = true)
     private String username;
 
-    public Long getId(){
+    private Date dateOfBirth;
+
+    @NotNull
+    @OneToOne
+    @JoinColumn(name="role_id",referencedColumnName = "id")
+    private Role roleId;
+
+    public long getId(){
         return this.id;
     }
 
@@ -41,7 +50,6 @@ public class Member
         return this.lastname;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -49,10 +57,10 @@ public class Member
     public void setId(Long id){
         this.id=id;
     }
+
     public void setUsername(String username){
         this.username=username;
     }
-
 
     public void setFirstName(String firstName) {
         this.firstname = firstName;
@@ -62,8 +70,21 @@ public class Member
         this.lastname = lastName;
     }
 
-
     public void setPassword(String password){
-        password=Helper.toHash(password);
+        this.password=password;
+    }
+
+    public void setDateOfBirth(Date date){
+        this.dateOfBirth=date;
+    }
+    public Date getDateOfBirth(){
+        return this.dateOfBirth;
+    }
+    public void setRoleId(Role id){
+        this.roleId=id;
+    }
+
+    public Role getRoleId(){
+        return this.roleId;
     }
 }

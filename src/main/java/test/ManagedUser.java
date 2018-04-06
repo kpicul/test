@@ -16,8 +16,8 @@
  */
 package test;
 
-import javax.faces.application.ConfigurableNavigationHandler;
-import javax.faces.context.FacesContext;
+import test.database.Member;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -34,8 +34,6 @@ public class ManagedUser {
     @Inject
     private UserTransaction utx;
 
-    FacesContext fc = FacesContext.getCurrentInstance();
-    ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
     public Member getForUsername(String username) {
         try {
             Member user;
@@ -50,18 +48,15 @@ public class ManagedUser {
                 user = (Member) query.getSingleResult();
                 //user=null;
             } catch (NoResultException e) {
-                //nav.performNavigation("admin.xhtml");
-                throw new RuntimeException(e);
-                //user = null;
+                //throw new RuntimeException(e);
+                user = null;
             }
             utx.commit();
             return user;
         } catch (Exception e) {
-            //nav.performNavigation("admin.xhtml");
             try {
                 utx.rollback();
             } catch (SystemException se) {
-               // nav.performNavigation("admin.xhtml");
                 throw new RuntimeException(se);
             }
             throw new RuntimeException(e);
@@ -77,6 +72,7 @@ public class ManagedUser {
                 utx.commit();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             try {
                 utx.rollback();
             } catch (SystemException se) {

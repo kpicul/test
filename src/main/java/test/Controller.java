@@ -1,5 +1,7 @@
 package test;
 
+import test.database.Member;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
@@ -15,7 +17,7 @@ public class Controller {
     private FacesContext fc;
 
     @Inject
-    private CreateUser cu;
+    private ManagedUser cu;
 
     @Named
     @Produces
@@ -30,6 +32,7 @@ public class Controller {
         }catch (Exception e){
             String message = "An error has occured while creating the user (see log for details)";
             fc.addMessage(null, new FacesMessage(message));
+            throw new RuntimeException(e);
         }
 
     }

@@ -1,9 +1,16 @@
+test/Converter.class
+test/database/Member.class
 test/Resources.class
+test/database/Performance.class
 test/CreateUser.class
+test/database/Course.class
+test/database/Year.class
+test/database/Grade.class
 test/RichBean.class
 test/ManagedUser.class
-test/Member.class
+test/database/Role.class
 test/Login.class
 test/Helper.class
+test/database/Teaches.class
 test/Controller.class
 test/GetController.class

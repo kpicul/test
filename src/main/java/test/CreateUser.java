@@ -1,7 +1,7 @@
 package test;
 
-        import javax.faces.application.ConfigurableNavigationHandler;
-        import javax.faces.context.FacesContext;
+        import test.database.Member;
+
         import javax.inject.Inject;
         import javax.persistence.EntityManager;
         import javax.persistence.NoResultException;
