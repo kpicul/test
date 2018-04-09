@@ -1,5 +1,6 @@
-package test;
+package test.controller;
 
+import test.ManagedUser;
 import test.database.Member;
 
 import javax.enterprise.context.RequestScoped;

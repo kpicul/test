@@ -17,13 +17,14 @@
 package test;
 
 import test.database.Member;
+import test.database.Role;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
+import javax.transaction.*;
+import java.sql.Date;
 
 
 public class ManagedUser {
@@ -79,6 +80,138 @@ public class ManagedUser {
                 throw new RuntimeException(se);
             }
             throw new RuntimeException(e);
+        }
+    }
+
+    public Role getRole(Member user){
+        Role role=new Role();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select r from Member m join m.roleId r where m.username = :username");
+            query.setParameter("username",user.getUsername());
+            role=(Role)query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return role;
+    }
+
+    public void updateUserName(Member user, String userName){
+        try {
+            utx.begin();
+            System.out.println("UPDATE");
+            System.out.println(user.getId());
+            System.out.println(userName);
+            Query query=entityManager.createQuery("Update Member u set u.username=:username where u.id=:id");
+            query.setParameter("username", userName);
+            query.setParameter("id",user.getId());
+            query.executeUpdate();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void updateFirstName(Member user,String firstName){
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("Update Member u set u.firstname=:firstname where u.id=:id");
+            query.setParameter("firstname", firstName);
+            query.setParameter("id",user.getId());
+            query.executeUpdate();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateLasttName(Member user,String lastName){
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("Update Member u set u.lastname=:lastname where u.id=:id");
+            query.setParameter("lastname", lastName);
+            query.setParameter("id",user.getId());
+            query.executeUpdate();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updatepassword(Member user,String password){
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("Update Member u set u.password=:password where u.id=:id");
+            query.setParameter("password", password);
+            query.setParameter("id",user.getId());
+            query.executeUpdate();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateDateOfBirth(Member user,Date dateOfBirth){
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("Update Member u set u.dateOfBirth=:dateOfBirth where u.id=:id");
+            query.setParameter("dateOfBirth", dateOfBirth);
+            query.setParameter("id",user.getId());
+            query.executeUpdate();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
         }
     }
 

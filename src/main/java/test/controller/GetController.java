@@ -14,10 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test;
+package test.controller;
 
 
 
+import test.Helper;
+import test.ManagedUser;
 import test.database.Member;
 import test.database.Role;
 
@@ -45,10 +47,10 @@ public class GetController {
 
     public void greet() {
         Member user = cu.getForUsername(username);
-        System.out.println(password);
+        //System.out.println(password);
         boolean checkPassword=Helper.checkPass(user,password);
         if (user != null && checkPassword) {
-            System.out.println("42");
+            //System.out.println("42");
             Role role=cu.getRole(user);
             if(role.getName().equals("Admin")){
                 nav.performNavigation("admin.xhtml");
@@ -75,6 +77,7 @@ public class GetController {
     }
 
     public void setUsername(String username) {
+        System.out.println("SETTER");
         this.username = username;
     }
 

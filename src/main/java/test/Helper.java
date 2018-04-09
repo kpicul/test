@@ -66,9 +66,9 @@ public class Helper {
         if(encrypt.equals(user.getPassword())){
             check=true;
         }
-        System.out.println("encrypt:"+encrypt);
+        /*System.out.println("encrypt:"+encrypt);
         System.out.println("user"+user.getPassword());
-        System.out.println("------------------------");
+        System.out.println("------------------------");*/
 
         return check;
     }
@@ -80,7 +80,7 @@ public class Helper {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return getSHA(convert,"asasffg");
+        return getSHA(convert,"DarthSidious");
     }
 
     private static String byteArray2Hex(final byte[] hash) {

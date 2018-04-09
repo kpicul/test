@@ -20,7 +20,7 @@
 
 <ui:composition template="/templates/template.xhtml">
 
-    <ui:define name="title">Edit</ui:define>
+    <ui:define name="title">Test</ui:define>
 
     <ui:define name="body">
         <fieldset style="width:500px">
@@ -28,30 +28,18 @@
 
             <rich:panel header="Ajax enabled inputText">
                 <h:form id="helloWorldJsf">
-                    <p>First name</p>
-                    <h:inputText id="firstname" value="#{newPerson.firstName}">
+                    <h:inputText id="firstname" value="#{editController.firstName}">
                     </h:inputText>
                     <br/>
-                    <p>Last name</p>
-                    <h:inputText id="lastname" value="#{newPerson.lastName}">
+                    <h:inputText id="username" value="#{editController.userName}">
                     </h:inputText>
                     <br/>
-                    <p>Username</p>
-                    <h:inputText id="username" value="#{newPerson.username}">
-                    </h:inputText>
                     <br/>
-                    <p>Password</p>
-                    <h:inputSecret id="password" value="#{newPerson.password}">
-                    </h:inputSecret>
-                    <br/>
-                    <h:commandButton value="Add" id="Confirm" action="#{controller.create}">
-                        <a4j:ajax event="click" render="output1"/>
+                    <h:commandButton value="Login" id="login" action="#{editController.confirm}">
+
                     </h:commandButton>
                     <br/>
-                    <h:panelGroup id="output1">
-                        <h:outputText value="Wrong username or password!"
-                                      rendered="#{not empty login.password}"/>
-                    </h:panelGroup>
+
                 </h:form>
             </rich:panel>
 
