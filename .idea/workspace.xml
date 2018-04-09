@@ -2,37 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="006e014f-3794-4a84-b865-a94d47486504" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/test/controller/EditController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin1.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/student1.xhtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/teacher1.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/GetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/GetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/ManagedUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/ManagedUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/database/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/database/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/controller/EditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/EditController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/edit.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/edit.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/GetController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/Helper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/ManagedUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/ManagedUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/database/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/database/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/edit.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/edit.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/login.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/GetController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/Helper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/Helper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/ManagedUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/ManagedUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/database/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/database/Role.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,8 +35,8 @@
       <file leaf-file-name="edit.xhtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/edit.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+            <state relative-caret-position="495">
+              <caret line="39" column="81" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -82,8 +56,8 @@
       <file leaf-file-name="EditController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/EditController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+            <state relative-caret-position="505">
+              <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1222#1223#0" expanded="true" />
@@ -139,7 +113,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/webapp/login.xhtml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
-              <caret line="18" lean-forward="true" selection-end-line="51" selection-end-column="7" />
+              <caret line="18" selection-end-line="51" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -504,12 +478,12 @@
       <workItem from="1522909808548" duration="24300000" />
       <workItem from="1522991777406" duration="23124000" />
       <workItem from="1523258232737" duration="10839000" />
-      <workItem from="1523270197577" duration="7389000" />
+      <workItem from="1523270197577" duration="7967000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105380000" />
+    <option name="totallyTimeSpent" value="105958000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="44" y="0" width="1876" height="1080" extended-state="6" />
@@ -610,12 +584,6 @@
           <line>79</line>
           <properties />
           <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/test/controller/EditController.java</url>
-          <line>52</line>
-          <properties />
-          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="68" />
@@ -803,6 +771,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
           <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#315#316#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+            <element signature="e#472#473#0" expanded="true" />
+            <element signature="e#525#526#0" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#614#615#0" expanded="true" />
+            <element signature="e#633#634#0" expanded="true" />
+            <element signature="e#688#689#0" expanded="true" />
+            <element signature="e#724#725#0" expanded="true" />
+            <element signature="e#776#777#0" expanded="true" />
+            <element signature="e#795#796#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#849#850#0" expanded="true" />
+            <element signature="e#897#898#0" expanded="true" />
+            <element signature="e#916#917#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -831,6 +820,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="22" selection-start-column="22" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1019,14 +1011,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/login.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
-          <caret line="18" lean-forward="true" selection-end-line="51" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/edit.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+          <caret line="18" selection-end-line="51" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1040,10 +1025,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/edit.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="39" column="81" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/EditController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+        <state relative-caret-position="505">
+          <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1222#1223#0" expanded="true" />

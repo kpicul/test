@@ -31,9 +31,14 @@
                     <h:inputText id="firstname" value="#{editController.firstName}">
                     </h:inputText>
                     <br/>
+                    <h:inputText id="lastname" value="#{editController.lastName}">
+                    </h:inputText>
+                    <br/>
                     <h:inputText id="username" value="#{editController.userName}">
                     </h:inputText>
                     <br/>
+                    <h:inputSecret id="password" value="#{editController.password}">
+                    </h:inputSecret>
                     <br/>
                     <h:commandButton value="Login" id="login" action="#{editController.confirm}">
 

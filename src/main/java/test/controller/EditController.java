@@ -1,5 +1,6 @@
 package test.controller;
 
+import test.Helper;
 import test.ManagedUser;
 import test.database.Member;
 
@@ -32,9 +33,9 @@ public class EditController  {
         user=mu.getForUsername("test");
         //System.out.println("POSTCONSTRUCT");
         firstName=user.getFirstName();
-        //lastName=user.getLastName();
+        lastName=user.getLastName();
         userName=user.getUsername();
-        //password=user.getPassword();
+        password=user.getPassword();
         //int as=777;
         //dateOfBirth=user.getDateOfBirth();*/
         System.out.println("test423");
@@ -43,10 +44,10 @@ public class EditController  {
     public void confirm(){
         // Member user=mu.getForUsername("test");
     //    System.out.println("USERNAME: "+userName);
-        //mu.updateFirstName(user,firstName);
-        //mu.updateLasttName(user,lastName);
+        mu.updateFirstName(user,firstName);
+        mu.updateLasttName(user,lastName);
         mu.updateUserName(user,userName);
-        //mu.updatepassword(user,password);
+        mu.updatepassword(user,password);
         //mu.updateDateOfBirth(user,dateOfBirth);
     }
     public String getFirstName(){
@@ -81,8 +82,8 @@ public class EditController  {
 
     public void setPassword(String password) {
         //System.out.println("SET password: "+password);
-        //this.password=Helper.getSHA(password,user.getUsername());
-        this.password=password;
+        this.password=Helper.getSHA(password,user.getUsername());
+        //this.password=password;
     }
 
     /*public Date getDateOfBirth() {
