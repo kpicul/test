@@ -19,6 +19,7 @@ package test;
 
 
 import test.database.Member;
+import test.database.Role;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.ConfigurableNavigationHandler;
@@ -47,12 +48,27 @@ public class GetController {
         System.out.println(password);
         boolean checkPassword=Helper.checkPass(user,password);
         if (user != null && checkPassword) {
-            nav.performNavigation("admin.xhtml");
+            System.out.println("42");
+            Role role=cu.getRole(user);
+            if(role.getName().equals("Admin")){
+                nav.performNavigation("admin.xhtml");
+            }
+            else if(role.getName().equals("Teacher")){
+                nav.performNavigation("teacher.xhtml");
+            }
+            else if(role.getName().equals("Student")){
+                nav.performNavigation("student.xhtml");
+            }
+
+            else{
+                System.out.println("Can't find role");
+            }
         } else {
             String message = "Error";
             fc.addMessage(null, new FacesMessage(message));
         }
     }
+
 
     public String getUsername() {
         return username;
