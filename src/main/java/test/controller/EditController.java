@@ -32,9 +32,11 @@ public class EditController  {
 
     private Date dateOfBirth;
 
+    private String displayedDate;
+
     @PostConstruct
     public void postConstruct(){
-        user=mu.getForUsername("test");
+        user=mu.getForId(1L);
         //System.out.println("POSTCONSTRUCT");
         firstName=user.getFirstName();
         lastName=user.getLastName();
@@ -93,7 +95,7 @@ public class EditController  {
     }
 
     public String getDateOfBirth() {
-        DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         String date=null;
         if(dateOfBirth != null){
             date=df.format(dateOfBirth);
@@ -102,15 +104,13 @@ public class EditController  {
     }
 
     public void setDateOfBirth(String dateOfBirth) {
-        DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
         try {
             this.dateOfBirth = new java.sql.Date(df.parse(dateOfBirth).getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
-
-
 
 
 }

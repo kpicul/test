@@ -63,6 +63,34 @@ public class ManagedUser {
             throw new RuntimeException(e);
         }
     }
+    public Member getForId(Long id) {
+        try {
+            Member user;
+            //String jedi="jedi";
+            try {
+                utx.begin();
+                Query query = entityManager.createQuery("select u from Member u where u.id = :id");
+                query.setParameter("id", id);http://localhost:8080/appl-1.0-SNAPSHOT/edit.xhtml
+                //query.setParameter("jedi", jedi);
+                //query.getSingleResult();
+                System.out.println("test");
+                user = (Member) query.getSingleResult();
+                //user=null;
+            } catch (NoResultException e) {
+                //throw new RuntimeException(e);
+                user = null;
+            }
+            utx.commit();
+            return user;
+        } catch (Exception e) {
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
+        }
+    }
 
     public void createUser(Member user) {
         try {
