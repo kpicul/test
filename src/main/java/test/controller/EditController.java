@@ -9,6 +9,10 @@ import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Named
 @RequestScoped
@@ -26,7 +30,7 @@ public class EditController  {
 
     private String password;
 
-    //private Date dateOfBirth;
+    private Date dateOfBirth;
 
     @PostConstruct
     public void postConstruct(){
@@ -37,7 +41,7 @@ public class EditController  {
         userName=user.getUsername();
         password=user.getPassword();
         //int as=777;
-        //dateOfBirth=user.getDateOfBirth();*/
+        dateOfBirth=user.getDateOfBirth();
         System.out.println("test423");
     }
 
@@ -47,8 +51,10 @@ public class EditController  {
         mu.updateFirstName(user,firstName);
         mu.updateLasttName(user,lastName);
         mu.updateUserName(user,userName);
-        mu.updatepassword(user,password);
-        //mu.updateDateOfBirth(user,dateOfBirth);
+        if(password!=null){
+            mu.updatepassword(user,password);
+        }
+        mu.updateDateOfBirth(user,dateOfBirth);
     }
     public String getFirstName(){
         return this.firstName;
@@ -86,18 +92,23 @@ public class EditController  {
         //this.password=password;
     }
 
-    /*public Date getDateOfBirth() {
-        return dateOfBirth;
-    }*/
+    public String getDateOfBirth() {
+        DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
+        String date=null;
+        if(dateOfBirth != null){
+            date=df.format(dateOfBirth);
+        }
+        return date;
+    }
 
-    /*public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
         try {
             this.dateOfBirth = new java.sql.Date(df.parse(dateOfBirth).getTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
 
 
