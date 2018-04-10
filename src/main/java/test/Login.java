@@ -3,6 +3,7 @@ package test;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
@@ -11,6 +12,9 @@ import java.io.Serializable;
 public class Login implements Serializable {
     FacesContext fc = FacesContext.getCurrentInstance();
     ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
+    @Inject
+    private Session session;
+
     private String name;
     private String password;
 

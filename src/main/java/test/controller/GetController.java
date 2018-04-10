@@ -20,6 +20,7 @@ package test.controller;
 
 import test.Helper;
 import test.ManagedUser;
+import test.Session;
 import test.database.Member;
 import test.database.Role;
 
@@ -37,6 +38,9 @@ public class GetController {
     @Inject
     private ManagedUser cu;
 
+    @Inject
+    private Session session;
+
     private String username;
 
     private String password;
@@ -50,16 +54,17 @@ public class GetController {
         //System.out.println(password);
         boolean checkPassword=Helper.checkPass(user,password);
         if (user != null && checkPassword) {
+            session.setUser(user);
             //System.out.println("42");
             Role role=cu.getRole(user);
             if(role.getName().equals("Admin")){
-                nav.performNavigation("admin.xhtml");
+                nav.performNavigation("edit.xhtml");
             }
             else if(role.getName().equals("Teacher")){
-                nav.performNavigation("teacher.xhtml");
+                nav.performNavigation("edit.xhtml");
             }
             else if(role.getName().equals("Student")){
-                nav.performNavigation("student.xhtml");
+                nav.performNavigation("edit.xhtml");
             }
 
             else{
@@ -77,7 +82,6 @@ public class GetController {
     }
 
     public void setUsername(String username) {
-        System.out.println("SETTER");
         this.username = username;
     }
 

@@ -2,11 +2,14 @@ package test.controller;
 
 import test.Helper;
 import test.ManagedUser;
+import test.Session;
 import test.database.Member;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 
+import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Date;
@@ -19,6 +22,9 @@ import java.text.SimpleDateFormat;
 public class EditController  {
     @Inject
     private ManagedUser mu;
+
+    @Inject
+    private Session session;
 
     private Member user;
 
@@ -34,9 +40,15 @@ public class EditController  {
 
     private String displayedDate;
 
+    FacesContext fc = FacesContext.getCurrentInstance();
+    ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
+
     @PostConstruct
     public void postConstruct(){
-        user=mu.getForId(1L);
+        user=session.getUser();
+        if(user==null){
+            nav.performNavigation("login.xhtml");
+        }
         //System.out.println("POSTCONSTRUCT");
         firstName=user.getFirstName();
         lastName=user.getLastName();

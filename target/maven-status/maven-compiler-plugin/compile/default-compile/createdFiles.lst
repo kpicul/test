@@ -6,6 +6,7 @@ test/CreateUser.class
 test/database/Course.class
 test/database/Year.class
 test/database/Grade.class
+test/Session.class
 test/RichBean.class
 test/ManagedUser.class
 test/controller/Controller.class
