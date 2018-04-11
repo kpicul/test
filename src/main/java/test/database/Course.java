@@ -1,22 +1,27 @@
 package test.database;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Course {
 
     @Id
+    @GeneratedValue
     private long id;
 
+    @NotNull
     private String name;
 
-    private  String description;
+    private String description;
 
-    private Date startDate;
-
-    private Date endDate;
+    @ManyToMany
+    @JoinTable(name="Teaches",
+    joinColumns = @JoinColumn(name="course_id",referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name="member_id", referencedColumnName = "id"))
+    private List<Member> teachers;
 
     public long getId(){
         return this.id;
@@ -38,19 +43,5 @@ public class Course {
         this.description=desc;
     }
 
-    public Date getStartDate(){
-        return this.startDate;
-    }
 
-    public void setStartDate(Date startDate){
-        this.startDate=startDate;
-    }
-
-    public Date getEndDate(){
-        return this.endDate;
-    }
-
-    public void setEndDate(Date endDate){
-        this.endDate=endDate;
-    }
 }

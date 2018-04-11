@@ -2,6 +2,7 @@ test/Converter.class
 test/database/Member.class
 test/Resources.class
 test/database/Performance.class
+test/database/CourseDates.class
 test/CreateUser.class
 test/database/Course.class
 test/database/Year.class
@@ -14,5 +15,5 @@ test/database/Role.class
 test/controller/GetController.class
 test/controller/EditController.class
 test/Login.class
+test/controller/StudentController.class
 test/Helper.class
-test/database/Teaches.class

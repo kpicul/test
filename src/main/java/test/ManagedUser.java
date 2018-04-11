@@ -16,8 +16,7 @@
  */
 package test;
 
-import test.database.Member;
-import test.database.Role;
+import test.database.*;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -25,6 +24,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.transaction.*;
 import java.sql.Date;
+import java.util.List;
 
 
 public class ManagedUser {
@@ -109,6 +109,74 @@ public class ManagedUser {
             }
             throw new RuntimeException(e);
         }
+    }
+
+    public List getGrades(Performance per){
+        List grades=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select g from Grade g, in (g.performanceId) p where p=:performance");
+            query.setParameter("performance",per);
+            grades=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return grades;
+    }
+
+    public List getPerformances(Member student){
+        List performances=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select p from Performance p, in (p.studentId) m where m=:student");
+            query.setParameter("student",student);
+            performances=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performances;
+    }
+
+    public Course getCourse(Performance per){
+        Course course=new Course();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select cd from Performance p  join  p.cdates_id c join c.courseId cd where p.id = :id");
+            query.setParameter("id",per.getId());
+            course=(Course)query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return course;
     }
 
     public Role getRole(Member user){

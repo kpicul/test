@@ -37,6 +37,9 @@
                     <h:inputSecret id="nameInput" value="#{converter.plain}">
                         <a4j:ajax event="keyup" render="output" />
                     </h:inputSecret>
+                    <h:inputText id="username" value="#{converter.username}">
+                        <a4j:ajax event="keyup" render="output" />
+                    </h:inputText>
                     <h:commandButton value="Convert" id="Confirm" action="#{converter.convert}">
                         <a4j:ajax event="click" render="output1"/>
                     </h:commandButton>

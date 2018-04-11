@@ -17,11 +17,13 @@ public class Converter implements Serializable {
     ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
     private String plain;
+    private String username;
     private String converted;
 
     @PostConstruct
     public void postContruct() {
         plain = "one";
+        username="test";
         convert();
        // converted=Helper.toHash(plain);
     }
@@ -34,14 +36,21 @@ public class Converter implements Serializable {
         this.plain = plain;
     }
     public String getConverted(){
-        System.out.println(converted);
         return this.converted;
     }
     public void setConverted(String converted){
-        this.converted=Helper.convertr(this.plain);
+        this.converted=Helper.getSHA(this.plain,this.username);
+    }
+
+    public String getUsername(){
+        return this.username;
+    }
+
+    public void setUsername(String username){
+        this.username=username;
     }
 
     public void convert(){
-        this.converted=Helper.convertr(plain);
+        this.converted=Helper.getSHA(plain,username);
     }
 }

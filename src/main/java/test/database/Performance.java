@@ -1,8 +1,7 @@
 package test.database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Performance {
@@ -11,11 +10,20 @@ public class Performance {
     @GeneratedValue
     private long id;
 
-    private long memberId;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name="student_id",referencedColumnName = "id")
+    private Member studentId;
 
-    private long courseId;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name="teacher_id",referencedColumnName = "id")
+    private Member teachertId;
 
-    private long yearId;
+    @ManyToOne
+    @JoinColumn(name="cdates_id",referencedColumnName = "id")
+    private CourseDates cdates_id;
+
 
     private int studyYear;
 
@@ -23,28 +31,20 @@ public class Performance {
         return this.id;
     }
 
-    public long getMemberId(){
-        return this.memberId;
+    public Member getStudentId(){
+        return this.studentId;
     }
 
-    public void setMemberId(Long memid){
-        this.memberId=memid;
+    public void setStudentId(Member memid){
+        this.studentId=memid;
     }
 
-    public long getCourseId(){
-        return this.courseId;
+    public Member getTeachertId() {
+        return teachertId;
     }
 
-    public void setCourseId(Long courseId){
-        this.courseId=courseId;
-    }
-
-    public long getYearId(){
-        return this.yearId;
-    }
-
-    public void setYearId(Long yearId){
-        this.yearId=yearId;
+    public void setTeachertId(Member teachertId) {
+        this.teachertId = teachertId;
     }
 
     public int getStudyYear(){
@@ -53,5 +53,13 @@ public class Performance {
 
     public void setStudyYear(int studyYear){
         this.studyYear=studyYear;
+    }
+
+    public CourseDates getCdates_id() {
+        return cdates_id;
+    }
+
+    public void setCdates_id(CourseDates cdates_id) {
+        this.cdates_id = cdates_id;
     }
 }

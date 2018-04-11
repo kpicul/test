@@ -102,9 +102,12 @@ public class EditController  {
 
     public void setPassword(String password) {
         //System.out.println("SET password: "+password);
-        this.password=Helper.getSHA(password,user.getUsername());
+        if(password!=""){
+            this.password = Helper.getSHA(password, user.getUsername());
+        }
         //this.password=password;
     }
+
 
     public String getDateOfBirth() {
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");

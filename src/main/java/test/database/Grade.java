@@ -14,7 +14,7 @@ public class Grade {
     private int grade;
 
     @NotNull
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="performance_id",referencedColumnName = "id")
     private Performance performanceId;
 

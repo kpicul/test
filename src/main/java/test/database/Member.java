@@ -6,6 +6,7 @@ import javax.inject.Named;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Named
@@ -28,6 +29,7 @@ public class Member
     private String username;
 
     private Date dateOfBirth;
+
 
     @NotNull
     @OneToOne

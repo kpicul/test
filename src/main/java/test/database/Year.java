@@ -3,6 +3,7 @@ package test.database;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Entity
@@ -11,10 +12,13 @@ public class Year {
     @GeneratedValue
     private long id;
 
+    @NotNull
     private String year;
 
+    @NotNull
     private Date startDate;
 
+    @NotNull
     private Date endDate;
 
     public long getId(){
