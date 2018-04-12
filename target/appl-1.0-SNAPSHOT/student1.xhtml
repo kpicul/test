@@ -20,7 +20,29 @@
                 <h:commandButton value="Edit" id="Confirm" action="#{studentController.toEdit}">
                 </h:commandButton>
                 <br/>
-                <h:outputFormat value=" #{studentController.results}" />
+                <h2>Finished courses</h2>
+                <h:dataTable value="#{studentController.grads}" var="grads">
+                    <h:column>
+                        <f:facet name="header">Course name</f:facet>
+                        #{grads.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Average grade</f:facet>
+                        #{grads.data}
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <h2>Ongoing courses</h2>
+                <h:dataTable value="#{studentController.ongoing}" var="ongoing">
+                    <h:column>
+                        <f:facet name="header">Course name</f:facet>
+                        #{ongoing.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Grades</f:facet>
+                        #{ongoing.data}
+                    </h:column>
+                </h:dataTable>
             </h:form>
         </rich:panel>
     </fieldset>

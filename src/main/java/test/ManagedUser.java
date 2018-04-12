@@ -155,6 +155,74 @@ public class ManagedUser {
         return performances;
     }
 
+    public List getPerformancesFinished(Member student){
+        List performances=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select p from Performance p, in (p.studentId) m where m=:student and p.finished = true");
+            query.setParameter("student",student);
+            performances=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performances;
+    }
+
+    public List getGradesPerformance(Member student){
+        List performances=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select c.name, g.grade from Grade g join g.performanceId p join p.cdates_id cd join cd.courseId c join p.studentId sid where  sid=:student and p.finished=false");
+            query.setParameter("student",student);
+            performances=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performances;
+    }
+
+    public List getPerformancesYears(Member student){
+        List performances=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select y.year ,avg(g.grade) from Grade g join g.performanceId p join p.cdates_id c join c.yearId y join p.studentId s where s=:student group by y.year ");
+            query.setParameter("student",student);
+            performances=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performances;
+    }
+
+
+
     public Course getCourse(Performance per){
         Course course=new Course();
         try {

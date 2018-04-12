@@ -27,6 +27,9 @@ public class Performance {
 
     private int studyYear;
 
+    @Column(columnDefinition = "boolean default 'false'")
+    private boolean finished;
+
     public long getId(){
         return this.id;
     }
@@ -61,5 +64,13 @@ public class Performance {
 
     public void setCdates_id(CourseDates cdates_id) {
         this.cdates_id = cdates_id;
+    }
+
+   public boolean isFinished(){
+        return this.finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 }
