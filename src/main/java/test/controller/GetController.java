@@ -58,7 +58,7 @@ public class GetController {
             //System.out.println("42");
             Role role=cu.getRole(user);
             if(role.getName().equals("Admin")){
-                nav.performNavigation("edit.xhtml");
+                nav.performNavigation("admin1.xhtml");
             }
             else if(role.getName().equals("Teacher")){
                 nav.performNavigation("edit.xhtml");

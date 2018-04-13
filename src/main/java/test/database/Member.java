@@ -9,12 +9,15 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
+
+@TableGenerator(name="tab", initialValue=50, allocationSize=500)
 @Named
 //@Table(name="Member")
 public class Member
 {
     @Id
-    @GeneratedValue
+    //@GeneratedValue
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="tab")
     private long id;
 
     @NotNull
@@ -32,12 +35,16 @@ public class Member
 
 
     @NotNull
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="role_id",referencedColumnName = "id")
     private Role roleId;
 
     public long getId(){
         return this.id;
+    }
+
+    public void setId(long id){
+        this.id=id;
     }
 
     public String getUsername() {

@@ -16,5 +16,6 @@ test/controller/GetController.class
 test/controller/EditController.class
 test/Login.class
 test/controller/StudentController.class
+test/controller/AdminController.class
 test/Helper.class
 test/output/ResultSet.class

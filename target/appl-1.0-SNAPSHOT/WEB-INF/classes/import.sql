@@ -13,7 +13,7 @@ insert into member(id,firstname,lastname,username,password,role_id,dateofbirth) 
 insert into member(id,firstname,lastname,username,password,role_id) values(9,'Martin','Demšar','mdemsar','9db643b9b6b99c01ce30fa6632a5b1faa2f71e3d938bb53f078b5a1526b3dd01badea8b252987d6edb1f4a3fba9822c8aa761213eaedcb05f858b0e4f0beada2',3); /*geslo: geograf */
 insert into member(id,firstname,lastname,username,password,role_id) values(10,'Luka','Zajec','lzajec','b100d228416bcf09d164fcda81c82d605ceae8b7b51f07ca95bfd5f90839c85588a712e36628a5a78724ae86ac3673b1c4be7ca1f66bc96d91e78c79bb7847d4',3); /*geslo: korencek */
 insert into member(id,firstname,lastname,username,password,role_id) values(11,'Andrej','Lovec','alovec','3aa734544ed0424ef5a5e3a0ac0964acda8c7c678d11da9634a6de24f89cdf111d01548a3a60bdd80388d538f45cba21c57e7111e8484f5e109651912cb67758',3); /*geslo: ustrelizajca */
-
+insert into member(id,firstname,lastname,username,password,role_id) values(12,'Tommy','Wiseau','twiseau','283040b2493945ef6ac15d50f0cd92eea0d5e92a14a701167658cd744e85ba9fa26d882d03bfd3222289200a182cf51b568980256b299456e598b9b1679ed9cf',1); /*geslo: ididnothither */
 
 
 insert into course(id,name,description) values (1,'Math','Basic math');

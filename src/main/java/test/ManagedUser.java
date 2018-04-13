@@ -91,12 +91,14 @@ public class ManagedUser {
             throw new RuntimeException(e);
         }
     }
-
+    //@Transactional
     public void createUser(Member user) {
         try {
             try {
                 utx.begin();
+                System.out.println();
                 entityManager.persist(user);
+                //entityManager.close();
             } finally {
                 utx.commit();
             }
@@ -253,6 +255,29 @@ public class ManagedUser {
             utx.begin();
             Query query = entityManager.createQuery("select r from Member m join m.roleId r where m.username = :username");
             query.setParameter("username",user.getUsername());
+            role=(Role)query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return role;
+    }
+    public Role getRoleByname(String role1){
+        Role role=new Role();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select r from Role r where r.name=:role");
+            query.setParameter("role",role1);
             role=(Role)query.getSingleResult();
             utx.commit();
         } catch (NotSupportedException e) {

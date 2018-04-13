@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 
 @Named
 @RequestScoped
-public class EditController  {
+public class AdminController  {
     @Inject
     private ManagedUser mu;
 
@@ -43,37 +43,7 @@ public class EditController  {
     FacesContext fc = FacesContext.getCurrentInstance();
     ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
-    @PostConstruct
-    public void postConstruct(){
-        user=session.getUser();
-        if(user==null){
-            nav.performNavigation("login.xhtml");
-        }
-        //System.out.println("POSTCONSTRUCT");
-        firstName=user.getFirstName();
-        lastName=user.getLastName();
-        userName=user.getUsername();
-        password=user.getPassword();
-        //int as=777;
-        dateOfBirth=user.getDateOfBirth();
-        System.out.println("test423");
-    }
 
-    public void confirm(){
-        // Member user=mu.getForUsername("test");
-    //    System.out.println("USERNAME: "+userName);
-        user.setUsername(userName);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        mu.updateFirstName(user,firstName);
-        mu.updateLasttName(user,lastName);
-        mu.updateUserName(user,userName);
-        if(password!=null){
-            mu.updatepassword(user,password);
-            user.setPassword(password);
-        }
-        mu.updateDateOfBirth(user,dateOfBirth);
-    }
     public String getFirstName(){
         return this.firstName;
     }
@@ -106,10 +76,10 @@ public class EditController  {
 
     public void setPassword(String password) {
         //System.out.println("SET password: "+password);
-        if(password!=""){
-            this.password = Helper.getSHA(password, user.getUsername());
-        }
-        //this.password=password;
+        //if(password!=""){
+         //   this.password = Helper.getSHA(password, user.getUsername());
+       // }
+        this.password=password;
     }
 
 
@@ -129,6 +99,17 @@ public class EditController  {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+    public void addUser(){
+        System.out.println();
+        Member user=new Member();
+        user.setPassword(password);
+        user.setUsername(userName);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setRoleId(mu.getRoleByname("Admin"));
+        //user.setId(99);
+        mu.createUser(user);
     }
 
 
