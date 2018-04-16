@@ -17,11 +17,7 @@ public class Course {
 
     private String description;
 
-    @ManyToMany
-    @JoinTable(name="Teaches",
-    joinColumns = @JoinColumn(name="course_id",referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name="member_id", referencedColumnName = "id"))
-    private List<Member> teachers;
+
 
     public long getId(){
         return this.id;
@@ -42,6 +38,8 @@ public class Course {
     public void setDescription(String desc){
         this.description=desc;
     }
+
+
 
 
 }

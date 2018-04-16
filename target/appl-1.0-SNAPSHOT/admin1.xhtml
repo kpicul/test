@@ -24,18 +24,30 @@
 
             <rich:panel header="tst">
                 <h:form id="admin">
+                    <p>Firstname:</p>
                     <h:inputText id="firstname" value="#{adminController.firstName}">
                     </h:inputText>
                     <br/>
+                    <p>Lastname: </p>
                     <h:inputText id="lastname" value="#{adminController.lastName}">
                     </h:inputText>
                     <br/>
+                    <p>Username: </p>
                     <h:inputText id="username" value="#{adminController.userName}">
                     </h:inputText>
                     <br/>
+                    <p>Role: </p>
+                    <h:selectOneMenu value="#{adminController.roleChoices}" action="#{adminController.setupEditedTeacher}">
+                        <f:selectItem itemValue="Admin" itemLabel="Admin"/>
+                        <f:selectItem itemValue="Student" itemLabel="Student"/>
+                        <f:selectItem itemValue="Teacher" itemLabel="Teacher"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <p>Password: </p>
                     <h:inputSecret id="password" value="#{adminController.password}">
                     </h:inputSecret>
                     <br/>
+                    <p>Date of birth: </p>
                     <h:inputText id="date" value="#{adminController.dateOfBirth}">
                     </h:inputText>
                     <br/>

@@ -39,6 +39,8 @@ public class Member
     @JoinColumn(name="role_id",referencedColumnName = "id")
     private Role roleId;
 
+
+
     public long getId(){
         return this.id;
     }

@@ -16,18 +16,23 @@
  */
 package test;
 
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
 import test.database.*;
 
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.swing.text.TextAction;
 import javax.transaction.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
 
-public class ManagedUser {
+public class ManagedUser implements Serializable {
 
     @Inject
     private EntityManager entityManager;
@@ -54,6 +59,35 @@ public class ManagedUser {
             }
             utx.commit();
             return user;
+        } catch (Exception e) {
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Member> getForRole(Role role) {
+        try {
+            List <Member> users;
+            //String jedi="jedi";
+            try {
+                utx.begin();
+                Query query = entityManager.createQuery("select u from Member u join u.roleId r where r=:role");
+                query.setParameter("role", role);
+                //query.setParameter("jedi", jedi);
+                //query.getSingleResult();
+                System.out.println("test");
+                users = query.getResultList();
+                //user=null;
+            } catch (NoResultException e) {
+                //throw new RuntimeException(e);
+                users = null;
+            }
+            utx.commit();
+            return users;
         } catch (Exception e) {
             try {
                 utx.rollback();
@@ -91,14 +125,11 @@ public class ManagedUser {
             throw new RuntimeException(e);
         }
     }
-    //@Transactional
     public void createUser(Member user) {
         try {
             try {
                 utx.begin();
-                System.out.println();
                 entityManager.persist(user);
-                //entityManager.close();
             } finally {
                 utx.commit();
             }
@@ -296,12 +327,74 @@ public class ManagedUser {
         return role;
     }
 
+    public List getCoursesByTeacher(long teacherId){
+        List courses=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select c  from Teaches tc join tc.course c join tc.memberid t where t.id=:teacherID");
+            query.setParameter("teacherID",teacherId);
+            courses=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return courses;
+    }
+
+    public List getCoursesByTeacherNot(){
+        List courses=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select distinct c  from Course c ");
+            courses=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return courses;
+    }
+
+    public Course getCoursesByName(String courseName){
+        Course course=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select distinct c  from Course c where c.name=:name");
+            query.setParameter("name",courseName);
+            course=(Course)query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return course;
+    }
+
     public void updateUserName(Member user, String userName){
         try {
             utx.begin();
-            System.out.println("UPDATE");
-            System.out.println(user.getId());
-            System.out.println(userName);
             Query query=entityManager.createQuery("Update Member u set u.username=:username where u.id=:id");
             query.setParameter("username", userName);
             query.setParameter("id",user.getId());
@@ -401,6 +494,71 @@ public class ManagedUser {
             e.printStackTrace();
         } catch (RollbackException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addCourseToTeacher(Course course, Member teacher){
+        try {
+            utx.begin();
+            Teaches tch=new Teaches();
+            tch.setCourse(course);
+            tch.setMemberid(teacher);
+            entityManager.persist(tch);
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Teaches getTeaches(Course course, Member teacher){
+        Teaches teaches=new Teaches();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c where m.id=:memberid and c.id=:course");
+            query.setParameter("memberid",teacher.getId());
+            query.setParameter("course",course.getId());
+            teaches=(Teaches)query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return teaches;
+    }
+
+    public void removeTeacherFromCourse(Course course, Member teacher){
+        try {
+            utx.begin();
+            Teaches teaches=null;
+            Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c where m.id=:memberid and c.id=:course");
+            query.setParameter("memberid",teacher.getId());
+            query.setParameter("course",course.getId());
+            teaches=(Teaches)query.getSingleResult();
+            entityManager.remove(teaches);
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
 

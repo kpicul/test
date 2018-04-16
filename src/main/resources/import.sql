@@ -31,18 +31,18 @@ insert into course(id,name,description) values (12,'Geography 8','');
 insert into course(id,name,description) values (13,'Slovenian language 8','');
 insert into course(id,name,description) values (14,'English language 8','');
 
-insert into teaches(course_id,member_id) values(1,5)  /*Math : jscuka*/
-insert into teaches(course_id,member_id) values(1,6) /*Math : jnovak*/
-insert into teaches(course_id,member_id) values(2,2) /*Physics : DarthVader*/
-insert into teaches(course_id,member_id) values(3,2) /*Chemistry : DarthVader*/
-insert into teaches(course_id,member_id) values(3,6) /*Chemistry : jnovak*/
-insert into teaches(course_id,member_id) values(8,5)  /*Math8 : jscuka*/
-insert into teaches(course_id,member_id) values(9,2) /*Physics8 : DarthVader*/
-insert into teaches(course_id,member_id) values(11,2) /*Gymnastics8 : DarthVader*/
-insert into teaches(course_id,member_id) values(10,6) /*chemistry8 : jnovak*/
-insert into teaches(course_id,member_id) values(12,9) /*Geography8 : mdemsar*/
-insert into teaches(course_id,member_id) values(13,10) /*Slovenian8 : lzajec*/
-insert into teaches(course_id,member_id) values(14,11) /*English8 : alovec*/
+insert into teaches(id,course_id,member_id) values(1,1,5)  /*Math : jscuka*/
+insert into teaches(id,course_id,member_id) values(2,1,6) /*Math : jnovak*/
+insert into teaches(id,course_id,member_id) values(3,2,2) /*Physics : DarthVader*/
+insert into teaches(id,course_id,member_id) values(4,3,2) /*Chemistry : DarthVader*/
+insert into teaches(id,course_id,member_id) values(5,3,6) /*Chemistry : jnovak*/
+insert into teaches(id,course_id,member_id) values(6,8,5)  /*Math8 : jscuka*/
+insert into teaches(id,course_id,member_id) values(7,9,2) /*Physics8 : DarthVader*/
+insert into teaches(id,course_id,member_id) values(8,11,2) /*Gymnastics8 : DarthVader*/
+insert into teaches(id,course_id,member_id) values(9,10,6) /*chemistry8 : jnovak*/
+insert into teaches(id,course_id,member_id) values(10,12,9) /*Geography8 : mdemsar*/
+insert into teaches(id,course_id,member_id) values(11,13,10) /*Slovenian8 : lzajec*/
+insert into teaches(id,course_id,member_id) values(12,14,11) /*English8 : alovec*/
 
 
 insert into year(id,year,startdate,enddate) values (1,'2015/2016',to_date('01.09.2015','DD.MM.YYYY'),to_date('25.06.2016','DD.MM.YYYY'))
