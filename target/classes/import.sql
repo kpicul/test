@@ -15,6 +15,9 @@ insert into member(id,firstname,lastname,username,password,role_id) values(10,'L
 insert into member(id,firstname,lastname,username,password,role_id) values(11,'Andrej','Lovec','alovec','3aa734544ed0424ef5a5e3a0ac0964acda8c7c678d11da9634a6de24f89cdf111d01548a3a60bdd80388d538f45cba21c57e7111e8484f5e109651912cb67758',3); /*geslo: ustrelizajca */
 insert into member(id,firstname,lastname,username,password,role_id) values(12,'Tommy','Wiseau','twiseau','283040b2493945ef6ac15d50f0cd92eea0d5e92a14a701167658cd744e85ba9fa26d882d03bfd3222289200a182cf51b568980256b299456e598b9b1679ed9cf',1); /*geslo: ididnothither */
 
+insert into groups(id,name,year) values (1,'7a',7)
+insert into groups(id,name,year) values (2,'8a',8)
+insert into groups(id,name,year) values (3,'9a',9)
 
 insert into course(id,name,description) values (1,'Math','Basic math');
 insert into course(id,name,description) values (2,'Physics','Basic physics');
@@ -31,72 +34,63 @@ insert into course(id,name,description) values (12,'Geography 8','');
 insert into course(id,name,description) values (13,'Slovenian language 8','');
 insert into course(id,name,description) values (14,'English language 8','');
 
-insert into teaches(id,course_id,member_id) values(1,1,5)  /*Math : jscuka*/
-insert into teaches(id,course_id,member_id) values(2,1,6) /*Math : jnovak*/
-insert into teaches(id,course_id,member_id) values(3,2,2) /*Physics : DarthVader*/
-insert into teaches(id,course_id,member_id) values(4,3,2) /*Chemistry : DarthVader*/
-insert into teaches(id,course_id,member_id) values(5,3,6) /*Chemistry : jnovak*/
-insert into teaches(id,course_id,member_id) values(6,8,5)  /*Math8 : jscuka*/
-insert into teaches(id,course_id,member_id) values(7,9,2) /*Physics8 : DarthVader*/
-insert into teaches(id,course_id,member_id) values(8,11,2) /*Gymnastics8 : DarthVader*/
-insert into teaches(id,course_id,member_id) values(9,10,6) /*chemistry8 : jnovak*/
-insert into teaches(id,course_id,member_id) values(10,12,9) /*Geography8 : mdemsar*/
-insert into teaches(id,course_id,member_id) values(11,13,10) /*Slovenian8 : lzajec*/
-insert into teaches(id,course_id,member_id) values(12,14,11) /*English8 : alovec*/
-
-
 insert into year(id,year,startdate,enddate) values (1,'2015/2016',to_date('01.09.2015','DD.MM.YYYY'),to_date('25.06.2016','DD.MM.YYYY'))
 insert into year(id,year,startdate,enddate) values (2,'2016/2017',to_date('01.09.2016','DD.MM.YYYY'),to_date('25.06.2017','DD.MM.YYYY'))
 insert into year(id,year,startdate,enddate) values (3,'2017/2018',to_date('01.09.2017','DD.MM.YYYY'),to_date('25.06.2018','DD.MM.YYYY'))
 
-insert into coursedates(id,year_id,course_id) values(1,1,1) /*2015 : Math*/
-insert into coursedates(id,year_id,course_id) values(2,1,2) /*2015 : Physics*/
-insert into coursedates(id,year_id,course_id) values(3,2,2) /*2016 : Physics*/
-insert into coursedates(id,year_id,course_id) values(4,2,6) /*2016 : Slovenian language*/
-insert into coursedates(id,year_id,course_id) values(5,2,3) /*2016 : Chemistry*/
-insert into coursedates(id,year_id,course_id) values(6,3,3) /*2017 : Chemistry*/
-insert into coursedates(id,year_id,course_id) values(7,2,1) /*2016 : Math*/
-insert into coursedates(id,year_id,course_id) values(8,3,8) /*2017 : Math8*/
-insert into coursedates(id,year_id,course_id) values(9,3,9) /*2017 : Physics8*/
-insert into coursedates(id,year_id,course_id) values(10,3,10) /*2017 : Chemistry8*/
-insert into coursedates(id,year_id,course_id) values(11,3,11) /*2017 : Gymnastics8*/
-insert into coursedates(id,year_id,course_id) values(12,3,12) /*2017 : Geography8*/
-insert into coursedates(id,year_id,course_id) values(13,3,13) /*2017 : SlovenianLanguage8*/
-insert into coursedates(id,year_id,course_id) values(14,3,14) /*2017 : EnglishLanguage8*/
+insert into teaches(id,course_id,member_id,year_id) values(1,1,5,2)  /*Math : jscuka : 2016*/
+insert into teaches(id,course_id,member_id,year_id) values(2,1,6,2) /*Math : jnovak*/
+insert into teaches(id,course_id,member_id,year_id) values(3,2,2,2) /*Physics : DarthVader*/
+insert into teaches(id,course_id,member_id,year_id) values(4,3,2,2) /*Chemistry : DarthVader*/
+insert into teaches(id,course_id,member_id,year_id) values(5,3,6,2) /*Chemistry : jnovak*/
+insert into teaches(id,course_id,member_id,year_id) values(6,8,5,2)  /*Math8 : jscuka*/
+insert into teaches(id,course_id,member_id,year_id) values(7,9,2,2) /*Physics8 : DarthVader*/
+insert into teaches(id,course_id,member_id,year_id) values(8,11,2,2) /*Gymnastics8 : DarthVader*/
+insert into teaches(id,course_id,member_id,year_id) values(9,10,6,2) /*chemistry8 : jnovak*/
+insert into teaches(id,course_id,member_id,year_id) values(10,12,9,2) /*Geography8 : mdemsar*/
+insert into teaches(id,course_id,member_id,year_id) values(11,13,10,2) /*Slovenian8 : lzajec*/
+insert into teaches(id,course_id,member_id,year_id) values(12,14,11,2) /*English8 : alovec*/
 
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id,finished) values (1,7,1,7,5,true); /* Math2015 : mstruna : jscuka*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id,finished) values (5,7,7,7,5,true); /* Math2016 : mstruna : jscuka*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id) values (6,8,8,7,5); /* Math8 2017 : mstruna : jscuka*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id) values (7,8,9,7,2); /* Physics8 2017 : mstruna : DarthVader*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id) values (8,8,10,7,6); /* Chemisty8 2017 : mstruna : jnovak*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id) values (9,8,11,7,2); /* Gymnastics8 2017 : mstruna : DarthVader*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id) values (10,8,12,7,9); /* Geography8 2017 : mstruna : mdemsar*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id) values (11,8,13,7,10); /* slovenian8 2017 : mstruna : lzajec*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id) values (12,8,14,7,11); /* English8 2017 : mstruna : alovec*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id,finished) values (2,9,5,8,2,true); /* Chemistry2016 : jkocnik : DarthVader*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id,finished) values (3,9,7,8,6,true); /* Math2016 : jkocnik : jnovak*/
-insert into performance(id,studyyear,cdates_id,student_id,teacher_id,finished) values (4,7,6,1,2,true); /* Chemistry2017 : jedi : DarthVader*/
+insert into groupcourse(id,group_id,teaches_id) values(1,2,6) /* 8a : math8*/
+insert into groupcourse(id,group_id,teaches_id) values(2,2,7)/* 8a : physics8 */
+insert into groupcourse(id,group_id,teaches_id) values(3,2,8) /* 8a : gymnastics8*/
+insert into groupcourse(id,group_id,teaches_id) values(4,2,9) /*8a : chemistry8*/
+insert into groupcourse(id,group_id,teaches_id) values(5,2,10) /* 8a : geography8 */
+insert into groupcourse(id,group_id,teaches_id) values(6,2,11) /* 8a : slovenian 8*/
+insert into groupcourse(id,group_id,teaches_id) values(7,2,12)/* 8a : english 8*/
 
-insert into grade(id,grade,performance_id) values(1,1,1) /* 1 : Math2015 : mstruna */
-insert into grade(id,grade,performance_id) values(2,4,2) /* 4 : Chemistry2017 : jkocnik*/
-insert into grade(id,grade,performance_id) values(3,3,3) /* 3 : Math2016 : jkocnik */
-insert into grade(id,grade,performance_id) values(4,4,3) /* 4 : Math2016 : jkocnik*/
-insert into grade(id,grade,performance_id) values(5,4,5) /* 5 : Math2016 : mstruna*/
-insert into grade(id,grade,performance_id) values(6,5,3) /* 5 : Math2016 : jkocnik*/
-insert into grade(id,grade,performance_id) values(7,5,3) /* 5 : Math2016 : jkocnik*/
+insert into performance(id,groupcourse_id,student_id,finished) values (1,1,7,true); /* 8a,math:  mstruna */
+insert into performance(id,groupcourse_id,student_id,finished) values (2,2,7,true); /* 8a,physics8:  mstruna */
+insert into performance(id,groupcourse_id,student_id) values (3,3,7); /* 8a,gymnastics 8:  mstruna */
+insert into performance(id,groupcourse_id,student_id,finished) values (4,4,7,true); /* 8a,chemistry8:  mstruna */
+insert into performance(id,groupcourse_id,student_id,finished) values (5,5,7,true); /* 8a,geography8:  mstruna */
+insert into performance(id,groupcourse_id,student_id,finished) values (6,6,7,true); /* 8a,slovenian8:  mstruna */
+insert into performance(id,groupcourse_id,student_id,finished) values (7,7,7,true); /* 8a,english8:  mstruna */
 
-insert into grade(id,grade,performance_id) values(8,5,6) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(9,4,6) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(10,4,6) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(11,5,7) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(12,2,7) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(13,3,8) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(14,3,8) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(15,1,9) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(16,1,9) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(17,2,9) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(18,5,10) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(19,4,10) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(20,3,11) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(21,3,11) /* 5 : Math8 2017 : mstruna*/
-insert into grade(id,grade,performance_id) values(22,1,12) /* 5 : Math8 2017 : mstruna*/
+
+insert into grade(id,grade,performance_id) values(1,1,1) /* 1 : math8 : mstruna */
+insert into grade(id,grade,performance_id) values(2,3,1) /* 3 : math8 : mstruna */
+insert into grade(id,grade,performance_id) values(3,3,1) /* 3 : math8 : mstruna */
+insert into grade(id,grade,performance_id) values(4,2,1) /* 3 : math8 : mstruna */
+insert into grade(id,grade,performance_id) values(5,5,2) /* 5 : physics8 : mstruna */
+insert into grade(id,grade,performance_id) values(6,5,2) /* 5 : physics8 : mstruna */
+insert into grade(id,grade,performance_id) values(7,5,2) /* 5 : physics8 : mstruna */
+insert into grade(id,grade,performance_id) values(8,1,3) /* 1 : gymnastics8 : mstruna */
+insert into grade(id,grade,performance_id) values(9,1,3) /* 1 : gymnastics8 : mstruna */
+insert into grade(id,grade,performance_id) values(10,2,3) /* 2 : gymnastics8 : mstruna */
+insert into grade(id,grade,performance_id) values(11,5,4) /* 1 : chemistry8 : mstruna */
+insert into grade(id,grade,performance_id) values(12,5,4) /* 1 : chemistry8 : mstruna */
+insert into grade(id,grade,performance_id) values(13,5,4) /* 1 : chemistry8 : mstruna */
+insert into grade(id,grade,performance_id) values(14,1,5) /* 1 : geography8 : mstruna */
+insert into grade(id,grade,performance_id) values(15,2,5) /* 1 : geography8 : mstruna */
+insert into grade(id,grade,performance_id) values(16,2,5) /* 1 : geography8 : mstruna */
+insert into grade(id,grade,performance_id) values(17,4,5) /* 1 : geography8 : mstruna */
+insert into grade(id,grade,performance_id) values(18,4,6) /* 1 : slovenian8 : mstruna */
+insert into grade(id,grade,performance_id) values(19,4,6) /* 1 : slovenian8 : mstruna */
+insert into grade(id,grade,performance_id) values(20,5,6) /* 1 : slovenian8 : mstruna */
+insert into grade(id,grade,performance_id) values(21,1,7) /* 1 : english8 : mstruna */
+insert into grade(id,grade,performance_id) values(22,2,7) /* 1 : english8 : mstruna */
+insert into grade(id,grade,performance_id) values(23,2,7) /* 1 : english8 : mstruna */
+insert into grade(id,grade,performance_id) values(24,2,7) /* 1 : english8 : mstruna */
+
+

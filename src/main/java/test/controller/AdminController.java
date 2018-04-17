@@ -3,10 +3,7 @@ package test.controller;
 import test.Helper;
 import test.ManagedUser;
 import test.Session;
-import test.database.Course;
-import test.database.Member;
-import test.database.Role;
-import test.database.Teaches;
+import test.database.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -65,6 +62,9 @@ public class AdminController  implements Serializable {
     private List<Course> addCourseData;
 
     private String addCourse;
+    private List<Year> years;
+
+    private long selectedYear;
     //FacesContext fc = FacesContext.getCurrentInstance();
     //ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
@@ -166,6 +166,7 @@ public class AdminController  implements Serializable {
 
     public void getTeachers1(){
         teachers=mu.getForRole(mu.getRoleByname("Teacher"));
+        years=mu.getYears();
 
     }
 
@@ -217,6 +218,22 @@ public class AdminController  implements Serializable {
         this.addCourse = addCourse;
     }
 
+    public List<Year> getYears() {
+        return years;
+    }
+
+    public void setYears(List<Year> years) {
+        this.years = years;
+    }
+
+    public long getSelectedYear() {
+        return selectedYear;
+    }
+
+    public void setSelectedYear(long selectedYear) {
+        this.selectedYear = selectedYear;
+    }
+
     public void setupEditedTeacher(){
         editedTeacher=mu.getForUsername(teacherValue);
         firstName=editedTeacher.getFirstName();
@@ -225,7 +242,7 @@ public class AdminController  implements Serializable {
         password=editedTeacher.getPassword();
         dateOfBirth=editedTeacher.getDateOfBirth();
 
-        courseData=mu.getCoursesByTeacher(editedTeacher.getId());
+        courseData=mu.getCoursesByTeacherYear(editedTeacher.getId(),selectedYear);
 
         ArrayList<Course> indices=new ArrayList<Course>();
         addCourseData=mu.getCoursesByTeacherNot();
@@ -259,7 +276,8 @@ public class AdminController  implements Serializable {
     public void courseAdd(){
         Member teacher=mu.getForId(editedTeacher.getId());
         Course course=mu.getCoursesByName(addCourse);
-        mu.addCourseToTeacher(course,teacher);
+        Year year=mu.yearById(selectedYear);
+        mu.addCourseToTeacher(course,teacher,year);
         Course toAdd=null;
         for(Course c:addCourseData){
             if(c.getName().equals(addCourse)){
@@ -274,7 +292,8 @@ public class AdminController  implements Serializable {
     public void courseRemove(){
         Member teacher=mu.getForId(editedTeacher.getId());
         Course course=mu.getCoursesByName(selectedCourse);
-        mu.removeTeacherFromCourse(course,teacher);
+        Year year=mu.yearById(selectedYear);
+        mu.removeTeacherFromCourse(course,teacher,year);
         Course toRemove=null;
         for(Course c:courseData){
             if(c.getName().equals(selectedCourse)){

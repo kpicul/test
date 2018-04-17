@@ -41,6 +41,8 @@ public class Member
 
 
 
+
+
     public long getId(){
         return this.id;
     }
@@ -98,4 +100,6 @@ public class Member
     public Role getRoleId(){
         return this.roleId;
     }
+
+
 }

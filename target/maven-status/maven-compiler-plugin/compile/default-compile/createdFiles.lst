@@ -1,5 +1,7 @@
+test/database/Groupcourse.class
 test/Converter.class
 test/database/Member.class
+test/database/Group.class
 test/Resources.class
 test/database/Performance.class
 test/database/CourseDates.class

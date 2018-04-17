@@ -15,17 +15,13 @@ public class Performance {
     @JoinColumn(name="student_id",referencedColumnName = "id")
     private Member studentId;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name="teacher_id",referencedColumnName = "id")
-    private Member teachertId;
+
 
     @ManyToOne
-    @JoinColumn(name="cdates_id",referencedColumnName = "id")
-    private CourseDates cdates_id;
+    @JoinColumn(name="groupcourse_id",referencedColumnName = "id")
+    private Groupcourse groupcourseid;
 
 
-    private int studyYear;
 
     @Column(columnDefinition = "boolean default 'false'")
     private boolean finished;
@@ -42,35 +38,20 @@ public class Performance {
         this.studentId=memid;
     }
 
-    public Member getTeachertId() {
-        return teachertId;
-    }
 
-    public void setTeachertId(Member teachertId) {
-        this.teachertId = teachertId;
-    }
-
-    public int getStudyYear(){
-        return this.studyYear;
-    }
-
-    public void setStudyYear(int studyYear){
-        this.studyYear=studyYear;
-    }
-
-    public CourseDates getCdates_id() {
-        return cdates_id;
-    }
-
-    public void setCdates_id(CourseDates cdates_id) {
-        this.cdates_id = cdates_id;
-    }
-
-   public boolean isFinished(){
+    public boolean isFinished(){
         return this.finished;
     }
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    public Groupcourse getGroupcourseid() {
+        return groupcourseid;
+    }
+
+    public void setGroupcourseid(Groupcourse groupcourseid) {
+        this.groupcourseid = groupcourseid;
     }
 }

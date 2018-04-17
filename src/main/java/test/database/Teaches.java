@@ -19,6 +19,10 @@ public class Teaches {
     @JoinColumn(name="course_id",referencedColumnName = "id")
     private Course course;
 
+    @ManyToOne
+    @JoinColumn(name="year_id",referencedColumnName = "id")
+    private Year yearid;
+
     public Member getMemberid() {
         return memberid;
     }
@@ -33,5 +37,13 @@ public class Teaches {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Year getYearid() {
+        return yearid;
+    }
+
+    public void setYearid(Year yearid) {
+        this.yearid = yearid;
     }
 }

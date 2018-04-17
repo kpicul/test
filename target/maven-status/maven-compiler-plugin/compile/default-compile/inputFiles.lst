@@ -11,12 +11,14 @@
 /home/kristjan/Parsek/test/src/main/java/test/controller/AdminController.java
 /home/kristjan/Parsek/test/src/main/java/test/RichBean.java
 /home/kristjan/Parsek/test/src/main/java/test/database/Teaches.java
+/home/kristjan/Parsek/test/src/main/java/test/database/Group.java
 /home/kristjan/Parsek/test/src/main/java/test/output/ResultSet.java
 /home/kristjan/Parsek/test/src/main/java/test/controller/GetController.java
 /home/kristjan/Parsek/test/src/main/java/test/database/Member.java
 /home/kristjan/Parsek/test/src/main/java/test/controller/Controller.java
 /home/kristjan/Parsek/test/src/main/java/test/Login.java
 /home/kristjan/Parsek/test/src/main/java/test/Resources.java
+/home/kristjan/Parsek/test/src/main/java/test/database/Groupcourse.java
 /home/kristjan/Parsek/test/src/main/java/test/database/Role.java
 /home/kristjan/Parsek/test/src/main/java/test/Session.java
 /home/kristjan/Parsek/test/src/main/java/test/ManagedUser.java

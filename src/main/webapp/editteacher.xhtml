@@ -30,6 +30,9 @@
                     <h:commandButton id="Select" value="Select" action="#{adminController.setupEditedTeacher}">
 
                     </h:commandButton>
+                    <h:selectOneMenu id="years" value="#{adminController.selectedYear}">
+                        <f:selectItems value="#{adminController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}"/>
+                    </h:selectOneMenu>
                 </h:form>
 
                 <h:form id="teacherdata" rendered="#{not empty adminController.teacherValue}">

@@ -214,7 +214,7 @@ public class ManagedUser implements Serializable {
         List performances=null;
         try {
             utx.begin();
-            Query query=entityManager.createQuery("select c.name, g.grade from Grade g join g.performanceId p join p.cdates_id cd join cd.courseId c join p.studentId sid where  sid=:student and p.finished=false");
+            Query query=entityManager.createQuery("select c.name, g.grade from Grade g join g.performanceId p join p.groupcourseid gc join gc.teachesid ti join ti.course c join p.studentId sid where  sid=:student and p.finished=false");
             query.setParameter("student",student);
             performances=query.getResultList();
             utx.commit();
@@ -236,7 +236,7 @@ public class ManagedUser implements Serializable {
         List performances=null;
         try {
             utx.begin();
-            Query query=entityManager.createQuery("select y.year ,avg(g.grade) from Grade g join g.performanceId p join p.cdates_id c join c.yearId y join p.studentId s where s=:student group by y.year ");
+            Query query=entityManager.createQuery("select y.year ,avg(g.grade) from Grade g join g.performanceId p join p.groupcourseid gi join gi.teachesid ti join ti.yearid y join p.studentId s where s=:student group by y.year ");
             query.setParameter("student",student);
             performances=query.getResultList();
             utx.commit();
@@ -260,7 +260,7 @@ public class ManagedUser implements Serializable {
         Course course=new Course();
         try {
             utx.begin();
-            Query query = entityManager.createQuery("select cd from Performance p  join  p.cdates_id c join c.courseId cd where p.id = :id");
+            Query query = entityManager.createQuery("select c from Performance p  join  p.groupcourseid gi join gi.teachesid ti join ti.course c where p.id = :id");
             query.setParameter("id",per.getId());
             course=(Course)query.getSingleResult();
             utx.commit();
@@ -370,6 +370,55 @@ public class ManagedUser implements Serializable {
         return courses;
     }
 
+    public Year yearById(long id){
+        Year year=new Year();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select y from Year y where y.id=:yid");
+            query.setParameter("yid",id);
+            year=(Year) query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return year;
+    }
+
+    public List getCoursesByTeacherYear(long teacherId, long yearid){
+        List courses=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select c  from Teaches tc join tc.course c join tc.memberid t  join tc.yearid y where t.id=:teacherID and y.id=:yid");
+            query.setParameter("teacherID",teacherId);
+            query.setParameter("yid",yearid);
+            courses=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return courses;
+    }
+
+
+
     public Course getCoursesByName(String courseName){
         Course course=null;
         try {
@@ -390,6 +439,27 @@ public class ManagedUser implements Serializable {
             e.printStackTrace();
         }
         return course;
+    }
+
+    public List getYears(){
+        List years=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select y  from Year y ");
+            years=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return years;
     }
 
     public void updateUserName(Member user, String userName){
@@ -497,12 +567,13 @@ public class ManagedUser implements Serializable {
         }
     }
 
-    public void addCourseToTeacher(Course course, Member teacher){
+    public void addCourseToTeacher(Course course, Member teacher,Year year){
         try {
             utx.begin();
             Teaches tch=new Teaches();
             tch.setCourse(course);
             tch.setMemberid(teacher);
+            tch.setYearid(year);
             entityManager.persist(tch);
             utx.commit();
         } catch (Exception e) {
@@ -541,13 +612,14 @@ public class ManagedUser implements Serializable {
         return teaches;
     }
 
-    public void removeTeacherFromCourse(Course course, Member teacher){
+    public void removeTeacherFromCourse(Course course, Member teacher,Year year){
         try {
             utx.begin();
             Teaches teaches=null;
-            Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c where m.id=:memberid and c.id=:course");
+            Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c join t.yearid y where m.id=:memberid and c.id=:course and y.id=:yid");
             query.setParameter("memberid",teacher.getId());
             query.setParameter("course",course.getId());
+            query.setParameter("yid",year.getId());
             teaches=(Teaches)query.getSingleResult();
             entityManager.remove(teaches);
             utx.commit();

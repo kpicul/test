@@ -10,18 +10,20 @@ import test.output.ResultSet;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Named
-@RequestScoped
-public class StudentController {
+@SessionScoped
+public class StudentController implements Serializable {
     FacesContext fc = FacesContext.getCurrentInstance();
     ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
@@ -31,7 +33,7 @@ public class StudentController {
     @Inject
     private ManagedUser mu;
 
-    private final double positiveGrade=2.0;
+    private final double positiveGrade=1.5;
     private Member student;
     private String firstname;
     private String lastname;
