@@ -2,11 +2,92 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
 <head>
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
 
+
+<ui:composition template="/templates/template.xhtml">
+
+    <ui:define name="title">Test</ui:define>
+    <ui:param name="student1"  value="#{editStudentController.student}"/>
+    <ui:define name="body">
+        <fieldset style="width:500px">
+            <legend>Testing site</legend>
+
+            <rich:panel header="tst">
+                <h:form id="groups">
+                    <h:selectOneListbox id="group" value="#{editStudentController.selectedGroupId}">
+                        <f:selectItems value="#{editStudentController.groups}" var="group" itemLabel="#{group.name}" itemValue="#{group.id}" />
+                    </h:selectOneListbox>
+
+                    <h:selectOneMenu id="year" value="#{editStudentController.selectedYearId}">
+                        <f:selectItems value="#{editStudentController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}" />
+                    </h:selectOneMenu>
+
+                    <h:commandButton id="Select" value="Select" action="#{editStudentController.setupStudents}" >
+
+                    </h:commandButton>
+
+                </h:form>
+                <br/>
+                <h:form id="students" rendered="#{not empty editStudentController.students}">
+                    <h:selectOneListbox id="student" value="#{editStudentController.selectedStudent}">
+                        <f:selectItems value="#{editStudentController.students}" var="student" itemLabel="#{student.username}" itemValue="#{student.id}"/>
+                    </h:selectOneListbox>
+                    <h:commandButton id="confirm" value="Select" action="#{editStudentController.selectStudent}">
+
+                    </h:commandButton>
+
+
+                </h:form>
+                <br/>
+                <h:form id="teachers" rendered="#{not empty editStudentController.courses}">
+                    <h:selectOneMenu id="course" value="#{editStudentController.selectedCourse}">
+                        <f:selectItems value="#{editStudentController.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}" />
+                        <f:ajax event="click" render="coursedata teacher" listener="#{editStudentController.setupTeacherSet}"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <h:outputLabel id="coursedata" value="#{editStudentController.selectedTeacher.memberid.firstName} #{editStudentController.selectedTeacher.memberid.lastName}">
+                    </h:outputLabel>
+                    <h:selectOneMenu id="teacher" value="#{editStudentController.changedTeacherId}">
+                        <f:selectItems value="#{editStudentController.teachers}" var="teacherz" itemLabel="#{teacherz.memberid.username}" itemValue="#{teacherz.id}" />
+                    </h:selectOneMenu>
+                    <h:commandButton id="updateCourseGroup" value="Update" action="#{editStudentController.updateCourseGroup}"/>
+                </h:form>
+                <br/>
+                <h:form id="editstudent" rendered="#{not empty editStudentController.student}">
+                    <h:inputText id="firstname" value="#{editStudentController.firstName}">
+                    </h:inputText>
+                    <br/>
+                    <h:inputText id="lastname" value="#{editStudentController.lastName}">
+                    </h:inputText>
+                    <br/>
+                    <h:inputText id="username" value="#{editStudentController.userName}">
+                    </h:inputText>
+                    <br/>
+                    <h:inputSecret id="password" value="#{editStudentController.password}">
+                    </h:inputSecret>
+                    <br/>
+                    <h:inputText id="date" value="#{editStudentController.dateOfBirth}">
+                    </h:inputText>
+                    <br/>
+                    <h:commandButton value="Confirm" id="edit" action="#{editStudentController.updateStudent}">
+                    </h:commandButton>
+                    <br/>
+
+                </h:form>
+            </rich:panel>
+
+        </fieldset>
+    </ui:define>
+</ui:composition>
 </body>
 </html>

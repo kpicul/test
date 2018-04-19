@@ -40,21 +40,18 @@ public class ManagedUser implements Serializable {
     @Inject
     private UserTransaction utx;
 
+    //Get queries
+
     public Member getForUsername(String username) {
         try {
             Member user;
-            //String jedi="jedi";
             try {
                 utx.begin();
                 Query query = entityManager.createQuery("select u from Member u where u.username = :username");
                 query.setParameter("username", username);
-                //query.setParameter("jedi", jedi);
-                //query.getSingleResult();
                 System.out.println("test");
                 user = (Member) query.getSingleResult();
-                //user=null;
             } catch (NoResultException e) {
-                //throw new RuntimeException(e);
                 user = null;
             }
             utx.commit();
@@ -72,18 +69,13 @@ public class ManagedUser implements Serializable {
     public List<Member> getForRole(Role role) {
         try {
             List <Member> users;
-            //String jedi="jedi";
             try {
                 utx.begin();
                 Query query = entityManager.createQuery("select u from Member u join u.roleId r where r=:role");
                 query.setParameter("role", role);
-                //query.setParameter("jedi", jedi);
-                //query.getSingleResult();
                 System.out.println("test");
                 users = query.getResultList();
-                //user=null;
             } catch (NoResultException e) {
-                //throw new RuntimeException(e);
                 users = null;
             }
             utx.commit();
@@ -100,18 +92,14 @@ public class ManagedUser implements Serializable {
     public Member getForId(Long id) {
         try {
             Member user;
-            //String jedi="jedi";
             try {
                 utx.begin();
                 Query query = entityManager.createQuery("select u from Member u where u.id = :id");
                 query.setParameter("id", id);http://localhost:8080/appl-1.0-SNAPSHOT/edit.xhtml
-                //query.setParameter("jedi", jedi);
-                //query.getSingleResult();
                 System.out.println("test");
                 user = (Member) query.getSingleResult();
                 //user=null;
             } catch (NoResultException e) {
-                //throw new RuntimeException(e);
                 user = null;
             }
             utx.commit();
@@ -462,6 +450,261 @@ public class ManagedUser implements Serializable {
         return years;
     }
 
+    public List getGroups(){
+        List groups=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select g  from Group g ");
+            groups=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return groups;
+    }
+
+    public List getStudentsByGroup(long groupId){
+        List students=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select distinct s from Performance p join p.groupcourseid gc join gc.groupid g join p.studentId s where g.id=:gid");
+            query.setParameter("gid",groupId);
+            students=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return students;
+    }
+
+    public List getCoursesByGroup(long groupId){
+        List courses=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select c from Groupcourse gc join gc.groupid g join gc.teachesid t join t.course c where g.id=:gid");
+            query.setParameter("gid",groupId);
+            courses=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return courses;
+    }
+
+    public List getTeachersByGroup(Group group){
+        List teach=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select t from Groupcourse gc join gc.groupid g join gc.teachesid t where g.id=:gid");
+            query.setParameter("gid",group.getId());
+            teach=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return teach;
+    }
+
+
+    public Teaches getTeacherByCourseGroupYear(long courseId, long groupId,long yearId){
+        Teaches teacher=new Teaches();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select ti from Groupcourse gc join gc.groupid g join gc.teachesid ti join ti.course co  join ti.yearid y where co.id=:cid and g.id=:gid and y.id=:yearId");
+            query.setParameter("gid",groupId);
+            query.setParameter("cid",courseId);
+            query.setParameter("yearId",yearId);
+            teacher=(Teaches) query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return teacher;
+    }
+
+    public Group getGroupById(long id){
+        Group group=new Group();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select g from Group g where g.id=:gid");
+            query.setParameter("gid",id);
+            group=(Group) query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return group;
+    }
+
+    public Teaches getTeaches(Course course, Member teacher){
+        Teaches teaches=new Teaches();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c where m.id=:memberid and c.id=:course");
+            query.setParameter("memberid",teacher.getId());
+            query.setParameter("course",course.getId());
+            teaches=(Teaches)query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return teaches;
+    }
+
+    public List getTeachersDataByGroup(Group group){
+        List teach=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select c,t,y from Groupcourse gc join gc.groupid g join gc.teachesid tc join tc.memberid t join tc.yearid y join tc.course c where g.id=:gid");
+            query.setParameter("gid",group.getId());
+            teach=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return teach;
+    }
+
+    public List getTeachesByCourseYear(long courseId, long yearId){
+        List teach=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select t from Teaches t where t.yearid.id=:yearId and t.course.id=:courseId");
+            query.setParameter("yearId",yearId);
+            query.setParameter("courseId",courseId);
+            teach=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return teach;
+    }
+
+    public List getTeachersDataByCourse(long courseId){
+        List teach=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select c,t,y,tc from Teaches tc join tc.course c join tc.yearid y join tc.memberid t where c.id=:cid");
+            query.setParameter("cid",courseId);
+            teach=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return teach;
+    }
+    public List getTeachersByCourse(long courseId){
+        List teachers=null;
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select m from Teaches t join t.memberid m join t.course c where c.id=:course");
+            query.setParameter("course",courseId);
+            teachers=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return teachers;
+    }
+
+    //Update queries
+
     public void updateUserName(Member user, String userName){
         try {
             utx.begin();
@@ -567,6 +810,28 @@ public class ManagedUser implements Serializable {
         }
     }
 
+    public void updateGroupcourse(long groupId,long teachesId,long removeId){
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("Update Groupcourse gc set gc.teachesid.id=:teachesId where gc.groupid.id=:gid and gc.teachesid.id=:removeId");
+            query.setParameter("teachesId", teachesId);
+            query.setParameter("gid",groupId);
+            query.setParameter("removeId",removeId);
+            query.executeUpdate();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void addCourseToTeacher(Course course, Member teacher,Year year){
         try {
             utx.begin();
@@ -587,14 +852,19 @@ public class ManagedUser implements Serializable {
         }
     }
 
-    public Teaches getTeaches(Course course, Member teacher){
-        Teaches teaches=new Teaches();
+    public void removeGroupcourse(long teachesId, long groupId){
         try {
             utx.begin();
-            Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c where m.id=:memberid and c.id=:course");
-            query.setParameter("memberid",teacher.getId());
-            query.setParameter("course",course.getId());
-            teaches=(Teaches)query.getSingleResult();
+            Groupcourse update=new Groupcourse();
+            Query query=entityManager.createQuery("select t from Teaches t where t.id=:tid");
+            query.setParameter("tid",teachesId);
+            Teaches teaches=(Teaches)query.getSingleResult();
+            update.setTeachesid(teaches);
+            query=entityManager.createQuery("select g from Group g where g.id=:gid");
+            query.setParameter("gid",groupId);
+            Group group=(Group)query.getSingleResult();
+            update.setGroupid(group);
+            entityManager.remove(update);
             utx.commit();
         } catch (NotSupportedException e) {
             e.printStackTrace();
@@ -606,10 +876,7 @@ public class ManagedUser implements Serializable {
             e.printStackTrace();
         } catch (RollbackException e) {
             e.printStackTrace();
-        }catch (NoResultException e){
-            throw new RuntimeException(e);
         }
-        return teaches;
     }
 
     public void removeTeacherFromCourse(Course course, Member teacher,Year year){

@@ -21,7 +21,12 @@ public class Teaches {
 
     @ManyToOne
     @JoinColumn(name="year_id",referencedColumnName = "id")
+
     private Year yearid;
+
+    public long getId() {
+        return this.id;
+    }
 
     public Member getMemberid() {
         return memberid;

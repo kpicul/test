@@ -20,7 +20,7 @@ public class Group{
     private int year;
 
 
-    private long getId(){
+    public long getId(){
         return this.id;
     }
 
