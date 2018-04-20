@@ -33,6 +33,13 @@ insert into course(id,name,description) values (11,'Gymnastics 8','');
 insert into course(id,name,description) values (12,'Geography 8','');
 insert into course(id,name,description) values (13,'Slovenian language 8','');
 insert into course(id,name,description) values (14,'English language 8','');
+insert into course(id,name,description) values (15,'Math 9','Advanced math');
+insert into course(id,name,description) values (16,'Physics 9 ','Advanced physics');
+insert into course(id,name,description) values (17,'Chemistry 9','Advanced chemistry');
+insert into course(id,name,description) values (18,'Gymnastics 9','');
+insert into course(id,name,description) values (19,'Geography 9','');
+insert into course(id,name,description) values (20,'Slovenian language 9','');
+insert into course(id,name,description) values (21,'English language 9','');
 
 insert into year(id,year,startdate,enddate) values (1,'2015/2016',to_date('01.09.2015','DD.MM.YYYY'),to_date('25.06.2016','DD.MM.YYYY'))
 insert into year(id,year,startdate,enddate) values (2,'2016/2017',to_date('01.09.2016','DD.MM.YYYY'),to_date('25.06.2017','DD.MM.YYYY'))
@@ -75,7 +82,7 @@ insert into performance(id,groupcourse_id,student_id,finished) values (9,3,8,tru
 insert into performance(id,groupcourse_id,student_id,finished) values (10,4,8,true); /* 8a,chemistry8:  jkocnik */
 insert into performance(id,groupcourse_id,student_id,finished) values (11,5,8,true); /* 8a,geography8:  jkocnik */
 insert into performance(id,groupcourse_id,student_id,finished) values (12,6,8,true); /* 8a,slovenian8:  jkocnik */
-insert into performance(id,groupcourse_id,student_id,finished) values (13,7,8,true); /* 8a,english8:  jkocnik */
+insert into performance(id,groupcourse_id,student_id) values (13,7,8); /* 8a,english8:  jkocnik */
 
 
 insert into grade(id,grade,performance_id) values(1,1,1) /* 1 : math8 : mstruna */
@@ -118,9 +125,8 @@ insert into grade(id,grade,performance_id) values(36,4,11)
 insert into grade(id,grade,performance_id) values(37,5,12)
 insert into grade(id,grade,performance_id) values(38,5,12)
 insert into grade(id,grade,performance_id) values(39,5,12)
-insert into grade(id,grade,performance_id) values(40,5,13)
-insert into grade(id,grade,performance_id) values(41,5,13)
-insert into grade(id,grade,performance_id) values(42,5,13)
+
+
 
 
 

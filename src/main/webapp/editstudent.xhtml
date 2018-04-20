@@ -31,9 +31,9 @@
                     <h:selectOneMenu id="year" value="#{editStudentController.selectedYearId}">
                         <f:selectItems value="#{editStudentController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}" />
                     </h:selectOneMenu>
+                    <br/>
 
                     <h:commandButton id="Select" value="Select" action="#{editStudentController.setupStudents}" >
-
                     </h:commandButton>
 
                 </h:form>
@@ -49,7 +49,7 @@
 
                 </h:form>
                 <br/>
-                <h:form id="teachers" rendered="#{not empty editStudentController.courses}">
+                <h:form id="teachers" rendered="#{editStudentController.selectedGroupId!=0}">
                     <h:selectOneMenu id="course" value="#{editStudentController.selectedCourse}">
                         <f:selectItems value="#{editStudentController.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}" />
                         <f:ajax event="click" render="coursedata teacher" listener="#{editStudentController.setupTeacherSet}"/>
@@ -61,6 +61,14 @@
                         <f:selectItems value="#{editStudentController.teachers}" var="teacherz" itemLabel="#{teacherz.memberid.username}" itemValue="#{teacherz.id}" />
                     </h:selectOneMenu>
                     <h:commandButton id="updateCourseGroup" value="Update" action="#{editStudentController.updateCourseGroup}"/>
+                    <br/>
+                    <h:commandButton id="deleteeCourseGroup" value="Delete" action="#{editStudentController.removeCourseFromGroup}">
+                    </h:commandButton>
+                    <br/>
+                    <h:selectOneListbox id="unassigned" value="#{editStudentController.selectedUnassigned}">
+                        <f:selectItems value="#{editStudentController.unassignedCourses}" var="unassigned" itemLabel="#{unassigned.course.name} #{unassigned.memberid.username}" itemValue="#{unassigned.id}"/>
+                    </h:selectOneListbox>
+                    <h:commandButton id="updateUnassigned" value="Add" action="#{editStudentController.addCourseToGroup}"/>
                 </h:form>
                 <br/>
                 <h:form id="editstudent" rendered="#{not empty editStudentController.student}">
@@ -78,6 +86,10 @@
                     <br/>
                     <h:inputText id="date" value="#{editStudentController.dateOfBirth}">
                     </h:inputText>
+                    <br/>
+                    <h:selectOneMenu id="groupChange" value="#{editStudentController.changedGroup}">
+                        <f:selectItems value="#{editStudentController.groups}" var="groups" itemLabel="#{groups.name}" itemValue="#{groups.id}" />
+                    </h:selectOneMenu>
                     <br/>
                     <h:commandButton value="Confirm" id="edit" action="#{editStudentController.updateStudent}">
                     </h:commandButton>

@@ -1,14 +1,13 @@
 package test.database;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@TableGenerator(name="tab", initialValue=50, allocationSize=500)
 public class Groupcourse {
     @Id
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="tab")
     private long id;
 
     @NotNull

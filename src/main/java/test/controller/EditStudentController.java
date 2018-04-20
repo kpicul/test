@@ -67,6 +67,14 @@ public class EditStudentController implements Serializable {
 
     private long selectedYearId;
 
+    private List<Teaches> unassignedCourses;
+
+    long selectedUnassigned;
+
+    private long changedGroup;
+
+    private Group activeGroup;
+
 
 
     @PostConstruct
@@ -114,9 +122,11 @@ public class EditStudentController implements Serializable {
         this.changeTeaches = changeTeaches;
     }
 
+
     private void groupSetup(){
         groups=mu.getGroups();
         years=mu.getYears();
+        //activeGroup=null;
     }
 
     public void setupStudents(){
@@ -129,8 +139,23 @@ public class EditStudentController implements Serializable {
         students=mu.getStudentsByGroup(selectedGroupId);
         //teachesDescription=new ArrayList<String>();
         courses=mu.getCoursesByGroup(selectedGroupId);
+        setupUnassigned();
 
+    }
 
+    public void setupUnassigned(){
+        unassignedCourses=mu.getTeaches();
+        ArrayList <Teaches> toRemove=new ArrayList<Teaches>();
+        for(Teaches i:unassignedCourses){
+            for(Course c:courses){
+                if(i.getCourse().getId()==c.getId()){
+                    toRemove.add(i);
+                }
+            }
+        }
+        for(Teaches i:toRemove){
+            unassignedCourses.remove(i);
+        }
     }
 
     public Member getStudent() {
@@ -156,6 +181,8 @@ public class EditStudentController implements Serializable {
         this.password=student.getPassword();
         this.dateOfBirth=student.getDateOfBirth();
 
+        activeGroup=mu.getActiveGroup(student.getId());
+        this.changedGroup=activeGroup.getId();
     }
 
     public String getFirstName(){
@@ -285,18 +312,50 @@ public class EditStudentController implements Serializable {
         this.selectedYearId = selectedYearId;
     }
 
+    public List<Teaches> getUnassignedCourses() {
+        return unassignedCourses;
+    }
+
+    public void setUnassignedCourses(List<Teaches> unassignedCourses) {
+        this.unassignedCourses = unassignedCourses;
+    }
+
+    public long getSelectedUnassigned() {
+        return selectedUnassigned;
+    }
+
+    public void setSelectedUnassigned(long selectedUnassigned) {
+        this.selectedUnassigned = selectedUnassigned;
+    }
+
+    public long getChangedGroup() {
+        return changedGroup;
+    }
+
+    public void setChangedGroup(long changedGroup) {
+        this.changedGroup = changedGroup;
+    }
+
+    public Group getActiveGroup() {
+        return activeGroup;
+    }
+
+    public void setActiveGroup(Group activeGroup) {
+        this.activeGroup = activeGroup;
+    }
+
     public void updateStudent(){
         mu.updateUserName(student,userName);
         mu.updatepassword(student,password);
         mu.updateFirstName(student,firstName);
         mu.updateLasttName(student,lastName);
         mu.updateDateOfBirth(student,dateOfBirth);
+        changeGroup();
     }
 
     public void setupTeacherSet(){
         selectedTeacher=mu.getTeacherByCourseGroupYear(selectedCourse,selectedGroupId,selectedYearId);
         teachers=mu.getTeachesByCourseYear(selectedCourse,selectedYearId);
-        int i=0;
     }
 
 
@@ -304,6 +363,55 @@ public class EditStudentController implements Serializable {
     public void updateCourseGroup(){
         long toRemoveId=selectedTeacher.getId();
         mu.updateGroupcourse(selectedGroupId,changedTeacherId,toRemoveId);
+    }
+
+    public void addCourseToGroup(){
+        Groupcourse gc=mu.addGroupcourse(selectedUnassigned,selectedGroupId);
+        for(Teaches i:unassignedCourses){
+            if(i.getId()==selectedUnassigned){
+                unassignedCourses.remove(i);
+                courses.add(i.getCourse());
+                break;
+            }
+        }
+        for(Member student:students){
+            mu.addPerformance(student.getId(),gc.getId());
+        }
+    }
+
+    public void removeCourseFromGroup(){
+        Groupcourse gc=mu.getGroupcourse(selectedTeacher.getId(),selectedGroupId);
+        List<Performance> performances=mu.getPerformancesByGroupcourse(gc.getId());
+        List<Grade> g;
+        for(Performance p:performances){
+            g=mu.getGrades(p);
+            for(Grade j:g){
+                mu.removeGrade(j.getId());
+            }
+            mu.removePerformance(p.getStudentId().getId(),p.getGroupcourseid().getId());
+        }
+        long teachesRemove=gc.getTeachesid().getId();
+        long groupRemove=gc.getGroupid().getId();
+        mu.removeGroupcourse(teachesRemove,groupRemove);
+        Course toRemoveC=gc.getTeachesid().getCourse();
+        for(Course i:courses){
+            if(i.getName().equals(toRemoveC.getName())){
+                courses.remove(i);
+                break;
+            }
+        }
+        setupUnassigned();
+    }
+
+    public void changeGroup(){
+        if(changedGroup!=selectedGroupId){
+            Group toChange=mu.getChangeGroup(changedGroup);
+            List<Groupcourse> gc=mu.getGroupcoursesByGroup(changedGroup);
+            mu.updatePerformancesFinalized(selectedStudent);
+            for(Groupcourse i:gc){
+                mu.addPerformance(selectedStudent,i.getId());
+            }
+        }
     }
 
 

@@ -4,10 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@TableGenerator(name="tab", initialValue=50, allocationSize=500)
 public class Performance {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="tab")
     private long id;
 
     @NotNull

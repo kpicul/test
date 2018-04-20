@@ -19,10 +19,10 @@ public class Teaches {
     @JoinColumn(name="course_id",referencedColumnName = "id")
     private Course course;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="year_id",referencedColumnName = "id")
-
     private Year yearid;
+
 
     public long getId() {
         return this.id;

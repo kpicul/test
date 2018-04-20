@@ -54,7 +54,6 @@ public class StudentController implements Serializable {
     }
 
     public void toEdit(){
-        System.out.println("dead end");
         nav.performNavigation("edit.xhtml");
     }
 
@@ -161,13 +160,14 @@ public class StudentController implements Serializable {
     }
 
     private void gradeResults(){
+        List<Object[]> perf=null;
         ongoing=new ArrayList<ResultSet>();
         ResultSet rs;
         String desc="";
         String data="";
         Map<String,List<Integer>> result;
         result=new HashMap<String, List<Integer>>();
-        List<Object[]> perf=mu.getGradesPerformance(student);
+        perf=mu.getGradesPerformance(student);
         String course;
         int grade;
         for(Object[] i:perf){
