@@ -61,7 +61,7 @@ public class GetController {
                 nav.performNavigation("admin1.xhtml");
             }
             else if(role.getName().equals("Teacher")){
-                nav.performNavigation("edit.xhtml");
+                nav.performNavigation("teacher1.xhtml");
             }
             else if(role.getName().equals("Student")){
                 nav.performNavigation("student1.xhtml");

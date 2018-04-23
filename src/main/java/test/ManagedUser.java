@@ -17,6 +17,7 @@
 package test;
 
 import org.omg.CORBA.CODESET_INCOMPATIBLE;
+import sun.misc.Perf;
 import test.database.*;
 
 import javax.enterprise.context.RequestScoped;
@@ -154,6 +155,8 @@ public class ManagedUser implements Serializable {
         return grades;
     }
 
+
+
     public List getPerformances(Member student){
         List performances=null;
         try {
@@ -175,6 +178,8 @@ public class ManagedUser implements Serializable {
         }
         return performances;
     }
+
+
 
     public List getPerformancesFinished(Member student){
         List performances=null;
@@ -201,7 +206,7 @@ public class ManagedUser implements Serializable {
         List performances=null;
         try {
             utx.begin();
-            Query query=entityManager.createQuery("select p from Performance p where p.groupcourseid.id=:gcid");
+            Query query=entityManager.createQuery("select p from Performance p join p.groupcourseid gc where gc.id=:gcid");
             query.setParameter("gcid",gcid);
             performances=query.getResultList();
             utx.commit();
@@ -217,6 +222,28 @@ public class ManagedUser implements Serializable {
             e.printStackTrace();
         }
         return performances;
+    }
+    public Performance getPerformanceByStudentGroupcourse(long studentId,long gcid){
+        Performance performance=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select p from Performance p join  p.groupcourseid gc join p.studentId s where gc.id=:gcid and s.id=:studentId ");
+            query.setParameter("gcid",gcid);
+            query.setParameter("studentId",studentId);
+            performance=(Performance)query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performance;
     }
 
     public List getGradesPerformance(Member student){
@@ -239,6 +266,51 @@ public class ManagedUser implements Serializable {
             e.printStackTrace();
         }
         return performances;
+    }
+
+    public List getGradesByGroupcourse(long gcid){
+        List performances=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select sid.username, g.grade from Grade g join g.performanceId p join p.groupcourseid gc join gc.teachesid ti join ti.course c join p.studentId sid where  gc.id=:gcid");
+            query.setParameter("gcid",gcid);
+            performances=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performances;
+    }
+
+    public List getGradesByStudentGroupcourse(long studentId,long gcid){
+        List grades=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select g from Grade g join g.performanceId p join p.groupcourseid gc join p.studentId s where gc.id=:gcid and s.id=:studentId ");
+            query.setParameter("gcid",gcid);
+            query.setParameter("studentId",studentId);
+            grades=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return grades;
     }
 
     public List getPerformancesYears(Member student){
@@ -492,6 +564,31 @@ public class ManagedUser implements Serializable {
         return groups;
     }
 
+    public List getGroupsByTeacherYearCourse(long teacherId,long yearId,long courseId){
+        List groups=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select g  from Groupcourse gc join gc.groupid g join gc.teachesid tc " +
+                    "join tc.memberid m join tc.yearid y join tc.course c where m.id=:teacherId and y.id=:yearId and c.id=:courseId");
+            query.setParameter("teacherId",teacherId);
+            query.setParameter("yearId",yearId);
+            query.setParameter("courseId",courseId);
+            groups=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return groups;
+    }
+
     public List getStudentsByGroup(long groupId){
         List students=null;
         try {
@@ -567,6 +664,32 @@ public class ManagedUser implements Serializable {
             query.setParameter("gid",groupId);
             query.setParameter("cid",courseId);
             query.setParameter("yearId",yearId);
+            teacher=(Teaches) query.getSingleResult();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }catch (NoResultException e){
+            throw new RuntimeException(e);
+        }
+        return teacher;
+    }
+
+    public Teaches getTeachesByCourseYearTeacher(long courseId,long yearId,long teacherId){
+        Teaches teacher=new Teaches();
+        try {
+            utx.begin();
+            Query query = entityManager.createQuery("select t from Teaches t join t.course c join t.yearid y join t.memberid m where c.id=:cid and y.id=:yid and m.id=:tid");
+            query.setParameter("cid",courseId);
+            query.setParameter("yid",yearId);
+            query.setParameter("tid",teacherId);
             teacher=(Teaches) query.getSingleResult();
             utx.commit();
         } catch (NotSupportedException e) {
@@ -973,6 +1096,28 @@ public class ManagedUser implements Serializable {
         }
     }
 
+    public void updateGrade(int newGrade,long gradeId){
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("Update Grade g set g.grade=:newGrade where g.id=:gradeId");
+            query.setParameter("newGrade",newGrade);
+            query.setParameter("gradeId",gradeId);
+            query.executeUpdate();
+            utx.commit();
+            System.out.println();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updatePerformancesFinalized(long studentId){
         try {
             utx.begin();
@@ -1133,6 +1278,30 @@ public class ManagedUser implements Serializable {
             throw new RuntimeException(e);
         }
         return perf;
+    }
+
+    public Grade addGrade(Performance perfId,int value){
+        Grade grade=null;
+        try {
+            utx.begin();
+            grade=new Grade();
+            grade.setGrade(value);
+            Query query=entityManager.createQuery("select p from Performance p where p.id=:pid");
+            query.setParameter("pid",perfId.getId());
+            Performance perf=(Performance)query.getSingleResult();
+            grade.setPerformanceId(perf);
+            entityManager.persist(grade);
+            utx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
+        }
+        return grade;
     }
 
     public Grade removeGrade(long gradeId){

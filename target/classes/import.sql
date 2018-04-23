@@ -14,6 +14,7 @@ insert into member(id,firstname,lastname,username,password,role_id) values(9,'Ma
 insert into member(id,firstname,lastname,username,password,role_id) values(10,'Luka','Zajec','lzajec','b100d228416bcf09d164fcda81c82d605ceae8b7b51f07ca95bfd5f90839c85588a712e36628a5a78724ae86ac3673b1c4be7ca1f66bc96d91e78c79bb7847d4',3); /*geslo: korencek */
 insert into member(id,firstname,lastname,username,password,role_id) values(11,'Andrej','Lovec','alovec','3aa734544ed0424ef5a5e3a0ac0964acda8c7c678d11da9634a6de24f89cdf111d01548a3a60bdd80388d538f45cba21c57e7111e8484f5e109651912cb67758',3); /*geslo: ustrelizajca */
 insert into member(id,firstname,lastname,username,password,role_id) values(12,'Tommy','Wiseau','twiseau','283040b2493945ef6ac15d50f0cd92eea0d5e92a14a701167658cd744e85ba9fa26d882d03bfd3222289200a182cf51b568980256b299456e598b9b1679ed9cf',1); /*geslo: ididnothither */
+insert into member(id,firstname,lastname,username,password,role_id,dateofbirth) values(13,'Nina','Ozebek','nozebek','e1a765ad4734398a127e27ccc5efa4368ddc7fdec5636f5700f8acde7ef5e648d8f5b17db26ef7269384df3c87d94cdc70f5af799b5ae98a65b6b938a3ba2625',2,to_date('13.5.2004','DD.MM.YYYY')); /* geslo: piflarka */
 
 insert into groups(id,name,year) values (1,'7a',7)
 insert into groups(id,name,year) values (2,'8a',8)
@@ -78,12 +79,19 @@ insert into performance(id,groupcourse_id,student_id,finished) values (7,7,7,tru
 
 insert into performance(id,groupcourse_id,student_id,finished) values (8,1,8,true); /* 8a,math:  jkocnik */
 insert into performance(id,groupcourse_id,student_id,finished) values (9,2,8,true); /* 8a,physics8:  jkocnik */
-insert into performance(id,groupcourse_id,student_id,finished) values (9,3,8,true); /* 8a,gymnastics 8:  jkocnik */
+insert into performance(id,groupcourse_id,student_id,finished) values (14,3,8,true); /* 8a,gymnastics 8:  jkocnik */
 insert into performance(id,groupcourse_id,student_id,finished) values (10,4,8,true); /* 8a,chemistry8:  jkocnik */
 insert into performance(id,groupcourse_id,student_id,finished) values (11,5,8,true); /* 8a,geography8:  jkocnik */
 insert into performance(id,groupcourse_id,student_id,finished) values (12,6,8,true); /* 8a,slovenian8:  jkocnik */
 insert into performance(id,groupcourse_id,student_id) values (13,7,8); /* 8a,english8:  jkocnik */
 
+insert into performance(id,groupcourse_id,student_id) values (15,1,13); /* 8a,math:  nozebek */
+insert into performance(id,groupcourse_id,student_id) values (16,2,13); /* 8a,physics8:  nozebek */
+insert into performance(id,groupcourse_id,student_id) values (17,3,13); /* 8a,gymnastics 8:  nozebek */
+insert into performance(id,groupcourse_id,student_id) values (18,4,13); /* 8a,chemistry8:  nozebek */
+insert into performance(id,groupcourse_id,student_id) values (19,5,13); /* 8a,geography8:  nozebek */
+insert into performance(id,groupcourse_id,student_id) values (20,6,13); /* 8a,slovenian8:  nozebek */
+insert into performance(id,groupcourse_id,student_id) values (21,7,13); /* 8a,english8:  nozebek */
 
 insert into grade(id,grade,performance_id) values(1,1,1) /* 1 : math8 : mstruna */
 insert into grade(id,grade,performance_id) values(2,3,1) /* 3 : math8 : mstruna */

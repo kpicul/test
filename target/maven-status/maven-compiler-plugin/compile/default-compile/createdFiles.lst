@@ -10,6 +10,7 @@ test/controller/StudentController.class
 test/database/Groupcourse.class
 test/database/Member.class
 test/database/Group.class
+test/controller/TeacherController.class
 test/Resources.class
 test/database/Performance.class
 test/database/CourseDates.class

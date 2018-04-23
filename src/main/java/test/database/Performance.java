@@ -2,6 +2,7 @@ package test.database;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @TableGenerator(name="tab", initialValue=50, allocationSize=500)
@@ -21,8 +22,6 @@ public class Performance {
     @ManyToOne
     @JoinColumn(name="groupcourse_id",referencedColumnName = "id")
     private Groupcourse groupcourseid;
-
-
 
     @Column(columnDefinition = "boolean default 'false'")
     private boolean finished;
