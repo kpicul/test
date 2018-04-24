@@ -8,8 +8,12 @@ import test.output.ResultTeaches;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -19,13 +23,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class EditStudentController implements Serializable {
     @Inject
     private ManagedUser mu;
 
     @Inject
     private Session session;
+
+    private Member user;
 
     private List<Group> groups;
 
@@ -124,6 +130,8 @@ public class EditStudentController implements Serializable {
 
 
     private void groupSetup(){
+        user=session.getUser();
+        emptyRedirect();
         groups=mu.getGroups();
         years=mu.getYears();
         //activeGroup=null;
@@ -410,6 +418,15 @@ public class EditStudentController implements Serializable {
             mu.updatePerformancesFinalized(selectedStudent);
             for(Groupcourse i:gc){
                 mu.addPerformance(selectedStudent,i.getId());
+            }
+        }
+    }
+    private void emptyRedirect(){
+        if(user==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

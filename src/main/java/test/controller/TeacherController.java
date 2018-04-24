@@ -5,12 +5,14 @@ import test.Session;
 import test.database.*;
 import test.output.ResultSet;
 
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class TeacherController implements Serializable{
 
     FacesContext fc = FacesContext.getCurrentInstance();
@@ -75,9 +77,7 @@ public class TeacherController implements Serializable{
     public void postConstruct(){
         years=mu.getYears();
         teacher=session.getUser();
-        if(teacher==null){
-            nav.performNavigation("login.xhtml");
-        }
+        emptyRedirect();
         editGradeBool=false;
         //teacher=session.getUser();
 
@@ -273,5 +273,19 @@ public class TeacherController implements Serializable{
 
     public void renderEdit(){
         editGradeBool=!editGradeBool;
+    }
+
+    public void logout(){
+        session=null;
+        nav.performNavigation("login.xhtml");
+    }
+    private void emptyRedirect(){
+        if(teacher==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

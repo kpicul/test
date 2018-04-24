@@ -30,6 +30,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 @Named
 @RequestScoped
@@ -46,15 +47,20 @@ public class GetController {
     private String password;
 
 
+
+
     FacesContext fc = FacesContext.getCurrentInstance();
     ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
+
     public void greet() {
+        session.setUser(null);
         Member user = cu.getForUsername(username);
         //System.out.println(password);
         boolean checkPassword=Helper.checkPass(user,password);
         if (user != null && checkPassword) {
             session.setUser(user);
+            //session1.setAttribute("user",session);
             //System.out.println("42");
             Role role=cu.getRole(user);
             if(role.getName().equals("Admin")){

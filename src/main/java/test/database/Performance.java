@@ -23,6 +23,7 @@ public class Performance {
     @JoinColumn(name="groupcourse_id",referencedColumnName = "id")
     private Groupcourse groupcourseid;
 
+
     @Column(columnDefinition = "boolean default 'false'")
     private boolean finished;
 
@@ -54,4 +55,6 @@ public class Performance {
     public void setGroupcourseid(Groupcourse groupcourseid) {
         this.groupcourseid = groupcourseid;
     }
+
+
 }

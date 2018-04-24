@@ -202,6 +202,28 @@ public class ManagedUser implements Serializable {
         }
         return performances;
     }
+    public List getPerformancesOngoing(Member student){
+        List performances=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select p from Performance p, in (p.studentId) m where m=:student and p.finished = false");
+            query.setParameter("student",student);
+            performances=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performances;
+    }
+
     public List getPerformancesByGroupcourse(long gcid){
         List performances=null;
         try {
@@ -250,7 +272,7 @@ public class ManagedUser implements Serializable {
         List performances=null;
         try {
             utx.begin();
-            Query query=entityManager.createQuery("select c.name, g.grade from Grade g join g.performanceId p join p.groupcourseid gc join gc.teachesid ti join ti.course c join p.studentId sid where  sid=:student and p.finished=false");
+            Query query=entityManager.createQuery("select c.name, g.grade from Performance p left join p.gradeId g join p.groupcourseid gc left join gc.teachesid ti join ti.course c join p.studentId sid where  sid=:student and p.finished=false");
             query.setParameter("student",student);
             performances=query.getResultList();
             utx.commit();

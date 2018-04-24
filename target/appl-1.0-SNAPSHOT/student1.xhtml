@@ -17,6 +17,9 @@
         <rich:panel header="Student">
             <h:form id="hellJsf">
                 <h:outputLabel value="Hello #{studentController.firstname} #{studentController.lastname}"/>
+                <h:commandButton id="logout" value="logout" action="#{studentController.logout}">
+                </h:commandButton>
+                <br/>
                 <h:commandButton value="Edit" id="Confirm" action="#{studentController.toEdit}">
                 </h:commandButton>
                 <br/>

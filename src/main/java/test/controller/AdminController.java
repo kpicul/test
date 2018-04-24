@@ -6,14 +6,11 @@ import test.Session;
 import test.database.*;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-
-import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -23,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class AdminController  implements Serializable {
     @Inject
     private ManagedUser mu;
@@ -71,6 +68,8 @@ public class AdminController  implements Serializable {
     @PostConstruct
     public void postConstruct(){
         roleChoices="";
+        user=session.getUser();
+        emptyRedirect();
         getTeachers1();
     }
 
@@ -311,6 +310,15 @@ public class AdminController  implements Serializable {
         mu.updateFirstName(editedTeacher,firstName);
         mu.updateLasttName(editedTeacher,lastName);
         mu.updateDateOfBirth(editedTeacher,dateOfBirth);
+    }
+    private void emptyRedirect(){
+        if(user==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

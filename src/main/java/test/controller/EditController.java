@@ -4,22 +4,24 @@ import test.Helper;
 import test.ManagedUser;
 import test.Session;
 import test.database.Member;
-
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 
 import javax.faces.application.ConfigurableNavigationHandler;
+import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+
+@ViewScoped
 @Named
-@RequestScoped
-public class EditController  {
+public class EditController  implements Serializable {
     @Inject
     private ManagedUser mu;
 
@@ -46,9 +48,7 @@ public class EditController  {
     @PostConstruct
     public void postConstruct(){
         user=session.getUser();
-        if(user==null){
-            nav.performNavigation("login.xhtml");
-        }
+        emptyRedirect();
         //System.out.println("POSTCONSTRUCT");
         firstName=user.getFirstName();
         lastName=user.getLastName();
@@ -130,6 +130,14 @@ public class EditController  {
             e.printStackTrace();
         }
     }
-
+    private void emptyRedirect(){
+        if(user==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

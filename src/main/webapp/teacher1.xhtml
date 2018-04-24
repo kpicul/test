@@ -23,6 +23,9 @@
             <legend>Testing site</legend>
             <rich:panel header="tst">
                 <h:form id="groups">
+                    <h:commandButton id="logout" value="logout" action="#{teacherController.logout}">
+                    </h:commandButton>
+                    <br/>
                     <h:selectOneMenu id="year" value="#{teacherController.selectedYearId}">
                         <f:selectItems value="#{teacherController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}" />
                         <f:ajax event="click" render="course" listener="#{teacherController.setupCourses}"/>

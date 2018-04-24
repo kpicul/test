@@ -1,6 +1,5 @@
 package test.controller;
 
-import sun.misc.Perf;
 import test.ManagedUser;
 import test.Session;
 import test.database.Grade;
@@ -9,20 +8,23 @@ import test.database.Performance;
 import test.output.ResultSet;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.ConfigurableNavigationHandler;
+
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @Named
-@SessionScoped
+@ViewScoped
 public class StudentController implements Serializable {
     FacesContext fc = FacesContext.getCurrentInstance();
     ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
@@ -42,10 +44,12 @@ public class StudentController implements Serializable {
     private String gradeResults;
     private ArrayList <ResultSet>grads;
     private ArrayList <ResultSet> ongoing;
+    private HttpSession session1;
 
     @PostConstruct
     public void postConstruct(){
         student=session.getUser();
+        emptyRedirect();
         firstname=student.getFirstName();
         lastname=student.getLastName();
         setPerformances();
@@ -160,40 +164,35 @@ public class StudentController implements Serializable {
     }
 
     private void gradeResults(){
-        List<Object[]> perf=null;
+        List<Performance> perf=null;
         ongoing=new ArrayList<ResultSet>();
         ResultSet rs;
         String desc="";
         String data="";
-        Map<String,List<Integer>> result;
-        result=new HashMap<String, List<Integer>>();
-        perf=mu.getGradesPerformance(student);
-        String course;
-        int grade;
-        for(Object[] i:perf){
-            course=i[0].toString();
-            grade=new Integer(i[1].toString());
-            if(result.get(course)==null){
-                List <Integer>grades=new ArrayList<Integer>();
-                result.put(course,grades);
-                result.get(course).add(grade);
+        Map <String,List<Grade>> grads=new HashMap<String, List<Grade>>();
+        List<Grade> instance;
+        String name;
+        perf=mu.getPerformancesOngoing(student);
+        for(Performance p:perf){
+            name=p.getGroupcourseid().getTeachesid().getCourse().getName();
+            instance=mu.getGrades(p);
+            grads.put(name,instance);
+            String datas="";
+            if(instance.size()!=0){
+                datas="";
+                for(Grade i:instance){
+                    datas+=i.getGrade()+" ";
+                }
+                rs=new ResultSet(name,datas);
+                ongoing.add(rs);
             }
             else{
-                result.get(course).add(grade);
+                datas="";
+                rs=new ResultSet(name,datas);
+                ongoing.add(rs);
             }
         }
-        gradeResults="";
-        for(String i:result.keySet()){
-            gradeResults+=i +": ";
-            desc=i;
-            data="";
-            for(int j:result.get(i)){
-                gradeResults+=j+",";
-                data+=j+" ";
-            }
-            rs=new ResultSet(desc,data);
-            ongoing.add(rs);
-        }
+        System.out.println();
     }
 
     public ArrayList getGrads() {
@@ -211,4 +210,21 @@ public class StudentController implements Serializable {
     public void setOngoing(ArrayList<ResultSet> ongoing) {
         this.ongoing = ongoing;
     }
+    public void logout(){
+        this.session.setUser(null);
+        nav.performNavigation("login.xhtml");
+        //session1.invalidate();
+
+    }
+
+    private void emptyRedirect(){
+        if(student==null){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

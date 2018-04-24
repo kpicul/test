@@ -90,7 +90,7 @@ insert into performance(id,groupcourse_id,student_id) values (16,2,13); /* 8a,ph
 insert into performance(id,groupcourse_id,student_id) values (17,3,13); /* 8a,gymnastics 8:  nozebek */
 insert into performance(id,groupcourse_id,student_id) values (18,4,13); /* 8a,chemistry8:  nozebek */
 insert into performance(id,groupcourse_id,student_id) values (19,5,13); /* 8a,geography8:  nozebek */
-insert into performance(id,groupcourse_id,student_id) values (20,6,13); /* 8a,slovenian8:  nozebek */
+insert into performance(id,groupcourse_id,student_id,finished) values (20,6,13,true); /* 8a,slovenian8:  nozebek */
 insert into performance(id,groupcourse_id,student_id) values (21,7,13); /* 8a,english8:  nozebek */
 
 insert into grade(id,grade,performance_id) values(1,1,1) /* 1 : math8 : mstruna */
@@ -133,6 +133,9 @@ insert into grade(id,grade,performance_id) values(36,4,11)
 insert into grade(id,grade,performance_id) values(37,5,12)
 insert into grade(id,grade,performance_id) values(38,5,12)
 insert into grade(id,grade,performance_id) values(39,5,12)
+
+insert into grade(id,grade,performance_id) values(40,5,15)
+insert into grade(id,grade,performance_id) values(41,5,20)
 
 
 
