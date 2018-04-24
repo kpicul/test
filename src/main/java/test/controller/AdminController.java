@@ -40,6 +40,7 @@ public class AdminController  implements Serializable {
 
     private Date dateOfBirth;
 
+    private String hello;
 
     private String roleChoices;
 
@@ -70,6 +71,8 @@ public class AdminController  implements Serializable {
         roleChoices="";
         user=session.getUser();
         emptyRedirect();
+        checkRole();
+        this.hello=user.getFirstName()+" "+user.getLastName();
         getTeachers1();
     }
 
@@ -321,7 +324,62 @@ public class AdminController  implements Serializable {
         }
     }
 
+    private void checkRole(){
+        if(!user.getRoleId().getName().equals("Admin")){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("warning.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void logout(){
+        this.session.setUser(null);
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //session1.invalidate();
 
+    }
+
+    public void setHello(String hello) {
+        this.hello = hello;
+    }
+
+    public String getHello(){
+        return this.hello;
+    }
+
+    public void goToTeacher(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("editteacher.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void goToStudent(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("editstudent.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void goToAdduser(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("adduser.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void goToEdit(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("edit.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

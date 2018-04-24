@@ -50,6 +50,7 @@ public class StudentController implements Serializable {
     public void postConstruct(){
         student=session.getUser();
         emptyRedirect();
+        checkRole();
         firstname=student.getFirstName();
         lastname=student.getLastName();
         setPerformances();
@@ -221,6 +222,15 @@ public class StudentController implements Serializable {
         if(student==null){
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void checkRole(){
+        if(!student.getRoleId().getName().equals("Student")){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("warning.xhtml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -132,6 +132,7 @@ public class EditStudentController implements Serializable {
     private void groupSetup(){
         user=session.getUser();
         emptyRedirect();
+        checkRole();
         groups=mu.getGroups();
         years=mu.getYears();
         //activeGroup=null;
@@ -430,6 +431,14 @@ public class EditStudentController implements Serializable {
             }
         }
     }
-
+    private void checkRole(){
+        if(!user.getRoleId().getName().equals("Admin")){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("warning.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

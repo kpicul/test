@@ -245,6 +245,49 @@ public class ManagedUser implements Serializable {
         }
         return performances;
     }
+    public List getPerformancesByGroupcourseActive(long gcid){
+        List performances=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select p from Performance p join p.groupcourseid gc where gc.id=:gcid and p.finished=false ");
+            query.setParameter("gcid",gcid);
+            performances=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performances;
+    }
+
+    public List getPerformancesByGroupcourseFinalized(long gcid){
+        List performances=null;
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("select p from Performance p join p.groupcourseid gc where gc.id=:gcid and p.finished=true ");
+            query.setParameter("gcid",gcid);
+            performances=query.getResultList();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+        return performances;
+    }
     public Performance getPerformanceByStudentGroupcourse(long studentId,long gcid){
         Performance performance=null;
         try {
@@ -1145,6 +1188,25 @@ public class ManagedUser implements Serializable {
             utx.begin();
             Query query=entityManager.createQuery("Update Performance p set p.finished=true where p.studentId.id=:studentId");
             query.setParameter("studentId", studentId);
+            query.executeUpdate();
+            utx.commit();
+        } catch (NotSupportedException e) {
+            e.printStackTrace();
+        } catch (SystemException e) {
+            e.printStackTrace();
+        } catch (HeuristicMixedException e) {
+            e.printStackTrace();
+        } catch (HeuristicRollbackException e) {
+            e.printStackTrace();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updatePerformanceFinalized(long performanceId){
+        try {
+            utx.begin();
+            Query query=entityManager.createQuery("Update Performance p set p.finished=true where p.id=:pid");
+            query.setParameter("pid", performanceId);
             query.executeUpdate();
             utx.commit();
         } catch (NotSupportedException e) {

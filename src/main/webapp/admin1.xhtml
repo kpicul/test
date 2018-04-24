@@ -17,44 +17,25 @@
 <ui:composition template="/templates/template.xhtml">
 
     <ui:define name="title">Test</ui:define>
-
+    <ui:param name="student1"  value="#{editStudentController.student}"/>
     <ui:define name="body">
-        <fieldset style="width:500px">
+        <fieldset style="width:1000px">
             <legend>Testing site</legend>
 
             <rich:panel header="tst">
-                <h:form id="admin">
-                    <p>Firstname:</p>
-                    <h:inputText id="firstname" value="#{adminController.firstName}">
-                    </h:inputText>
+                <h:form id="adminDashboard">
+                    <h:outputLabel id="hello" value="hello #{adminController.hello}"/>
                     <br/>
-                    <p>Lastname: </p>
-                    <h:inputText id="lastname" value="#{adminController.lastName}">
-                    </h:inputText>
-                    <br/>
-                    <p>Username: </p>
-                    <h:inputText id="username" value="#{adminController.userName}">
-                    </h:inputText>
-                    <br/>
-                    <p>Role: </p>
-                    <h:selectOneMenu value="#{adminController.roleChoices}" action="#{adminController.setupEditedTeacher}">
-                        <f:selectItem itemValue="Admin" itemLabel="Admin"/>
-                        <f:selectItem itemValue="Student" itemLabel="Student"/>
-                        <f:selectItem itemValue="Teacher" itemLabel="Teacher"/>
-                    </h:selectOneMenu>
-                    <br/>
-                    <p>Password: </p>
-                    <h:inputSecret id="password" value="#{adminController.password}">
-                    </h:inputSecret>
-                    <br/>
-                    <p>Date of birth: </p>
-                    <h:inputText id="date" value="#{adminController.dateOfBirth}">
-                    </h:inputText>
-                    <br/>
-                    <h:commandButton value="Confirm" id="confirm" action="#{adminController.addUser}">
+                    <h:commandButton id="logout" value="logout" action="#{adminController.logout}">
                     </h:commandButton>
-                    <br/>
-
+                    <h:commandButton id="edit" value="edit" action="#{adminController.goToEdit}">
+                    </h:commandButton>
+                    <h:commandButton id="group" value="edit groups and students" action="#{adminController.goToStudent}">
+                    </h:commandButton>
+                    <h:commandButton id="teacher" value="edit teacher" action="#{adminController.goToTeacher}">
+                    </h:commandButton>
+                    <h:commandButton id="adduser" value="add user" action="#{adminController.goToAdduser}" >
+                    </h:commandButton>
                 </h:form>
             </rich:panel>
 

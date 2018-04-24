@@ -70,6 +70,12 @@ public class TeacherController implements Serializable{
 
     private long setGradeId;
 
+    private List<ResultSet> finalizedStudents;
+
+    private List<Performance> performancesFinished;
+
+
+
 
 
 
@@ -78,6 +84,7 @@ public class TeacherController implements Serializable{
         years=mu.getYears();
         teacher=session.getUser();
         emptyRedirect();
+        checkRole();
         editGradeBool=false;
         //teacher=session.getUser();
 
@@ -198,7 +205,7 @@ public class TeacherController implements Serializable{
         selectedGroupcourse=mu.getGroupcourse(selectedTeaches.getId(),selectedGroupId);
         Map<String,List<Grade>> gradeMap=new HashMap<String,List<Grade>>();
         studentResults=new ArrayList<ResultSet>();
-        performanceData=mu.getPerformancesByGroupcourse(selectedGroupcourse.getId());
+        performanceData=mu.getPerformancesByGroupcourseActive(selectedGroupcourse.getId());
         String sname="";
         List<Grade> grads=null;
         for(Performance p:performanceData){
@@ -215,6 +222,32 @@ public class TeacherController implements Serializable{
             }
             rs=new ResultSet(i,glue);
             studentResults.add(rs);
+        }
+        System.out.println();
+        setupFinalized();
+    }
+
+    public void setupFinalized(){
+        //selectedGroupcourse=mu.getGroupcourse(selectedTeaches.getId(),selectedGroupId);
+        Map<String,List<Grade>> gradeMap=new HashMap<String,List<Grade>>();
+        finalizedStudents=new ArrayList<ResultSet>();
+        performancesFinished=mu.getPerformancesByGroupcourseFinalized(selectedGroupcourse.getId());
+        String sname="";
+        List<Grade> grads=null;
+        for(Performance p:performancesFinished){
+            sname=p.getStudentId().getUsername();
+            grads=mu.getGrades(p);
+            gradeMap.put(sname,grads);
+        }
+        ResultSet rs;
+        String glue;
+        for(String i:gradeMap.keySet()){
+            glue="";
+            for(Grade j: gradeMap.get(i)){
+                glue+=j.getGrade()+" ";
+            }
+            rs=new ResultSet(i,glue);
+            finalizedStudents.add(rs);
         }
         System.out.println();
     }
@@ -259,6 +292,14 @@ public class TeacherController implements Serializable{
         this.setGradeId = setGradeId;
     }
 
+    public List<ResultSet> getFinalizedStudents() {
+        return finalizedStudents;
+    }
+
+    public void setFinalizedStudents(List<ResultSet> finalizedStudents) {
+        this.finalizedStudents = finalizedStudents;
+    }
+
     public void updateGrade(){
         mu.updateGrade(setGradeValue,setGradeId);
         setupGrades();
@@ -283,6 +324,19 @@ public class TeacherController implements Serializable{
         if(teacher==null){
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setFinalized(){
+        mu.updatePerformanceFinalized(editedPerformance.getId());
+    }
+    private void checkRole(){
+        if(!teacher.getRoleId().getName().equals("Teacher")){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("warning.xhtml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
