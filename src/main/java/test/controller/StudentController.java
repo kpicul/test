@@ -1,6 +1,6 @@
 package test.controller;
 
-import test.ManagedUser;
+import test.DatabaseQuerries;
 import test.Session;
 import test.database.Grade;
 import test.database.Member;
@@ -33,7 +33,7 @@ public class StudentController implements Serializable {
     private Session session;
 
     @Inject
-    private ManagedUser mu;
+    private DatabaseQuerries mu;
 
     private final double positiveGrade=1.5;
     private Member student;
@@ -45,6 +45,7 @@ public class StudentController implements Serializable {
     private ArrayList <ResultSet>grads;
     private ArrayList <ResultSet> ongoing;
     private HttpSession session1;
+    private List<ResultSet> yearResultSet;
 
     @PostConstruct
     public void postConstruct(){
@@ -85,23 +86,18 @@ public class StudentController implements Serializable {
         List<Object[]> perf=mu.getPerformancesYears(student);
         String yr;
         Double dbl;
-        System.out.println("test");
+        yearResultSet=new ArrayList<ResultSet>();
+        ResultSet rs;
         for(Object[] i:perf){
             yr=i[0].toString();
             dbl=new Double(i[1].toString());
-            result.put(yr,dbl);
+            rs=new ResultSet(yr+"",dbl+"");
+            yearResultSet.add(rs);
         }
-        //System.out.println();
-        yearResultsSetup(result);
+        System.out.println();
     }
 
-    private void yearResultsSetup(Map<String,Double> result ){
-        String sentence="";
-        for(String s:result.keySet()){
-            sentence=sentence+s+" : "+result.get(s)+"\n";
-        }
-        yearResults=sentence;
-    }
+
 
     private void resultSetup(Map<String,String> result){
         grads=new ArrayList<ResultSet>();
@@ -237,4 +233,11 @@ public class StudentController implements Serializable {
         }
     }
 
+    public List<ResultSet> getYearResultSet() {
+        return yearResultSet;
+    }
+
+    public void setYearResultSet(List<ResultSet> yearResultSet) {
+        this.yearResultSet = yearResultSet;
+    }
 }

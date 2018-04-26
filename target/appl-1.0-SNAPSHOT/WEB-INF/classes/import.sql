@@ -15,10 +15,13 @@ insert into member(id,firstname,lastname,username,password,role_id) values(10,'L
 insert into member(id,firstname,lastname,username,password,role_id) values(11,'Andrej','Lovec','alovec','3aa734544ed0424ef5a5e3a0ac0964acda8c7c678d11da9634a6de24f89cdf111d01548a3a60bdd80388d538f45cba21c57e7111e8484f5e109651912cb67758',3); /*geslo: ustrelizajca */
 insert into member(id,firstname,lastname,username,password,role_id) values(12,'Tommy','Wiseau','twiseau','283040b2493945ef6ac15d50f0cd92eea0d5e92a14a701167658cd744e85ba9fa26d882d03bfd3222289200a182cf51b568980256b299456e598b9b1679ed9cf',1); /*geslo: ididnothither */
 insert into member(id,firstname,lastname,username,password,role_id,dateofbirth) values(13,'Nina','Ozebek','nozebek','e1a765ad4734398a127e27ccc5efa4368ddc7fdec5636f5700f8acde7ef5e648d8f5b17db26ef7269384df3c87d94cdc70f5af799b5ae98a65b6b938a3ba2625',2,to_date('13.5.2004','DD.MM.YYYY')); /* geslo: piflarka */
+insert into member(id,firstname,lastname,username,password,role_id,dateofbirth) values(14,'Anja','Racmnan','aracman','e7582cea7cf585a38f38df8d6bae48c9ca6d1ff35d23d4489fb692d41a46024500e45d9f66a0e38ae7d12eb43b936c61823f7163959ed9c60fd894ebdf679ca4',2,to_date('5.5.2003','DD.MM.YYYY')); /* geslo: raca */
 
 insert into groups(id,name,year) values (1,'7a',7)
 insert into groups(id,name,year) values (2,'8a',8)
 insert into groups(id,name,year) values (3,'9a',9)
+insert into groups(id,name,year) values (4,'1a',1)
+insert into groups(id,name,year) values (5,'2a',2)
 
 insert into course(id,name,description) values (1,'Math','Basic math');
 insert into course(id,name,description) values (2,'Physics','Basic physics');

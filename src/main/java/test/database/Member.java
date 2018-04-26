@@ -5,6 +5,7 @@ import test.Helper;
 import javax.inject.Named;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.sql.Date;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class Member
     @Column(unique = true)
     private String username;
 
+    @Past(message = "Birth date must be in the past")
     private Date dateOfBirth;
 
 

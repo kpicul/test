@@ -1,6 +1,6 @@
 package test.controller;
 
-import test.ManagedUser;
+import test.DatabaseQuerries;
 import test.Session;
 import test.database.*;
 import test.output.ResultSet;
@@ -30,7 +30,7 @@ public class TeacherController implements Serializable{
     private Session session;
 
     @Inject
-    private ManagedUser mu;
+    private DatabaseQuerries mu;
 
     private Member teacher;
 

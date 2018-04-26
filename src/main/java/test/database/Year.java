@@ -1,15 +1,14 @@
 package test.database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Entity
+@TableGenerator(name="tab", initialValue=50, allocationSize=500)
 public class Year {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="tab")
     private long id;
 
     @NotNull

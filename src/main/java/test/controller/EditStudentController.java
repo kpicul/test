@@ -1,14 +1,11 @@
 package test.controller;
 
 import test.Helper;
-import test.ManagedUser;
+import test.DatabaseQuerries;
 import test.Session;
 import test.database.*;
-import test.output.ResultTeaches;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -26,7 +23,7 @@ import java.util.List;
 @ViewScoped
 public class EditStudentController implements Serializable {
     @Inject
-    private ManagedUser mu;
+    private DatabaseQuerries mu;
 
     @Inject
     private Session session;
@@ -80,6 +77,10 @@ public class EditStudentController implements Serializable {
     private long changedGroup;
 
     private Group activeGroup;
+
+    private List<Member> noGroup;
+
+    private long selectedNoGroup;
 
 
 
@@ -145,6 +146,15 @@ public class EditStudentController implements Serializable {
         this.lastName="";
         this.password="";
         this.dateOfBirth=null;
+        List<Member> st=mu.getStudents();
+        noGroup=new ArrayList<Member>();
+        for(Member k:st){
+            int j=mu.getAllPerformancesByMember(k).size();
+            if(j==0){
+                noGroup.add(k);
+            }
+        }
+        System.out.println();
         students=mu.getStudentsByGroup(selectedGroupId);
         //teachesDescription=new ArrayList<String>();
         courses=mu.getCoursesByGroup(selectedGroupId);
@@ -353,6 +363,22 @@ public class EditStudentController implements Serializable {
         this.activeGroup = activeGroup;
     }
 
+    public List<Member> getNoGroup() {
+        return noGroup;
+    }
+
+    public void setNoGroup(List<Member> noGroup) {
+        this.noGroup = noGroup;
+    }
+
+    public long getSelectedNoGroup() {
+        return selectedNoGroup;
+    }
+
+    public void setSelectedNoGroup(long selectedNoGroup) {
+        this.selectedNoGroup = selectedNoGroup;
+    }
+
     public void updateStudent(){
         mu.updateUserName(student,userName);
         mu.updatepassword(student,password);
@@ -420,6 +446,15 @@ public class EditStudentController implements Serializable {
             for(Groupcourse i:gc){
                 mu.addPerformance(selectedStudent,i.getId());
             }
+        }
+    }
+
+
+    public void addToGroup(){
+        List<Groupcourse> gc=mu.getGroupcoursesByGroup(selectedGroupId);
+        for(Groupcourse i:gc){
+            mu.addPerformance(selectedNoGroup,i.getId());
+            System.out.println();
         }
     }
     private void emptyRedirect(){

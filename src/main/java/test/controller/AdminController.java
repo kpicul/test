@@ -1,7 +1,7 @@
 package test.controller;
 
 import test.Helper;
-import test.ManagedUser;
+import test.DatabaseQuerries;
 import test.Session;
 import test.database.*;
 
@@ -23,7 +23,7 @@ import java.util.List;
 @ViewScoped
 public class AdminController  implements Serializable {
     @Inject
-    private ManagedUser mu;
+    private DatabaseQuerries mu;
 
     @Inject
     private Session session;

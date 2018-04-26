@@ -46,6 +46,18 @@
                         #{ongoing.data}
                     </h:column>
                 </h:dataTable>
+                <br/>
+                <h2>Results by year</h2>
+                <h:dataTable value="#{studentController.yearResultSet}" var="year">
+                    <h:column>
+                        <f:facet name="header">Year</f:facet>
+                        #{year.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Average grade</f:facet>
+                        #{year.data}
+                    </h:column>
+                </h:dataTable>
             </h:form>
         </rich:panel>
     </fieldset>

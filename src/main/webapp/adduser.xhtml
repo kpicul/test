@@ -19,35 +19,35 @@
     <ui:define name="title">Test</ui:define>
 
     <ui:define name="body">
-        <fieldset style="width:500px">
+        <fieldset style="width:1000px">
             <legend>Testing site</legend>
 
             <rich:panel header="tst">
                 <h:form id="admin">
-                    <p>Firstname:</p>
+                    <h:outputLabel value="First name: " for="firstname"/>
                     <h:inputText id="firstname" value="#{adminController.firstName}">
                     </h:inputText>
                     <br/>
-                    <p>Lastname: </p>
+                    <h:outputLabel value="Last name: " for="lastname"/>
                     <h:inputText id="lastname" value="#{adminController.lastName}">
                     </h:inputText>
                     <br/>
-                    <p>Username: </p>
+                    <h:outputLabel value="Username: " for="username"/>
                     <h:inputText id="username" value="#{adminController.userName}">
                     </h:inputText>
                     <br/>
-                    <p>Role: </p>
-                    <h:selectOneMenu value="#{adminController.roleChoices}" action="#{adminController.setupEditedTeacher}">
+                    <h:outputLabel value="Role: " for="role"/>
+                    <h:selectOneMenu id="role" value="#{adminController.roleChoices}" action="#{adminController.setupEditedTeacher}">
                         <f:selectItem itemValue="Admin" itemLabel="Admin"/>
                         <f:selectItem itemValue="Student" itemLabel="Student"/>
                         <f:selectItem itemValue="Teacher" itemLabel="Teacher"/>
                     </h:selectOneMenu>
                     <br/>
-                    <p>Password: </p>
+                    <h:outputLabel value="Password: " for="password"/>
                     <h:inputSecret id="password" value="#{adminController.password}">
                     </h:inputSecret>
                     <br/>
-                    <p>Date of birth: </p>
+                    <h:outputLabel value="Date of birth: " for="date"/>
                     <h:inputText id="date" value="#{adminController.dateOfBirth}">
                     </h:inputText>
                     <br/>

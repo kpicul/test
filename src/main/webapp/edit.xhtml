@@ -19,23 +19,28 @@
     <ui:define name="title">Test</ui:define>
 
     <ui:define name="body">
-        <fieldset style="width:500px">
+        <fieldset style="width:1000px">
             <legend>Testing site</legend>
 
             <rich:panel header="Ajax enabled inputText">
                 <h:form id="helloWorldJsf">
+                    <h:outputLabel value="First name: " for="firstname"/>
                     <h:inputText id="firstname" value="#{editController.firstName}">
                     </h:inputText>
                     <br/>
+                    <h:outputLabel value="Last name: " for="lastname"/>
                     <h:inputText id="lastname" value="#{editController.lastName}">
                     </h:inputText>
                     <br/>
+                    <h:outputLabel value="Username: " for="username"/>
                     <h:inputText id="username" value="#{editController.userName}">
                     </h:inputText>
                     <br/>
+                    <h:outputLabel value="Password: " for="password"/>
                     <h:inputSecret id="password" value="#{editController.password}">
                     </h:inputSecret>
                     <br/>
+                    <h:outputLabel value="Date of birth: " for="date"/>
                     <h:inputText id="date" value="#{editController.dateOfBirth}">
                     </h:inputText>
                     <br/>

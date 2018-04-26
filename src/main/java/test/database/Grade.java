@@ -1,6 +1,8 @@
 package test.database;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 
@@ -13,6 +15,8 @@ public class Grade {
     private long id;
 
     @NotNull
+    @Min(value=1, message = "Grade can't be lower than 1")
+    @Max(value=5, message = "Grade can't be higher than 5")
     private int grade;
 
     @NotNull

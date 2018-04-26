@@ -1,3 +1,4 @@
+/home/kristjan/Parsek/test/src/main/java/test/DatabaseQuerries.java
 /home/kristjan/Parsek/test/src/main/java/test/controller/EditStudentController.java
 /home/kristjan/Parsek/test/src/main/java/test/database/Year.java
 /home/kristjan/Parsek/test/src/main/java/test/Converter.java
@@ -24,4 +25,3 @@
 /home/kristjan/Parsek/test/src/main/java/test/Login.java
 /home/kristjan/Parsek/test/src/main/java/test/controller/TeacherController.java
 /home/kristjan/Parsek/test/src/main/java/test/database/Role.java
-/home/kristjan/Parsek/test/src/main/java/test/ManagedUser.java

@@ -19,7 +19,7 @@ package test.controller;
 
 
 import test.Helper;
-import test.ManagedUser;
+import test.DatabaseQuerries;
 import test.Session;
 import test.database.Member;
 import test.database.Role;
@@ -30,14 +30,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 @Named
 @RequestScoped
 public class GetController {
 
     @Inject
-    private ManagedUser cu;
+    private DatabaseQuerries cu;
 
     @Inject
     private Session session;

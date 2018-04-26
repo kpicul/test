@@ -19,40 +19,43 @@
     <ui:define name="title">Test</ui:define>
 
     <ui:define name="body">
-        <fieldset style="width:500px">
+        <fieldset style="width:1000px">
             <legend>Testing site</legend>
 
             <rich:panel header="tst">
                 <h:form id="admin">
+                    <h:outputLabel value="Select teacher: " for="teacher"/>
                     <h:selectOneListbox id="teacher" value="#{adminController.teacherValue}">
                         <f:selectItems value="#{adminController.teachers}" var="teacher" itemLabel="#{teacher.username}" itemValue="#{teacher.username}"/>
                     </h:selectOneListbox>
-                    <h:commandButton id="Select" value="Select" action="#{adminController.setupEditedTeacher}">
-
-                    </h:commandButton>
+                    <br/>
+                    <h:outputLabel value="Select year: " for="years"/>
                     <h:selectOneMenu id="years" value="#{adminController.selectedYear}">
                         <f:selectItems value="#{adminController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}"/>
                     </h:selectOneMenu>
+                    <h:commandButton id="Select" value="Select" action="#{adminController.setupEditedTeacher}">
+                    </h:commandButton>
                 </h:form>
 
                 <h:form id="teacherdata" rendered="#{not empty adminController.teacherValue}">
-                    <p>First name: </p>
+                    <h2>Selected teacher's data</h2>
+                    <h:outputLabel value="First name: " for="firstname"/>
                     <h:inputText id="firstname" value="#{adminController.firstName}">
                     </h:inputText>
                     <br/>
-                    <p>Last name: </p>
+                    <h:outputLabel value="Last name: " for="lastname"/>
                     <h:inputText id="lastname" value="#{adminController.lastName}">
                     </h:inputText>
                     <br/>
-                    <p>username:</p>
+                    <h:outputLabel value="Username: " for="username"/>
                     <h:inputText id="username" value="#{adminController.userName}">
                     </h:inputText>
                     <br/>
-                    <p>Password: </p>
+                    <h:outputLabel value="Password: " for="password"/>
                     <h:inputSecret id="password" value="#{adminController.password}">
                     </h:inputSecret>
                     <br/>
-                    <p>Date of birth: </p>
+                    <h:outputLabel value="Date of birth: " for="date"/>
                     <h:inputText id="date" value="#{adminController.dateOfBirth}">
                     </h:inputText>
                     <br/>
@@ -63,6 +66,7 @@
                 </h:form>
 
                 <h:form id="courses" rendered="#{not empty adminController.teacherValue}">
+                    <h2>Selected teacher's courses</h2>
                     <h:selectOneListbox id="coursedata" value="#{adminController.selectedCourse}">
                         <f:selectItems value="#{adminController.courseData}" var="course" itemLabel="#{course.name}" itemValue="#{course.name}"/>
                     </h:selectOneListbox>

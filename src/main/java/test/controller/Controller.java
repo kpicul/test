@@ -1,6 +1,6 @@
 package test.controller;
 
-import test.ManagedUser;
+import test.DatabaseQuerries;
 import test.database.Member;
 
 import javax.enterprise.context.RequestScoped;
@@ -18,7 +18,7 @@ public class Controller {
     private FacesContext fc;
 
     @Inject
-    private ManagedUser cu;
+    private DatabaseQuerries cu;
 
     @Named
     @Produces

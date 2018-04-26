@@ -6,10 +6,11 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
+@TableGenerator(name="tab", initialValue=50, allocationSize=500)
 public class Course {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="tab")
     private long id;
 
     @NotNull

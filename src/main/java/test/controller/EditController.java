@@ -1,7 +1,7 @@
 package test.controller;
 
 import test.Helper;
-import test.ManagedUser;
+import test.DatabaseQuerries;
 import test.Session;
 import test.database.Member;
 import javax.annotation.PostConstruct;
@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
 @Named
 public class EditController  implements Serializable {
     @Inject
-    private ManagedUser mu;
+    private DatabaseQuerries mu;
 
     @Inject
     private Session session;

@@ -26,16 +26,19 @@
                     <h:commandButton id="logout" value="logout" action="#{teacherController.logout}">
                     </h:commandButton>
                     <br/>
+                    <h:outputLabel value="Year: " for="year"/>
                     <h:selectOneMenu id="year" value="#{teacherController.selectedYearId}">
                         <f:selectItems value="#{teacherController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}" />
                         <f:ajax event="click" render="course" listener="#{teacherController.setupCourses}"/>
                     </h:selectOneMenu>
                     <br/>
+                    <h:outputLabel value="Course: " for="course"/>
                     <h:selectOneMenu id="course" value="#{teacherController.selectedCourseId}">
                         <f:selectItems value="#{teacherController.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}" />
                         <f:ajax event="click" render="group" listener="#{teacherController.setupGroups}"/>
                     </h:selectOneMenu>
                     <br/>
+                    <h:outputLabel value="Group: " for="group"/>
                     <h:selectOneMenu id="group" value="#{teacherController.selectedGroupId}">
                         <f:selectItems value="#{teacherController.groups}" var="grp" itemLabel="#{grp.name}" itemValue="#{grp.id}" />
                         <f:ajax event="click" render="data finished" listener="#{teacherController.setupGrades}"/>
