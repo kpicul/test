@@ -56,7 +56,6 @@ public class EditController  implements Serializable {
         password=user.getPassword();
         //int as=777;
         dateOfBirth=user.getDateOfBirth();
-        System.out.println("test423");
     }
 
     public void confirm(){
@@ -134,6 +133,31 @@ public class EditController  implements Serializable {
         if(user==null){
             try {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void back(){
+        if(user.getRoleId().getName().equals("Admin")){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("admin1.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        else if(user.getRoleId().getName().equals("Student")){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("student1.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(user.getRoleId().getName().equals("Teacher")){
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("teacher1.xhtml");
             } catch (IOException e) {
                 e.printStackTrace();
             }

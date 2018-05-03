@@ -1,4 +1,5 @@
 test/Converter.class
+test/controller/AddCourseController.class
 test/output/ResultTeaches.class
 test/Session.class
 test/controller/EditStudentController.class
@@ -6,6 +7,7 @@ test/database/Role.class
 test/controller/GetController.class
 test/controller/EditController.class
 test/controller/StudentController.class
+test/controller/AddYearController.class
 test/database/Groupcourse.class
 test/database/Member.class
 test/database/Group.class
@@ -13,7 +15,6 @@ test/controller/TeacherController.class
 test/Resources.class
 test/DatabaseQuerries.class
 test/database/Performance.class
-test/database/CourseDates.class
 test/CreateUser.class
 test/database/Course.class
 test/database/Year.class

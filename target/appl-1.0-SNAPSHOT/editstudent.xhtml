@@ -19,46 +19,52 @@
     <ui:define name="title">Test</ui:define>
     <ui:param name="student1"  value="#{editStudentController.student}"/>
     <ui:define name="body">
-        <fieldset style="width:1000px">
-            <legend>Testing site</legend>
+
 
             <rich:panel header="tst">
                 <h:form id="groups">
-                    <h:outputLabel value="Group and year: " for="group"/>
-                    <h:selectOneListbox id="group" value="#{editStudentController.selectedGroupId}">
-                        <f:selectItems value="#{editStudentController.groups}" var="group" itemLabel="#{group.name}" itemValue="#{group.id}" />
-                    </h:selectOneListbox>
-
-                    <h:selectOneMenu id="year" value="#{editStudentController.selectedYearId}">
-                        <f:selectItems value="#{editStudentController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}" />
-                    </h:selectOneMenu>
-                    <br/>
-
-                    <h:commandButton id="Select" value="Select" action="#{editStudentController.setupStudents}" >
+                    <h:commandButton id="back" value="Back" action="#{editStudentController.back}" >
                     </h:commandButton>
+                    <fieldset style="width:1000px">
+                        <legend>Select Group</legend>
+                        <br/>
+                        <h:outputLabel value="Group and year: " for="group"/>
+                        <h:selectOneListbox id="group" value="#{editStudentController.selectedGroupId}">
+                            <f:selectItems value="#{editStudentController.groups}" var="group" itemLabel="#{group.name}" itemValue="#{group.id}" />
+                        </h:selectOneListbox>
 
+                        <h:selectOneMenu id="year" value="#{editStudentController.selectedYearId}">
+                            <f:selectItems value="#{editStudentController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}" />
+                        </h:selectOneMenu>
+                        <br/>
+
+                        <h:commandButton id="Select" value="Select" action="#{editStudentController.setupStudents}" >
+                        </h:commandButton>
+                    </fieldset>
                 </h:form>
                 <br/>
                 <h:form id="students" rendered="#{not empty editStudentController.courses}">
-                    <h2>Students in group</h2>
-                    <h:outputLabel value="Students in group: " for="student"/>
-                    <h:selectOneListbox id="student" value="#{editStudentController.selectedStudent}">
-                        <f:selectItems value="#{editStudentController.students}" var="student" itemLabel="#{student.username}" itemValue="#{student.id}"/>
-                    </h:selectOneListbox>
-                    <h:commandButton id="confirm" value="Select" action="#{editStudentController.selectStudent}">
-                    </h:commandButton>
-                    <br/>
-                    <h:outputLabel value="Assign unassigned students to group : " for="notAssignedStudents"/>
-                    <h:selectOneListbox id="notAssignedStudents" value="#{editStudentController.selectedNoGroup}">
-                        <f:selectItems value="#{editStudentController.noGroup}" var="nogroup" itemLabel="#{nogroup.username}" itemValue="#{nogroup.id}" />
-                    </h:selectOneListbox>
-                    <h:commandButton id="addToGroup" value="Add" action="#{editStudentController.addToGroup}">
-                    </h:commandButton>
-
+                    <fieldset style="width:1000px">
+                        <legend>Students in group</legend>
+                        <h:outputLabel value="Students in group: " for="student"/>
+                        <h:selectOneListbox id="student" value="#{editStudentController.selectedStudent}">
+                            <f:selectItems value="#{editStudentController.students}" var="student" itemLabel="#{student.username}" itemValue="#{student.id}"/>
+                        </h:selectOneListbox>
+                        <h:commandButton id="confirm" value="Select" action="#{editStudentController.selectStudent}">
+                        </h:commandButton>
+                        <br/>
+                        <h:outputLabel value="Assign unassigned students to group : " for="notAssignedStudents"/>
+                        <h:selectOneListbox id="notAssignedStudents" value="#{editStudentController.selectedNoGroup}">
+                            <f:selectItems value="#{editStudentController.noGroup}" var="nogroup" itemLabel="#{nogroup.username}" itemValue="#{nogroup.id}" />
+                        </h:selectOneListbox>
+                        <h:commandButton id="addToGroup" value="Add" action="#{editStudentController.addToGroup}">
+                        </h:commandButton>
+                    </fieldset>
                 </h:form>
                 <br/>
                 <h:form id="teachers" rendered="#{editStudentController.selectedGroupId!=0}">
-                    <h2>Courses and teachers in group</h2>
+                    <fieldset style="width:1000px">
+                    <legend>Courses and teachers in group</legend>
                     <h:outputLabel value="Course: " for="course"/>
                     <h:selectOneMenu id="course" value="#{editStudentController.selectedCourse}">
                         <f:selectItems value="#{editStudentController.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}" />
@@ -80,43 +86,44 @@
                         <f:selectItems value="#{editStudentController.unassignedCourses}" var="unassigned" itemLabel="#{unassigned.course.name} #{unassigned.memberid.username}" itemValue="#{unassigned.id}"/>
                     </h:selectOneListbox>
                     <h:commandButton id="updateUnassigned" value="Add" action="#{editStudentController.addCourseToGroup}"/>
+                    </fieldset>
                 </h:form>
                 <br/>
                 <h:form id="editstudent" rendered="#{not empty editStudentController.student}">
-                    <h2>Edit student</h2>
-                    <h:outputLabel value="First name: " for="firstname"/>
-                    <h:inputText id="firstname" value="#{editStudentController.firstName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Last name: " for="lastname"/>
-                    <h:inputText id="lastname" value="#{editStudentController.lastName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Username " for="username"/>
-                    <h:inputText id="username" value="#{editStudentController.userName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Password: " for="password"/>
-                    <h:inputSecret id="password" value="#{editStudentController.password}">
-                    </h:inputSecret>
-                    <br/>
-                    <h:outputLabel value="Date of birth: " for="date"/>
-                    <h:inputText id="date" value="#{editStudentController.dateOfBirth}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Assigned group: " for="group"/>
-                    <h:selectOneMenu id="groupChange" value="#{editStudentController.changedGroup}">
-                        <f:selectItems value="#{editStudentController.groups}" var="groups" itemLabel="#{groups.name}" itemValue="#{groups.id}" />
-                    </h:selectOneMenu>
-                    <br/>
-                    <h:commandButton value="Confirm" id="edit" action="#{editStudentController.updateStudent}">
-                    </h:commandButton>
-                    <br/>
-
+                    <fieldset style="width:1000px">
+                        <legend>Edit student</legend>
+                        <h:outputLabel value="First name: " for="firstname"/>
+                        <h:inputText id="firstname" value="#{editStudentController.firstName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Last name: " for="lastname"/>
+                        <h:inputText id="lastname" value="#{editStudentController.lastName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Username " for="username"/>
+                        <h:inputText id="username" value="#{editStudentController.userName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Password: " for="password"/>
+                        <h:inputSecret id="password" value="#{editStudentController.password}">
+                        </h:inputSecret>
+                        <br/>
+                        <h:outputLabel value="Date of birth: " for="date"/>
+                        <h:inputText id="date" value="#{editStudentController.dateOfBirth}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Assigned group: " for="group"/>
+                        <h:selectOneMenu id="groupChange" value="#{editStudentController.changedGroup}">
+                            <f:selectItems value="#{editStudentController.groups}" var="groups" itemLabel="#{groups.name}" itemValue="#{groups.id}" />
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:commandButton value="Confirm" id="edit" action="#{editStudentController.updateStudent}">
+                        </h:commandButton>
+                        <br/>
+                    </fieldset>
                 </h:form>
             </rich:panel>
 
-        </fieldset>
     </ui:define>
 </ui:composition>
 </body>

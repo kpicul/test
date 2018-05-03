@@ -19,66 +19,72 @@
     <ui:define name="title">Test</ui:define>
 
     <ui:define name="body">
-        <fieldset style="width:1000px">
-            <legend>Testing site</legend>
 
             <rich:panel header="tst">
                 <h:form id="admin">
-                    <h:outputLabel value="Select teacher: " for="teacher"/>
-                    <h:selectOneListbox id="teacher" value="#{adminController.teacherValue}">
-                        <f:selectItems value="#{adminController.teachers}" var="teacher" itemLabel="#{teacher.username}" itemValue="#{teacher.username}"/>
-                    </h:selectOneListbox>
-                    <br/>
-                    <h:outputLabel value="Select year: " for="years"/>
-                    <h:selectOneMenu id="years" value="#{adminController.selectedYear}">
-                        <f:selectItems value="#{adminController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}"/>
-                    </h:selectOneMenu>
-                    <h:commandButton id="Select" value="Select" action="#{adminController.setupEditedTeacher}">
+                    <h:commandButton id="back" value="Back" action="#{adminController.back}" >
                     </h:commandButton>
+                    <fieldset style="width:1000px">
+                        <legend>Select teacher and year</legend>
+                        <br/>
+                        <h:outputLabel value="Select teacher: " for="teacher"/>
+                        <h:selectOneListbox id="teacher" value="#{adminController.teacherValue}">
+                            <f:selectItems value="#{adminController.teachers}" var="teacher" itemLabel="#{teacher.username}" itemValue="#{teacher.username}"/>
+                        </h:selectOneListbox>
+                        <br/>
+                        <h:outputLabel value="Select year: " for="years"/>
+                        <h:selectOneMenu id="years" value="#{adminController.selectedYear}">
+                            <f:selectItems value="#{adminController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}"/>
+                        </h:selectOneMenu>
+                        <h:commandButton id="Select" value="Select" action="#{adminController.setupEditedTeacher}">
+                        </h:commandButton>
+                    </fieldset>
                 </h:form>
 
                 <h:form id="teacherdata" rendered="#{not empty adminController.teacherValue}">
-                    <h2>Selected teacher's data</h2>
-                    <h:outputLabel value="First name: " for="firstname"/>
-                    <h:inputText id="firstname" value="#{adminController.firstName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Last name: " for="lastname"/>
-                    <h:inputText id="lastname" value="#{adminController.lastName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Username: " for="username"/>
-                    <h:inputText id="username" value="#{adminController.userName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Password: " for="password"/>
-                    <h:inputSecret id="password" value="#{adminController.password}">
-                    </h:inputSecret>
-                    <br/>
-                    <h:outputLabel value="Date of birth: " for="date"/>
-                    <h:inputText id="date" value="#{adminController.dateOfBirth}">
-                    </h:inputText>
-                    <br/>
-                    <h:commandButton id="update" value="confirm" action="#{adminController.updateTeacher}">
-                    </h:commandButton>
-                    <br/>
-
+                    <fieldset style="width:1000px">
+                        <legend>Selected teacher's data</legend>
+                        <h:outputLabel value="First name: " for="firstname"/>
+                        <h:inputText id="firstname" value="#{adminController.firstName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Last name: " for="lastname"/>
+                        <h:inputText id="lastname" value="#{adminController.lastName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Username: " for="username"/>
+                        <h:inputText id="username" value="#{adminController.userName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Password: " for="password"/>
+                        <h:inputSecret id="password" value="#{adminController.password}">
+                        </h:inputSecret>
+                        <br/>
+                        <h:outputLabel value="Date of birth: " for="date"/>
+                        <h:inputText id="date" value="#{adminController.dateOfBirth}">
+                        </h:inputText>
+                        <br/>
+                        <h:commandButton id="update" value="confirm" action="#{adminController.updateTeacher}">
+                        </h:commandButton>
+                        <br/>
+                    </fieldset>
                 </h:form>
 
                 <h:form id="courses" rendered="#{not empty adminController.teacherValue}">
-                    <h2>Selected teacher's courses</h2>
-                    <h:selectOneListbox id="coursedata" value="#{adminController.selectedCourse}">
-                        <f:selectItems value="#{adminController.courseData}" var="course" itemLabel="#{course.name}" itemValue="#{course.name}"/>
-                    </h:selectOneListbox>
-                    <h:commandButton id="add" value="Add course" action="#{adminController.courseAdd}"/>
-                    <h:commandButton id="remove" value="Remove course" action="#{adminController.courseRemove}"/>
-                    <h:selectOneListbox id="notcoursedata" value="#{adminController.addCourse}">
-                        <f:selectItems value="#{adminController.addCourseData}" var="add" itemLabel="#{add.name}" itemValue="#{add.name}"/>
-                    </h:selectOneListbox>
+                    <fieldset style="width:1000px">
+                        <legend>Selected teacher's courses</legend>
+                        <h:selectOneListbox id="coursedata" value="#{adminController.selectedCourse}">
+                            <f:selectItems value="#{adminController.courseData}" var="course" itemLabel="#{course.name}" itemValue="#{course.name}"/>
+                        </h:selectOneListbox>
+                        <h:commandButton id="add" value="Add course" action="#{adminController.courseAdd}"/>
+                        <h:commandButton id="remove" value="Remove course" action="#{adminController.courseRemove}"/>
+                        <h:selectOneListbox id="notcoursedata" value="#{adminController.addCourse}">
+                            <f:selectItems value="#{adminController.addCourseData}" var="add" itemLabel="#{add.name}" itemValue="#{add.name}"/>
+                        </h:selectOneListbox>
+                    </fieldset>
                 </h:form>
             </rich:panel>
 
-        </fieldset>
     </ui:define>
 </ui:composition>
 </body>

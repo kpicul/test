@@ -20,7 +20,7 @@
     <ui:param name="student1"  value="#{editStudentController.student}"/>
     <ui:define name="body">
         <fieldset style="width:1000px">
-            <legend>Testing site</legend>
+            <legend>Admin control</legend>
 
             <rich:panel header="tst">
                 <h:form id="adminDashboard">
@@ -34,7 +34,7 @@
                     </h:commandButton>
                     <h:commandButton id="teacher" value="edit teacher" action="#{adminController.goToTeacher}">
                     </h:commandButton>
-                    <h:commandButton id="adduser" value="add user" action="#{adminController.goToAdduser}" >
+                    <h:commandButton id="adduser" value="add user,group or year" action="#{adminController.goToAdduser}" >
                     </h:commandButton>
                 </h:form>
             </rich:panel>

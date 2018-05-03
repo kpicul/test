@@ -380,6 +380,13 @@ public class AdminController  implements Serializable {
             e.printStackTrace();
         }
     }
+    public void back(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("admin1.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

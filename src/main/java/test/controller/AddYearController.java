@@ -12,6 +12,9 @@ import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @ViewScoped
 @Named
@@ -45,20 +48,40 @@ public class AddYearController implements Serializable {
         this.yearName = yearName;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public String getStartDate() {
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        String date=null;
+        if(startDate != null){
+            date=df.format(startDate);
+        }
+        return date;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartDate(String startDate) {
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            this.startDate = new java.sql.Date(df.parse(startDate).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public String getEndDate() {
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        String date=null;
+        if(endDate != null){
+            date=df.format(endDate);
+        }
+        return date;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEndDate(String endDate) {
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            this.endDate = new java.sql.Date(df.parse(endDate).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addYear(){

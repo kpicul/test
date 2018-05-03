@@ -10,10 +10,11 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
+import java.io.Serializable;
 
 @ViewScoped
 @Named
-public class AddCourseController {
+public class AddCourseController implements Serializable {
     @Inject
     private DatabaseQuerries db;
 
@@ -22,16 +23,16 @@ public class AddCourseController {
 
     private Member user;
 
+    private String name;
+
+    private String description;
+
     @PostConstruct
     public void postConstruct(){
         user=session.getUser();
         emptyRedirect();
         checkRole();
     }
-
-    private String name;
-
-    private String description;
 
     public String getName() {
         return name;
@@ -47,6 +48,10 @@ public class AddCourseController {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void addCourse(){
+        db.addCourse(this.name,this.description);
     }
 
     private void emptyRedirect(){

@@ -19,46 +19,82 @@
     <ui:define name="title">Test</ui:define>
 
     <ui:define name="body">
-        <fieldset style="width:1000px">
-            <legend>Testing site</legend>
 
             <rich:panel header="tst">
                 <h:form id="admin">
-                    <h:outputLabel value="First name: " for="firstname"/>
-                    <h:inputText id="firstname" value="#{adminController.firstName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Last name: " for="lastname"/>
-                    <h:inputText id="lastname" value="#{adminController.lastName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Username: " for="username"/>
-                    <h:inputText id="username" value="#{adminController.userName}">
-                    </h:inputText>
-                    <br/>
-                    <h:outputLabel value="Role: " for="role"/>
-                    <h:selectOneMenu id="role" value="#{adminController.roleChoices}" action="#{adminController.setupEditedTeacher}">
-                        <f:selectItem itemValue="Admin" itemLabel="Admin"/>
-                        <f:selectItem itemValue="Student" itemLabel="Student"/>
-                        <f:selectItem itemValue="Teacher" itemLabel="Teacher"/>
-                    </h:selectOneMenu>
-                    <br/>
-                    <h:outputLabel value="Password: " for="password"/>
-                    <h:inputSecret id="password" value="#{adminController.password}">
-                    </h:inputSecret>
-                    <br/>
-                    <h:outputLabel value="Date of birth: " for="date"/>
-                    <h:inputText id="date" value="#{adminController.dateOfBirth}">
-                    </h:inputText>
-                    <br/>
-                    <h:commandButton value="Confirm" id="confirm" action="#{adminController.addUser}">
+                    <h:commandButton id="back" value="Back" action="#{adminController.back}" >
                     </h:commandButton>
-                    <br/>
-
+                    <fieldset style="width:1000px">
+                        <legend>Add member</legend>
+                        <br/>
+                        <br/>
+                        <h:outputLabel value="First name: " for="firstname"/>
+                        <h:inputText id="firstname" value="#{adminController.firstName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Last name: " for="lastname"/>
+                        <h:inputText id="lastname" value="#{adminController.lastName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Username: " for="username"/>
+                        <h:inputText id="username" value="#{adminController.userName}">
+                        </h:inputText>
+                        <br/>
+                        <h:outputLabel value="Role: " for="role"/>
+                        <h:selectOneMenu id="role" value="#{adminController.roleChoices}" action="#{adminController.setupEditedTeacher}">
+                            <f:selectItem itemValue="Admin" itemLabel="Admin"/>
+                            <f:selectItem itemValue="Student" itemLabel="Student"/>
+                            <f:selectItem itemValue="Teacher" itemLabel="Teacher"/>
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:outputLabel value="Password: " for="password"/>
+                        <h:inputSecret id="password" value="#{adminController.password}">
+                        </h:inputSecret>
+                        <br/>
+                        <h:outputLabel value="Date of birth: " for="date"/>
+                        <h:inputText id="date" value="#{adminController.dateOfBirth}">
+                        </h:inputText>
+                        <br/>
+                        <h:commandButton value="Confirm" id="confirm" action="#{adminController.addUser}">
+                        </h:commandButton>
+                        <br/>
+                    </fieldset>
+                </h:form>
+                <br/>
+                <h:form id="addYear">
+                    <fieldset style="width:1000px">
+                        <legend>Add year</legend>
+                        <br/>
+                        <h:outputLabel value="Year name: " for="yearname"/>
+                        <h:inputText id="yearname" value="#{addYearController.yearName}"/>
+                        <br/>
+                        <h:outputLabel value="Start date: " for="startdate"/>
+                        <h:inputText id="startdate" value="#{addYearController.startDate}"/>
+                        <br/>
+                        <h:outputLabel value="End date: " for="enddate"/>
+                        <h:inputText id="enddate" value="#{addYearController.endDate}"/>
+                        <br/>
+                        <h:commandButton value="Add" action="#{addYearController.addYear}">
+                        </h:commandButton>
+                    </fieldset>
+                </h:form>
+                <br/>
+                <h:form id="addCourse">
+                    <fieldset style="width:1000px">
+                        <legend>Add course</legend>
+                        <br/>
+                        <h:outputLabel value="Course name: " for="coursename"/>
+                        <h:inputText id="coursename" value="#{addCourseController.name}"/>
+                        <br/>
+                        <h:outputLabel value="Description: " for="description"/>
+                        <h:inputText id="description" value="#{addCourseController.description}"/>
+                        <br/>
+                        <h:commandButton value="Add" action="#{addCourseController.addCourse}">
+                        </h:commandButton>
+                    </fieldset>
                 </h:form>
             </rich:panel>
 
-        </fieldset>
     </ui:define>
 </ui:composition>
 </body>

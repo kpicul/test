@@ -14,7 +14,7 @@
 /home/kristjan/Parsek/test/src/main/java/test/Session.java
 /home/kristjan/Parsek/test/src/main/java/test/database/Performance.java
 /home/kristjan/Parsek/test/src/main/java/test/CreateUser.java
-/home/kristjan/Parsek/test/src/main/java/test/database/CourseDates.java
+/home/kristjan/Parsek/test/src/main/java/test/controller/AddYearController.java
 /home/kristjan/Parsek/test/src/main/java/test/database/Grade.java
 /home/kristjan/Parsek/test/src/main/java/test/controller/AdminController.java
 /home/kristjan/Parsek/test/src/main/java/test/RichBean.java
@@ -24,4 +24,5 @@
 /home/kristjan/Parsek/test/src/main/java/test/controller/Controller.java
 /home/kristjan/Parsek/test/src/main/java/test/Login.java
 /home/kristjan/Parsek/test/src/main/java/test/controller/TeacherController.java
+/home/kristjan/Parsek/test/src/main/java/test/controller/AddCourseController.java
 /home/kristjan/Parsek/test/src/main/java/test/database/Role.java

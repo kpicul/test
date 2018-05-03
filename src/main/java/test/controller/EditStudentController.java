@@ -456,6 +456,7 @@ public class EditStudentController implements Serializable {
             mu.addPerformance(selectedNoGroup,i.getId());
             System.out.println();
         }
+        students.add(mu.getForId(selectedNoGroup));
     }
     private void emptyRedirect(){
         if(user==null){
@@ -473,6 +474,13 @@ public class EditStudentController implements Serializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    public void back(){
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("admin1.xhtml");
+        } catch (IOException e) {
+                e.printStackTrace();
         }
     }
 

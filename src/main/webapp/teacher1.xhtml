@@ -19,108 +19,121 @@
     <ui:define name="title">Test</ui:define>
     <ui:param name="student1"  value="#{editStudentController.student}"/>
     <ui:define name="body">
-        <fieldset style="width:1000px">
-            <legend>Testing site</legend>
             <rich:panel header="tst">
                 <h:form id="groups">
                     <h:commandButton id="logout" value="logout" action="#{teacherController.logout}">
                     </h:commandButton>
-                    <br/>
-                    <h:outputLabel value="Year: " for="year"/>
-                    <h:selectOneMenu id="year" value="#{teacherController.selectedYearId}">
-                        <f:selectItems value="#{teacherController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}" />
-                        <f:ajax event="click" render="course" listener="#{teacherController.setupCourses}"/>
-                    </h:selectOneMenu>
-                    <br/>
-                    <h:outputLabel value="Course: " for="course"/>
-                    <h:selectOneMenu id="course" value="#{teacherController.selectedCourseId}">
-                        <f:selectItems value="#{teacherController.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}" />
-                        <f:ajax event="click" render="group" listener="#{teacherController.setupGroups}"/>
-                    </h:selectOneMenu>
-                    <br/>
-                    <h:outputLabel value="Group: " for="group"/>
-                    <h:selectOneMenu id="group" value="#{teacherController.selectedGroupId}">
-                        <f:selectItems value="#{teacherController.groups}" var="grp" itemLabel="#{grp.name}" itemValue="#{grp.id}" />
-                        <f:ajax event="click" render="data finished" listener="#{teacherController.setupGrades}"/>
-                    </h:selectOneMenu>
+                    <h:commandButton id="edit" value="edit" action="#{teacherController.toEdit}">
+                    </h:commandButton>
+                    <fieldset style="width:1000px">
+                        <legend>Select year,course and group</legend>
+                        <br/>
+                        <h:outputLabel value="Year: " for="year"/>
+                        <h:selectOneMenu id="year" value="#{teacherController.selectedYearId}">
+                            <f:selectItems value="#{teacherController.years}" var="year" itemLabel="#{year.year}" itemValue="#{year.id}" />
+                            <f:ajax event="click" render="course" listener="#{teacherController.setupCourses}"/>
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:outputLabel value="Course: " for="course"/>
+                        <h:selectOneMenu id="course" value="#{teacherController.selectedCourseId}">
+                            <f:selectItems value="#{teacherController.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}" />
+                            <f:ajax event="click" render="group" listener="#{teacherController.setupGroups}"/>
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:outputLabel value="Group: " for="group"/>
+                        <h:selectOneMenu id="group" value="#{teacherController.selectedGroupId}">
+                            <f:selectItems value="#{teacherController.groups}" var="grp" itemLabel="#{grp.name}" itemValue="#{grp.id}" />
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:commandButton id="setup" value="Select" action="#{teacherController.setupGrades}">
+                        </h:commandButton>
+                    </fieldset>
                 </h:form>
+                        <h:form id="data" rendered="#{not empty teacherController.studentResults}">
+                            <fieldset style="width:1000px" >
+                                <legend>Active students</legend>
+                                <h:dataTable value="#{teacherController.studentResults}" var="data">
+                                    <h:column>
+                                        <f:facet name="header">Student name</f:facet>
+                                        #{data.description}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Grades</f:facet>
+                                        <h:outputLabel value="#{data.data}" style="color:blue"/>
+                                    </h:column>
+                                    <h:column>
+                                        <h:commandButton value="edit" action="#{teacherController.editGrades}">
+                                            <f:setPropertyActionListener target="#{teacherController.editedStudentUsername}" value="#{data.description}"/>
+                                        </h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+                            </fieldset>
+                        </h:form>
+                        <h:form id="grades" rendered="#{teacherController.grades!=null}">
+                            <fieldset style="width:500px">
+                                <legend>Selected student grades</legend>
+                                <h:dataTable value="#{teacherController.grades}" var="gradeData">
+                                    <h:column>
+                                        <f:facet name="header">Grade</f:facet>
+                                        #{gradeData.grade}
+                                    </h:column>
+                                    <h:column>
+                                        <h:commandButton value="edit" action="#{teacherController.renderEdit}">
+                                            <f:setPropertyActionListener target="#{teacherController.setGradeId}" value="#{gradeData.id}"/>
+                                        </h:commandButton>
+                                    </h:column>
+                                    <h:column>
+                                        <h:commandButton value="delete" action="#{teacherController.deleteGrade}">
+                                            <f:setPropertyActionListener target="#{teacherController.deletedGrade}" value="#{gradeData.id}"/>
+                                        </h:commandButton>
+                                    </h:column>
+                                </h:dataTable>
+                                <br/>
+                                <h:selectOneMenu value="#{teacherController.addedGrade}">
+                                    <f:selectItem itemValue="1" itemLabel="1"/>
+                                    <f:selectItem itemValue="2" itemLabel="2"/>
+                                    <f:selectItem itemValue="3" itemLabel="3"/>
+                                    <f:selectItem itemValue="4" itemLabel="4"/>
+                                    <f:selectItem itemValue="5" itemLabel="5"/>
+                                </h:selectOneMenu>
+                                <h:commandButton value="Add grade" action="#{teacherController.addGrade}">
+                                </h:commandButton>
+                                <br/>
+                                <h:commandButton value="finalize" action="#{teacherController.setFinalized}">
+                                </h:commandButton>
+                            </fieldset>
+                        </h:form>
+                        <h:form id="editGrades" rendered="#{teacherController.editGradeBool}">
+                            <fieldset style="width:500px">
+                                <legend>Update grade</legend>
+                                <h:selectOneMenu value="#{teacherController.setGradeValue}">
+                                    <f:selectItem itemValue="1" itemLabel="1"/>
+                                    <f:selectItem itemValue="2" itemLabel="2"/>
+                                    <f:selectItem itemValue="3" itemLabel="3"/>
+                                    <f:selectItem itemValue="4" itemLabel="4"/>
+                                    <f:selectItem itemValue="5" itemLabel="5"/>
+                                </h:selectOneMenu>
+                                <h:commandButton value="Update" action="#{teacherController.updateGrade}">
+                                </h:commandButton>
+                            </fieldset>
+                        </h:form>
 
-                <h:form id="data">
-                    <h1>ACTIVE STUDENTS</h1>
-                    <h:dataTable value="#{teacherController.studentResults}" var="data">
-                        <h:column>
-                            <f:facet name="header">Student name</f:facet>
-                            #{data.description}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Grades</f:facet>
-                            <h:outputLabel value="#{data.data}" style="color:blue"/>
-
-                        </h:column>
-                        <h:column>
-                            <h:commandButton value="edit" action="#{teacherController.editGrades}">
-                                <f:setPropertyActionListener target="#{teacherController.editedStudentUsername}" value="#{data.description}"/>
-                            </h:commandButton>
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
-                <h:form id="grades" rendered="#{teacherController.grades!=null}">
-                    <h:dataTable value="#{teacherController.grades}" var="gradeData">
-                        <h:column>
-                            <f:facet name="header">Grade</f:facet>
-                            #{gradeData.grade}
-                        </h:column>
-                        <h:column>
-                            <h:commandButton value="edit" action="#{teacherController.renderEdit}">
-                                <f:setPropertyActionListener target="#{teacherController.setGradeId}" value="#{gradeData.id}"/>
-                            </h:commandButton>
-                        </h:column>
-                        <h:column>
-                            <h:commandButton value="delete" action="#{teacherController.deleteGrade}">
-                                <f:setPropertyActionListener target="#{teacherController.deletedGrade}" value="#{gradeData.id}"/>
-                            </h:commandButton>
-                        </h:column>
-                    </h:dataTable>
-                    <br/>
-                    <h:selectOneMenu value="#{teacherController.addedGrade}">
-                        <f:selectItem itemValue="1" itemLabel="1"/>
-                        <f:selectItem itemValue="2" itemLabel="2"/>
-                        <f:selectItem itemValue="3" itemLabel="3"/>
-                        <f:selectItem itemValue="4" itemLabel="4"/>
-                        <f:selectItem itemValue="5" itemLabel="5"/>
-                    </h:selectOneMenu>
-                    <h:commandButton value="Add grade" action="#{teacherController.addGrade}">
-                    </h:commandButton>
-                    <br/>
-                    <h:commandButton value="finalize" action="#{teacherController.setFinalized}">
-                    </h:commandButton>
-                </h:form>
-                <h:form id="editGrades" rendered="#{teacherController.editGradeBool}">
-                    <h:selectOneMenu value="#{teacherController.setGradeValue}">
-                        <f:selectItem itemValue="1" itemLabel="1"/>
-                        <f:selectItem itemValue="2" itemLabel="2"/>
-                        <f:selectItem itemValue="3" itemLabel="3"/>
-                        <f:selectItem itemValue="4" itemLabel="4"/>
-                        <f:selectItem itemValue="5" itemLabel="5"/>
-                    </h:selectOneMenu>
-                    <h:commandButton value="Update" action="#{teacherController.updateGrade}">
-                    </h:commandButton>
-                </h:form>
-                <h:form id="finished">
-                    <h1>FINISHED STUDENTS</h1>
-                    <h:dataTable value="#{teacherController.finalizedStudents}" var="finish">
-                        <h:column>
-                            <f:facet name="header">Student name</f:facet>
-                            #{finish.description}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Grades</f:facet>
-                            <h:outputLabel value="#{finish.data}" style="color:red"/>
-                        </h:column>
-                    </h:dataTable>
+                <h:form id="finished" rendered="#{not empty teacherController.finalizedStudents}">
+                    <fieldset style="width:1000px">
+                        <legend>Finished students</legend>
+                        <h:dataTable value="#{teacherController.finalizedStudents}" var="finish">
+                            <h:column>
+                                <f:facet name="header">Student name</f:facet>
+                                #{finish.description}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Grades</f:facet>
+                                <h:outputLabel value="#{finish.data}" style="color:red"/>
+                            </h:column>
+                        </h:dataTable>
+                    </fieldset>
                 </h:form>
             </rich:panel>
-        </fieldset>
     </ui:define>
 </ui:composition>
 </body>

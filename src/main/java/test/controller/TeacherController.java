@@ -77,8 +77,6 @@ public class TeacherController implements Serializable{
 
 
 
-
-
     @PostConstruct
     public void postConstruct(){
         years=mu.getYears();
@@ -235,7 +233,7 @@ public class TeacherController implements Serializable{
         String sname="";
         List<Grade> grads=null;
         for(Performance p:performancesFinished){
-            sname=p.getStudentId().getUsername();
+            sname=p.getStudentId().getFirstName()+" "+p.getStudentId().getLastName();
             grads=mu.getGrades(p);
             gradeMap.put(sname,grads);
         }
@@ -253,7 +251,6 @@ public class TeacherController implements Serializable{
     }
 
     public void editGrades(){
-        System.out.println(this.editedStudentUsername);
         Member student=mu.getForUsername(editedStudentUsername);
         this.editedPerformance=mu.getPerformanceByStudentGroupcourse(student.getId(),selectedGroupcourse.getId());
         this.grades=mu.getGrades(editedPerformance);
@@ -341,5 +338,8 @@ public class TeacherController implements Serializable{
                 e.printStackTrace();
             }
         }
+    }
+    public void toEdit(){
+        nav.performNavigation("edit.xhtml");
     }
 }
