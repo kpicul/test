@@ -154,7 +154,6 @@ public class EditStudentController implements Serializable {
                 noGroup.add(k);
             }
         }
-        System.out.println();
         students=mu.getStudentsByGroup(selectedGroupId);
         //teachesDescription=new ArrayList<String>();
         courses=mu.getCoursesByGroup(selectedGroupId);
@@ -454,9 +453,9 @@ public class EditStudentController implements Serializable {
         List<Groupcourse> gc=mu.getGroupcoursesByGroup(selectedGroupId);
         for(Groupcourse i:gc){
             mu.addPerformance(selectedNoGroup,i.getId());
-            System.out.println();
         }
         students.add(mu.getForId(selectedNoGroup));
+        noGroup.remove(mu.getForId(selectedNoGroup));
     }
     private void emptyRedirect(){
         if(user==null){

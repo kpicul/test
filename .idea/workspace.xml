@@ -9,41 +9,25 @@
   <component name="ChangeListManager">
     <list default="true" id="006e014f-3794-4a84-b865-a94d47486504" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/controller/AddCourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/AddCourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/controller/AddYearController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/AddYearController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/controller/EditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/EditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test/controller/EditStudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/EditStudentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test/database/CourseDates.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/adduser.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/adduser.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin1.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin1.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/edit.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/edit.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/editstudent.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editstudent.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/editteacher.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/editteacher.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/student1.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/student1.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/teacher1.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/teacher1.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/controller/EditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/controller/EditController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/Session.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/controller/EditStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/controller/EditStudentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/controller/TeacherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/controller/TeacherController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/WEB-INF/classes/test/database/CourseDates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/adduser.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/adduser.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/admin1.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/admin1.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/edit.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/edit.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/editstudent.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/editstudent.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/editteacher.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/editteacher.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/student1.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/student1.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/login.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/login.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/teacher1.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/target/appl-1.0-SNAPSHOT/teacher1.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/controller/EditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/controller/EditController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/test/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/Session.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/test/controller/EditStudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/controller/EditStudentController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/test/controller/TeacherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/test/controller/TeacherController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/test/database/CourseDates.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,57 +53,80 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DatabaseQuerries.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/test/DatabaseQuerries.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="1435" selection-start-line="1435" selection-end-line="1435" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teacher1.xhtml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/teacher1.xhtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="51" column="96" selection-start-line="51" selection-start-column="96" selection-end-line="51" selection-end-column="96" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TeacherController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+            <state relative-caret-position="1134">
+              <caret line="314" column="45" lean-forward="true" selection-start-line="314" selection-start-column="45" selection-end-line="314" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.xhtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/login.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editstudent.xhtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/editstudent.xhtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="56" column="61" selection-start-line="56" selection-start-column="61" selection-end-line="56" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditStudentController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/EditStudentController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1848">
+              <caret line="168" column="53" lean-forward="true" selection-start-line="168" selection-start-column="53" selection-end-line="168" selection-end-column="53" />
+              <folding>
+                <element signature="e#1656#1657#0" expanded="true" />
+                <element signature="e#1684#1685#0" expanded="true" />
+                <element signature="e#1722#1723#0" expanded="true" />
+                <element signature="e#1751#1752#0" expanded="true" />
+                <element signature="e#2069#2070#0" expanded="true" />
+                <element signature="e#2100#2101#0" expanded="true" />
+                <element signature="e#6513#6514#0" expanded="true" />
+                <element signature="e#6544#6545#0" expanded="true" />
+                <element signature="e#8429#8430#0" expanded="true" />
+                <element signature="e#8459#8460#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Session.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/test/Session.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddCourseController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/AddCourseController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3393#3394#0" expanded="true" />
-                <element signature="e#3437#3438#0" expanded="true" />
-                <element signature="e#3763#3764#0" expanded="true" />
-                <element signature="e#3796#3797#0" expanded="true" />
-                <element signature="e#3845#3846#0" expanded="true" />
-                <element signature="e#3889#3890#0" expanded="true" />
-                <element signature="e#5702#5722#0" expanded="true" />
-                <element signature="e#7248#7249#0" expanded="true" />
-                <element signature="e#7284#7285#0" expanded="true" />
-                <element signature="e#7339#7340#0" expanded="true" />
-                <element signature="e#7389#7390#0" expanded="true" />
-                <element signature="e#7424#7425#0" expanded="true" />
-                <element signature="e#7457#7458#0" expanded="true" />
-                <element signature="e#7507#7508#0" expanded="true" />
-                <element signature="e#7551#7552#0" expanded="true" />
-                <element signature="e#7604#7605#0" expanded="true" />
-                <element signature="e#7644#7645#0" expanded="true" />
-                <element signature="e#7719#7720#0" expanded="true" />
-                <element signature="e#7777#7778#0" expanded="true" />
-                <element signature="e#8115#8116#0" expanded="true" />
-                <element signature="e#8159#8160#0" expanded="true" />
-                <element signature="e#8573#8574#0" expanded="true" />
-                <element signature="e#8645#8646#0" expanded="true" />
-                <element signature="e#8984#8985#0" expanded="true" />
-                <element signature="e#9035#9036#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseQuerries.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/test/DatabaseQuerries.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17045">
+              <caret line="1461" column="41" lean-forward="true" selection-start-line="1461" selection-start-column="41" selection-end-line="1461" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -136,10 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>changedTeacherId</find>
-      <find>removeGr</find>
-      <find>getPerformances</find>
-      <find>unass</find>
       <find>selectedTe</find>
       <find>group</find>
       <find>courses</find>
@@ -166,6 +169,10 @@
       <find>editedStudentUsername</find>
       <find>addGr</find>
       <find>editedPerf</find>
+      <find>username</find>
+      <find>teachers</find>
+      <find>finaliz</find>
+      <find>add</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -188,7 +195,6 @@
         <option value="$PROJECT_DIR$/src/main/java/test/GetController.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/Helper.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/Login.java" />
-        <option value="$PROJECT_DIR$/src/main/java/test/Session.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/converter.xhtml" />
         <option value="$PROJECT_DIR$/src/main/java/test/Converter.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/templates/template.xhtml" />
@@ -216,18 +222,19 @@
         <option value="$PROJECT_DIR$/src/main/java/test/database/Member.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/controller/AddCourseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/controller/AddYearController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/login.xhtml" />
         <option value="$PROJECT_DIR$/src/main/java/test/controller/EditController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/edit.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/student1.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin1.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/editteacher.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/editstudent.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/adduser.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/java/test/controller/EditStudentController.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/controller/AdminController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/teacher1.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/editteacher.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/login.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/test/controller/EditStudentController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/editstudent.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/test/Session.java" />
       </list>
     </option>
   </component>
@@ -250,7 +257,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -336,6 +343,14 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Resource Bundle 'ApplicationResources'" type="a6c14932:ResourceBundleNode" />
+            </path>
+            <path>
+              <item name="test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -356,7 +371,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -371,16 +386,16 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="test" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java/test" />
       <recent name="$PROJECT_DIR$/src/main/webapp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="test" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -514,19 +529,20 @@
       <workItem from="1524551764516" duration="21885000" />
       <workItem from="1524641353242" duration="19336000" />
       <workItem from="1524719188829" duration="25536000" />
-      <workItem from="1525327781719" duration="19142000" />
+      <workItem from="1525327781719" duration="24366000" />
+      <workItem from="1525410793797" duration="9805000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="418324000" />
+    <option name="totallyTimeSpent" value="433353000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1280" height="1024" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.3295688" />
+      <window_info anchor="bottom" id="Event Log" order="6" side_tool="true" weight="0.32897604" />
       <window_info anchor="right" id="Maven Projects" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
       <window_info anchor="right" id="CDI" order="5" />
@@ -537,7 +553,7 @@
       <window_info anchor="right" id="JSF" order="2" />
       <window_info anchor="right" id="Ant Build" order="10" weight="0.25" />
       <window_info id="UI Designer" order="3" />
-      <window_info active="true" anchor="bottom" id="Debug" order="10" visible="true" weight="0.19172113" />
+      <window_info anchor="bottom" id="Debug" order="10" visible="true" weight="0.19172113" />
       <window_info anchor="bottom" id="TODO" order="13" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info id="Image Layers" order="2" />
@@ -547,7 +563,7 @@
       <window_info anchor="bottom" id="Run" order="9" weight="0.3295688" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info id="Persistence" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="7" visible="true" weight="0.1859375" />
+      <window_info active="true" content_ui="combo" id="Project" order="7" visible="true" weight="0.1859375" />
       <window_info anchor="right" id="Bean Validation" order="7" />
       <window_info id="Web" order="6" side_tool="true" />
       <window_info id="JavaEE:App" order="5" side_tool="true" />
@@ -555,7 +571,7 @@
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="1" weight="0.23613963" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="9" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="7" weight="0.19507186" />
+      <window_info anchor="bottom" id="Find" order="7" weight="0.1949891" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
@@ -578,47 +594,11 @@
           <properties />
           <option name="timeStamp" value="346" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/test/controller/EditStudentController.java</url>
-          <line>156</line>
-          <properties />
-          <option name="timeStamp" value="358" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/test/DatabaseQuerries.java</url>
-          <line>1435</line>
-          <properties />
-          <option name="timeStamp" value="368" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/test/DatabaseQuerries.java</url>
-          <line>1434</line>
-          <properties />
-          <option name="timeStamp" value="369" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java</url>
-          <line>332</line>
-          <properties />
-          <option name="timeStamp" value="376" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java</url>
-          <line>231</line>
-          <properties />
-          <option name="timeStamp" value="378" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java</url>
-          <line>302</line>
-          <properties />
-          <option name="timeStamp" value="380" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="381" />
+      <option name="time" value="388" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -683,13 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
@@ -784,9 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
           <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="e#682#683#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -826,18 +796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/AddCourseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1057#1058#0" expanded="true" />
-            <element signature="e#1082#1083#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/database/Member.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
@@ -856,16 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="17" column="51" lean-forward="true" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
@@ -926,45 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/editteacher.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="25" column="38" lean-forward="true" selection-start-line="24" selection-start-column="20" selection-end-line="25" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/editstudent.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="25" column="49" lean-forward="true" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/EditStudentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="459" column="5" lean-forward="true" selection-start-line="459" selection-start-column="5" selection-end-line="459" selection-end-column="5" />
-          <folding>
-            <element signature="e#1656#1657#0" expanded="true" />
-            <element signature="e#1684#1685#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test/DatabaseQuerries.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="1435" selection-start-line="1435" selection-end-line="1435" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/AdminController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="336" column="35" lean-forward="true" selection-start-line="336" selection-start-column="35" selection-end-line="336" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/output/ResultSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -976,45 +885,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3393#3394#0" expanded="true" />
-            <element signature="e#3437#3438#0" expanded="true" />
-            <element signature="e#3763#3764#0" expanded="true" />
-            <element signature="e#3796#3797#0" expanded="true" />
-            <element signature="e#3845#3846#0" expanded="true" />
-            <element signature="e#3889#3890#0" expanded="true" />
-            <element signature="e#5702#5722#0" expanded="true" />
-            <element signature="e#7248#7249#0" expanded="true" />
-            <element signature="e#7284#7285#0" expanded="true" />
-            <element signature="e#7339#7340#0" expanded="true" />
-            <element signature="e#7389#7390#0" expanded="true" />
-            <element signature="e#7424#7425#0" expanded="true" />
-            <element signature="e#7457#7458#0" expanded="true" />
-            <element signature="e#7507#7508#0" expanded="true" />
-            <element signature="e#7551#7552#0" expanded="true" />
-            <element signature="e#7604#7605#0" expanded="true" />
-            <element signature="e#7644#7645#0" expanded="true" />
-            <element signature="e#7719#7720#0" expanded="true" />
-            <element signature="e#7777#7778#0" expanded="true" />
-            <element signature="e#8115#8116#0" expanded="true" />
-            <element signature="e#8159#8160#0" expanded="true" />
-            <element signature="e#8573#8574#0" expanded="true" />
-            <element signature="e#8645#8646#0" expanded="true" />
-            <element signature="e#8984#8985#0" expanded="true" />
-            <element signature="e#9035#9036#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="916">
+          <caret line="336" column="35" lean-forward="true" selection-start-line="336" selection-start-column="35" selection-end-line="336" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/editteacher.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="41" column="25" lean-forward="true" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/teacher1.xhtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="51" column="96" selection-start-line="51" selection-start-column="96" selection-end-line="51" selection-end-column="96" />
+        <state relative-caret-position="1414">
+          <caret line="101" column="96" selection-start-line="101" selection-start-column="96" selection-end-line="101" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/TeacherController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="314" column="45" lean-forward="true" selection-start-line="314" selection-start-column="45" selection-end-line="314" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/DatabaseQuerries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17045">
+          <caret line="1461" column="41" lean-forward="true" selection-start-line="1461" selection-start-column="41" selection-end-line="1461" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/AddCourseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/editstudent.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="56" column="61" selection-start-line="56" selection-start-column="61" selection-end-line="56" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/controller/EditStudentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1848">
+          <caret line="168" column="53" lean-forward="true" selection-start-line="168" selection-start-column="53" selection-end-line="168" selection-end-column="53" />
+          <folding>
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1684#1685#0" expanded="true" />
+            <element signature="e#1722#1723#0" expanded="true" />
+            <element signature="e#1751#1752#0" expanded="true" />
+            <element signature="e#2069#2070#0" expanded="true" />
+            <element signature="e#2100#2101#0" expanded="true" />
+            <element signature="e#6513#6514#0" expanded="true" />
+            <element signature="e#6544#6545#0" expanded="true" />
+            <element signature="e#8429#8430#0" expanded="true" />
+            <element signature="e#8459#8460#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>

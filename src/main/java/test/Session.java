@@ -6,7 +6,7 @@ import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
-@Stateful
+
 @SessionScoped
 public class Session implements Serializable {
     private Member user;

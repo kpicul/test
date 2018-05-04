@@ -63,7 +63,7 @@
                                     </h:column>
                                     <h:column>
                                         <h:commandButton value="edit" action="#{teacherController.editGrades}">
-                                            <f:setPropertyActionListener target="#{teacherController.editedStudentUsername}" value="#{data.description}"/>
+                                            <f:setPropertyActionListener target="#{teacherController.editedStudentUsername}" value="#{data.descriptionObject}"/>
                                         </h:commandButton>
                                     </h:column>
                                 </h:dataTable>

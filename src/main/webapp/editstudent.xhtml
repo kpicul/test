@@ -48,14 +48,14 @@
                         <legend>Students in group</legend>
                         <h:outputLabel value="Students in group: " for="student"/>
                         <h:selectOneListbox id="student" value="#{editStudentController.selectedStudent}">
-                            <f:selectItems value="#{editStudentController.students}" var="student" itemLabel="#{student.username}" itemValue="#{student.id}"/>
+                            <f:selectItems value="#{editStudentController.students}" var="student" itemLabel="#{student.firstName} #{student.lastName}" itemValue="#{student.id}"/>
                         </h:selectOneListbox>
                         <h:commandButton id="confirm" value="Select" action="#{editStudentController.selectStudent}">
                         </h:commandButton>
                         <br/>
                         <h:outputLabel value="Assign unassigned students to group : " for="notAssignedStudents"/>
                         <h:selectOneListbox id="notAssignedStudents" value="#{editStudentController.selectedNoGroup}">
-                            <f:selectItems value="#{editStudentController.noGroup}" var="nogroup" itemLabel="#{nogroup.username}" itemValue="#{nogroup.id}" />
+                            <f:selectItems value="#{editStudentController.noGroup}" var="nogroup" itemLabel="#{nogroup.firstName} #{nogroup.lastName}" itemValue="#{nogroup.id}" />
                         </h:selectOneListbox>
                         <h:commandButton id="addToGroup" value="Add" action="#{editStudentController.addToGroup}">
                         </h:commandButton>
@@ -64,28 +64,28 @@
                 <br/>
                 <h:form id="teachers" rendered="#{editStudentController.selectedGroupId!=0}">
                     <fieldset style="width:1000px">
-                    <legend>Courses and teachers in group</legend>
-                    <h:outputLabel value="Course: " for="course"/>
-                    <h:selectOneMenu id="course" value="#{editStudentController.selectedCourse}">
-                        <f:selectItems value="#{editStudentController.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}" />
-                        <f:ajax event="click" render="coursedata teacher" listener="#{editStudentController.setupTeacherSet}"/>
-                    </h:selectOneMenu>
-                    <br/>
-                    <h:outputLabel value="Teacher: " for="coursedata"/>
-                    <h:outputLabel id="coursedata" value="#{editStudentController.selectedTeacher.memberid.firstName} #{editStudentController.selectedTeacher.memberid.lastName}">
-                    </h:outputLabel>
-                    <h:selectOneMenu id="teacher" value="#{editStudentController.changedTeacherId}">
-                        <f:selectItems value="#{editStudentController.teachers}" var="teacherz" itemLabel="#{teacherz.memberid.username}" itemValue="#{teacherz.id}" />
-                    </h:selectOneMenu>
-                    <h:commandButton id="updateCourseGroup" value="Update" action="#{editStudentController.updateCourseGroup}"/>
-                    <br/>
-                    <h:commandButton id="deleteeCourseGroup" value="Delete" action="#{editStudentController.removeCourseFromGroup}">
-                    </h:commandButton>
-                    <br/>
-                    <h:selectOneListbox id="unassigned" value="#{editStudentController.selectedUnassigned}">
-                        <f:selectItems value="#{editStudentController.unassignedCourses}" var="unassigned" itemLabel="#{unassigned.course.name} #{unassigned.memberid.username}" itemValue="#{unassigned.id}"/>
-                    </h:selectOneListbox>
-                    <h:commandButton id="updateUnassigned" value="Add" action="#{editStudentController.addCourseToGroup}"/>
+                        <legend>Courses and teachers in group</legend>
+                        <h:outputLabel value="Course: " for="course"/>
+                        <h:selectOneMenu id="course" value="#{editStudentController.selectedCourse}">
+                            <f:selectItems value="#{editStudentController.courses}" var="course" itemLabel="#{course.name}" itemValue="#{course.id}" />
+                            <f:ajax event="click" render="coursedata teacher" listener="#{editStudentController.setupTeacherSet}"/>
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:outputLabel value="Teacher: " for="coursedata"/>
+                        <h:outputLabel id="coursedata" value="#{editStudentController.selectedTeacher.memberid.firstName} #{editStudentController.selectedTeacher.memberid.lastName}">
+                        </h:outputLabel>
+                        <h:selectOneMenu id="teacher" value="#{editStudentController.changedTeacherId}">
+                            <f:selectItems value="#{editStudentController.teachers}" var="teacherz" itemLabel="#{teacherz.memberid.firstName} #{teacherz.memberid.lastName}" itemValue="#{teacherz.id}" />
+                        </h:selectOneMenu>
+                        <h:commandButton id="updateCourseGroup" value="Update" action="#{editStudentController.updateCourseGroup}"/>
+                        <br/>
+                        <h:commandButton id="deleteeCourseGroup" value="Delete" action="#{editStudentController.removeCourseFromGroup}">
+                        </h:commandButton>
+                        <br/>
+                        <h:selectOneListbox id="unassigned" value="#{editStudentController.selectedUnassigned}">
+                            <f:selectItems value="#{editStudentController.unassignedCourses}" var="unassigned" itemLabel="#{unassigned.course.name} #{unassigned.memberid.firstName} #{unassigned.memberid.lastName}" itemValue="#{unassigned.id}"/>
+                        </h:selectOneListbox>
+                        <h:commandButton id="updateUnassigned" value="Add" action="#{editStudentController.addCourseToGroup}"/>
                     </fieldset>
                 </h:form>
                 <br/>

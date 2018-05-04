@@ -205,23 +205,20 @@ public class TeacherController implements Serializable{
         studentResults=new ArrayList<ResultSet>();
         performanceData=mu.getPerformancesByGroupcourseActive(selectedGroupcourse.getId());
         String sname="";
+        String data="";
+        ResultSet rs;
         List<Grade> grads=null;
         for(Performance p:performanceData){
-            sname=p.getStudentId().getUsername();
+            data="";
+            sname=p.getStudentId().getFirstName()+" "+p.getStudentId().getLastName();
             grads=mu.getGrades(p);
-            gradeMap.put(sname,grads);
-        }
-        ResultSet rs;
-        String glue;
-        for(String i:gradeMap.keySet()){
-            glue="";
-            for(Grade j: gradeMap.get(i)){
-                glue+=j.getGrade()+" ";
+            for(Grade g:grads){
+                data+=g.getGrade()+" ";
             }
-            rs=new ResultSet(i,glue);
+            rs=new ResultSet(sname,data);
+            rs.setDescriptionObject(p.getStudentId().getUsername());
             studentResults.add(rs);
         }
-        System.out.println();
         setupFinalized();
     }
 
@@ -329,6 +326,7 @@ public class TeacherController implements Serializable{
 
     public void setFinalized(){
         mu.updatePerformanceFinalized(editedPerformance.getId());
+
     }
     private void checkRole(){
         if(!teacher.getRoleId().getName().equals("Teacher")){

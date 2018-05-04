@@ -29,7 +29,7 @@
                         <br/>
                         <h:outputLabel value="Select teacher: " for="teacher"/>
                         <h:selectOneListbox id="teacher" value="#{adminController.teacherValue}">
-                            <f:selectItems value="#{adminController.teachers}" var="teacher" itemLabel="#{teacher.username}" itemValue="#{teacher.username}"/>
+                            <f:selectItems value="#{adminController.teachers}" var="teacher" itemLabel="#{teacher.firstName} #{teacher.lastName}" itemValue="#{teacher.username}"/>
                         </h:selectOneListbox>
                         <br/>
                         <h:outputLabel value="Select year: " for="years"/>
