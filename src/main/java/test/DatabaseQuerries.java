@@ -137,16 +137,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("performance",per);
             grades=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return grades;
     }
@@ -161,16 +159,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("student",student);
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -185,16 +181,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("student",student);
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -206,16 +200,14 @@ public class DatabaseQuerries implements Serializable {
             Query query=entityManager.createQuery("select m from Member m join m.roleId r where r.id=2");
             students=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return students;
     }
@@ -228,18 +220,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("studentId",student.getId());
             count=(Integer)query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        } catch (NoResultException e){
-            count=0;
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return count;
     }
@@ -252,16 +240,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("student",student.getId());
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -274,16 +260,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("student",student);
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -296,16 +280,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gcid",gcid);
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -317,16 +299,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gcid",gcid);
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -339,16 +319,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gcid",gcid);
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -361,16 +339,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("studentId",studentId);
             performance=(Performance)query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performance;
     }
@@ -384,16 +360,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gcid",gcid);
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -407,16 +381,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("studentId",studentId);
             grades=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return grades;
     }
@@ -429,16 +401,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("student",student);
             performances=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return performances;
     }
@@ -453,17 +423,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("id",per.getId());
             course=(Course)query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return course;
@@ -477,40 +443,32 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("username",user.getUsername());
             role=(Role)query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return role;
     }
     public Role getRoleByname(String role1){
-        Role role=new Role();
+        Role role;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select r from Role r where r.name=:role");
             query.setParameter("role",role1);
             role=(Role)query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return role;
@@ -524,16 +482,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("teacherID",teacherId);
             courses=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return courses;
     }
@@ -545,16 +501,14 @@ public class DatabaseQuerries implements Serializable {
             Query query=entityManager.createQuery("select distinct c  from Course c ");
             courses=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return courses;
     }
@@ -567,17 +521,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("yid",id);
             year=(Year) query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return year;
@@ -592,16 +542,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("yid",yearid);
             courses=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return courses;
     }
@@ -609,23 +557,21 @@ public class DatabaseQuerries implements Serializable {
 
 
     public Course getCoursesByName(String courseName){
-        Course course=null;
+        Course course;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select distinct c  from Course c where c.name=:name");
             query.setParameter("name",courseName);
             course=(Course)query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return course;
     }
@@ -637,16 +583,14 @@ public class DatabaseQuerries implements Serializable {
             Query query=entityManager.createQuery("select y  from Year y ");
             years=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return years;
     }
@@ -658,16 +602,14 @@ public class DatabaseQuerries implements Serializable {
             Query query=entityManager.createQuery("select g  from Group g ");
             groups=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return groups;
     }
@@ -683,16 +625,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("courseId",courseId);
             groups=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return groups;
     }
@@ -705,16 +645,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gid",groupId);
             students=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return students;
     }
@@ -727,16 +665,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gid",groupId);
             courses=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return courses;
     }
@@ -749,23 +685,21 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gid",group.getId());
             teach=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return teach;
     }
 
 
     public Teaches getTeacherByCourseGroupYear(long courseId, long groupId,long yearId){
-        Teaches teacher=new Teaches();
+        Teaches teacher;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select ti from Groupcourse gc join gc.groupid g join gc.teachesid ti join ti.course co  join ti.yearid y where co.id=:cid and g.id=:gid and y.id=:yearId");
@@ -786,7 +720,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Teaches getTeachesByCourseYearTeacher(long courseId,long yearId,long teacherId){
-        Teaches teacher=new Teaches();
+        Teaches teacher;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select t from Teaches t join t.course c join t.yearid y join t.memberid m where c.id=:cid and y.id=:yid and m.id=:tid");
@@ -795,17 +729,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("tid",teacherId);
             teacher=(Teaches) query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return teacher;
@@ -819,17 +749,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gid",id);
             group=(Group) query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return group;
@@ -843,17 +769,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("sid",studentId);
             group=(Group) query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return group;
@@ -867,17 +789,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("changeId",changeId);
             group=(Group) query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return group;
@@ -892,17 +810,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("course",course.getId());
             teaches=(Teaches)query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return teaches;
@@ -916,16 +830,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gid",group.getId());
             teach=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return teach;
     }
@@ -939,16 +851,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("courseId",courseId);
             teach=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return teach;
     }
@@ -961,16 +871,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("cid",courseId);
             teach=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return teach;
     }
@@ -982,17 +890,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("course",courseId);
             teachers=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return teachers;
@@ -1005,16 +909,14 @@ public class DatabaseQuerries implements Serializable {
             Query query=entityManager.createQuery("select t from Teaches t");
             teach=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
         return teach;
     }
@@ -1028,17 +930,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("tid",teachesId);
             gc=(Groupcourse)query.getSingleResult();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return gc;
@@ -1052,17 +950,13 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gid",groupId);
             gc=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return gc;
@@ -1075,17 +969,13 @@ public class DatabaseQuerries implements Serializable {
             Query query = entityManager.createQuery("select m,count(p) from Performance p join p.studentId m group by m.id");
             students=query.getResultList();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
-        }catch (NoResultException e){
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
             throw new RuntimeException(e);
         }
         return students;
@@ -1101,16 +991,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("id",user.getId());
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
 
     }
@@ -1123,16 +1011,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("id",user.getId());
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
 
@@ -1144,16 +1030,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("id",user.getId());
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
     public void updatepassword(Member user,String password){
@@ -1164,16 +1048,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("id",user.getId());
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
 
@@ -1185,16 +1067,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("id",user.getId());
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
 
@@ -1207,16 +1087,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("removeId",removeId);
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
 
@@ -1228,16 +1106,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("gradeId",gradeId);
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
 
@@ -1248,16 +1124,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("studentId", studentId);
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
     public void updatePerformanceFinalized(long performanceId){
@@ -1267,16 +1141,14 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("pid", performanceId);
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
 
@@ -1303,7 +1175,7 @@ public class DatabaseQuerries implements Serializable {
 
 
     public Groupcourse addGroupcourse(long teachesId, long groupId){
-        Groupcourse gc=null;
+        Groupcourse gc;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select t from Teaches t where t.id=:tid");
@@ -1330,7 +1202,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Groupcourse removeGroupcourse(long teachesId,long groupId){
-        Groupcourse gc=null;
+        Groupcourse gc;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select gc from Groupcourse gc where gc.teachesid.id=:tid and gc.groupid.id=:gid");
@@ -1354,7 +1226,7 @@ public class DatabaseQuerries implements Serializable {
     public void removeTeacherFromCourse(Course course, Member teacher,Year year){
         try {
             utx.begin();
-            Teaches teaches=null;
+            Teaches teaches;
             Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c join t.yearid y where m.id=:memberid and c.id=:course and y.id=:yid");
             query.setParameter("memberid",teacher.getId());
             query.setParameter("course",course.getId());
@@ -1374,7 +1246,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Performance addPerformance(long studentId,long groupcourseId){
-        Performance perf=null;
+        Performance perf;
         try {
             utx.begin();
             perf=new Performance();
@@ -1400,7 +1272,7 @@ public class DatabaseQuerries implements Serializable {
         return perf;
     }
     public Performance removePerformance(long studentId,long groupcourseId){
-        Performance perf=null;
+        Performance perf;
         try {
             utx.begin();
             perf=new Performance();
@@ -1447,7 +1319,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Grade removeGrade(long gradeId){
-        Grade grade=null;
+        Grade grade;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select g from Grade g where g.id=:gid");
@@ -1474,21 +1346,19 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("pid", p.getId());
             query.executeUpdate();
             utx.commit();
-        } catch (NotSupportedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SystemException e) {
-            e.printStackTrace();
-        } catch (HeuristicMixedException e) {
-            e.printStackTrace();
-        } catch (HeuristicRollbackException e) {
-            e.printStackTrace();
-        } catch (RollbackException e) {
-            e.printStackTrace();
+            try {
+                utx.rollback();
+            } catch (SystemException se) {
+                throw new RuntimeException(se);
+            }
+            throw new RuntimeException(e);
         }
     }
 
     public Group addGroup(String name,int year){
-        Group group=null;
+        Group group;
         try {
             utx.begin();
             group=new Group();
@@ -1509,7 +1379,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Course addCourse(String name,String description){
-        Course course=null;
+        Course course;
         try {
             utx.begin();
             course=new Course();
@@ -1530,7 +1400,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Year addYear(String yearname,Date startDate,Date endDate){
-        Year year=null;
+        Year year;
         try {
             utx.begin();
             year=new Year();

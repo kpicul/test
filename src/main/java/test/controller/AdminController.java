@@ -133,7 +133,7 @@ public class AdminController  implements Serializable {
 
     public void setPassword(String password) {
         //System.out.println("SET password: "+password);
-        if(password!=""){
+        if(password.equals("")){
            this.password = Helper.getSHA(password, userName);
         }
         //this.password=password;
@@ -166,7 +166,7 @@ public class AdminController  implements Serializable {
         this.teacherValue = teacherValue;
     }
 
-    public void getTeachers1(){
+    private void getTeachers1(){
         teachers=mu.getForRole(mu.getRoleByname("Teacher"));
         years=mu.getYears();
 
@@ -262,7 +262,6 @@ public class AdminController  implements Serializable {
     }
 
     public void addUser(){
-        System.out.println();
         Member user=new Member();
         user.setPassword(password);
         user.setUsername(userName);
@@ -271,7 +270,6 @@ public class AdminController  implements Serializable {
         user.setLastName(lastName);
         user.setDateOfBirth(dateOfBirth);
         user.setRoleId(mu.getRoleByname(roleChoices));
-        //user.setId(99);
         mu.createUser(user);
     }
 

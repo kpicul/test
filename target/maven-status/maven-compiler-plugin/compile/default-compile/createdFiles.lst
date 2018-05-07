@@ -19,6 +19,7 @@ test/CreateUser.class
 test/database/Course.class
 test/database/Year.class
 test/database/Grade.class
+test/controller/AddUserController.class
 test/RichBean.class
 test/controller/Controller.class
 test/Login.class

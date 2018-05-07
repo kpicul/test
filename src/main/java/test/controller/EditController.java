@@ -6,7 +6,6 @@ import test.Session;
 import test.database.Member;
 import javax.annotation.PostConstruct;
 
-import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -42,8 +41,6 @@ public class EditController  implements Serializable {
 
     private String displayedDate;
 
-    FacesContext fc = FacesContext.getCurrentInstance();
-    ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
     @PostConstruct
     public void postConstruct(){
@@ -59,8 +56,7 @@ public class EditController  implements Serializable {
     }
 
     public void confirm(){
-        // Member user=mu.getForUsername("test");
-    //    System.out.println("USERNAME: "+userName);
+
         user.setUsername(userName);
         user.setFirstName(firstName);
         user.setLastName(lastName);

@@ -29,33 +29,33 @@
                         <br/>
                         <br/>
                         <h:outputLabel value="First name: " for="firstname"/>
-                        <h:inputText id="firstname" value="#{adminController.firstName}">
+                        <h:inputText id="firstname" value="#{addUserController.firstName}">
                         </h:inputText>
                         <br/>
                         <h:outputLabel value="Last name: " for="lastname"/>
-                        <h:inputText id="lastname" value="#{adminController.lastName}">
+                        <h:inputText id="lastname" value="#{addUserController.lastName}">
                         </h:inputText>
                         <br/>
                         <h:outputLabel value="Username: " for="username"/>
-                        <h:inputText id="username" value="#{adminController.userName}">
+                        <h:inputText id="username" value="#{addUserController.username}">
                         </h:inputText>
                         <br/>
                         <h:outputLabel value="Role: " for="role"/>
-                        <h:selectOneMenu id="role" value="#{adminController.roleChoices}" action="#{adminController.setupEditedTeacher}">
+                        <h:selectOneMenu id="role" value="#{addUserController.role}" >
                             <f:selectItem itemValue="Admin" itemLabel="Admin"/>
                             <f:selectItem itemValue="Student" itemLabel="Student"/>
                             <f:selectItem itemValue="Teacher" itemLabel="Teacher"/>
                         </h:selectOneMenu>
                         <br/>
                         <h:outputLabel value="Password: " for="password"/>
-                        <h:inputSecret id="password" value="#{adminController.password}">
+                        <h:inputSecret id="password" value="#{addUserController.password}">
                         </h:inputSecret>
                         <br/>
                         <h:outputLabel value="Date of birth: " for="date"/>
-                        <h:inputText id="date" value="#{adminController.dateOfBirth}">
+                        <h:inputText id="date" value="#{addUserController.dateOfBirth}">
                         </h:inputText>
                         <br/>
-                        <h:commandButton value="Confirm" id="confirm" action="#{adminController.addUser}">
+                        <h:commandButton value="Confirm" id="confirm" action="#{addUserController.addUser}">
                         </h:commandButton>
                         <br/>
                     </fieldset>

@@ -72,7 +72,7 @@ public class EditStudentController implements Serializable {
 
     private List<Teaches> unassignedCourses;
 
-    long selectedUnassigned;
+    private long selectedUnassigned;
 
     private long changedGroup;
 
@@ -161,7 +161,7 @@ public class EditStudentController implements Serializable {
 
     }
 
-    public void setupUnassigned(){
+    private void setupUnassigned(){
         unassignedCourses=mu.getTeaches();
         ArrayList <Teaches> toRemove=new ArrayList<Teaches>();
         for(Teaches i:unassignedCourses){
@@ -225,7 +225,6 @@ public class EditStudentController implements Serializable {
     }
 
     public void setUserName(String userName) {
-        //System.out.println("SET username: "+userName);
         this.userName = userName;
     }
 
@@ -234,11 +233,9 @@ public class EditStudentController implements Serializable {
     }
 
     public void setPassword(String password) {
-        //System.out.println("SET password: "+password);
-        if(password!=""){
+        if(!password.equals("")){
             this.password = Helper.getSHA(password, userName);
         }
-        //this.password=password;
     }
 
 
@@ -437,9 +434,8 @@ public class EditStudentController implements Serializable {
         setupUnassigned();
     }
 
-    public void changeGroup(){
+    private void changeGroup(){
         if(changedGroup!=selectedGroupId){
-            Group toChange=mu.getChangeGroup(changedGroup);
             List<Groupcourse> gc=mu.getGroupcoursesByGroup(changedGroup);
             mu.updatePerformancesFinalized(selectedStudent);
             for(Groupcourse i:gc){
@@ -455,7 +451,12 @@ public class EditStudentController implements Serializable {
             mu.addPerformance(selectedNoGroup,i.getId());
         }
         students.add(mu.getForId(selectedNoGroup));
-        noGroup.remove(mu.getForId(selectedNoGroup));
+        for(Member ng:noGroup){
+            if(ng.getId()==selectedNoGroup){
+                noGroup.remove(ng);
+                break;
+            }
+        }
     }
     private void emptyRedirect(){
         if(user==null){

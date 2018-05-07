@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 public class Resources {
 
-    // Expose an entity manager using the resource producer pattern
     @PersistenceContext
     @Produces
     private EntityManager em;

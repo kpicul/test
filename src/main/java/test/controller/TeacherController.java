@@ -326,6 +326,13 @@ public class TeacherController implements Serializable{
 
     public void setFinalized(){
         mu.updatePerformanceFinalized(editedPerformance.getId());
+        for(ResultSet rs:studentResults){
+            if(rs.getDescriptionObject().equals(editedStudentUsername)){
+                studentResults.remove(rs);
+                finalizedStudents.add(rs);
+                break;
+            }
+        }
 
     }
     private void checkRole(){
