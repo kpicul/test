@@ -11,6 +11,7 @@ import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.util.Formatter;
 
+
 public class Helper {
     public static String toHash(String pass){
         String hashText="";
@@ -60,15 +61,14 @@ public class Helper {
     }
 
     public static boolean checkPass(Member user,String pass){
-        //System.out.println("test");
+        if(user == null){
+            return false;
+        }
         boolean check=false;
         String encrypt=getSHA(pass,user.getUsername());
         if(encrypt.equals(user.getPassword())){
             check=true;
         }
-        /*System.out.println("encrypt:"+encrypt);
-        System.out.println("user"+user.getPassword());
-        System.out.println("------------------------");*/
 
         return check;
     }

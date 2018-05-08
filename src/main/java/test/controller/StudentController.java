@@ -26,8 +26,8 @@ import java.util.Map;
 @Named
 @ViewScoped
 public class StudentController implements Serializable {
-    FacesContext fc = FacesContext.getCurrentInstance();
-    ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
+    private FacesContext fc = FacesContext.getCurrentInstance();
+    private ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
     @Inject
     private Session session;
@@ -94,7 +94,6 @@ public class StudentController implements Serializable {
             rs=new ResultSet(yr+"",dbl+"");
             yearResultSet.add(rs);
         }
-        System.out.println();
     }
 
 
@@ -161,11 +160,9 @@ public class StudentController implements Serializable {
     }
 
     private void gradeResults(){
-        List<Performance> perf=null;
+        List<Performance> perf;
         ongoing=new ArrayList<ResultSet>();
         ResultSet rs;
-        String desc="";
-        String data="";
         Map <String,List<Grade>> grads=new HashMap<String, List<Grade>>();
         List<Grade> instance;
         String name;
@@ -189,7 +186,6 @@ public class StudentController implements Serializable {
                 ongoing.add(rs);
             }
         }
-        System.out.println();
     }
 
     public ArrayList getGrads() {
@@ -210,7 +206,6 @@ public class StudentController implements Serializable {
     public void logout(){
         this.session.setUser(null);
         nav.performNavigation("login.xhtml");
-        //session1.invalidate();
 
     }
 

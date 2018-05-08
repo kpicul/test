@@ -19,6 +19,7 @@ package test;
 import test.database.*;
 
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -28,8 +29,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-
-public class DatabaseQuerries implements Serializable {
+public class DatabaseQuerries implements Serializable{
 
     @Inject
     private EntityManager entityManager;
@@ -40,8 +40,8 @@ public class DatabaseQuerries implements Serializable {
     //Get queries
 
     public Member getForUsername(String username) {
+        Member user;
         try {
-            Member user;
             try {
                 utx.begin();
                 Query query = entityManager.createQuery("select u from Member u where u.username = :username");
@@ -52,8 +52,16 @@ public class DatabaseQuerries implements Serializable {
                 user = null;
             }
             utx.commit();
-            return user;
-        } catch (Exception e) {
+        }
+        catch (NoResultException e){
+            user=null;
+            try {
+                utx.rollback();
+            } catch (SystemException e1) {
+                e1.printStackTrace();
+            }
+        }
+        catch (Exception e) {
             try {
                 utx.rollback();
             } catch (SystemException se) {
@@ -61,6 +69,7 @@ public class DatabaseQuerries implements Serializable {
             }
             throw new RuntimeException(e);
         }
+        return user;
     }
 
     public List<Member> getForRole(Role role) {
@@ -130,7 +139,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getGrades(Performance per){
-        List grades=null;
+        List grades;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select g from Grade g, in (g.performanceId) p where p=:performance");
@@ -152,7 +161,7 @@ public class DatabaseQuerries implements Serializable {
 
 
     public List getPerformances(Member student){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select p from Performance p, in (p.studentId) m where m=:student");
@@ -174,7 +183,7 @@ public class DatabaseQuerries implements Serializable {
 
 
     public List getPerformancesFinished(Member student){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select p from Performance p, in (p.studentId) m where m=:student and p.finished = true");
@@ -194,7 +203,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getStudents(){
-        List students=null;
+        List students;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select m from Member m join m.roleId r where r.id=2");
@@ -233,7 +242,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getAllPerformancesByMember(Member student){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select p from Performance p, in (p.studentId) m where m.id=:student");
@@ -253,7 +262,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getPerformancesOngoing(Member student){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select p from Performance p, in (p.studentId) m where m=:student and p.finished = false");
@@ -273,7 +282,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getPerformancesByGroupcourse(long gcid){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select p from Performance p join p.groupcourseid gc where gc.id=:gcid");
@@ -292,7 +301,7 @@ public class DatabaseQuerries implements Serializable {
         return performances;
     }
     public List getPerformancesByGroupcourseActive(long gcid){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select p from Performance p join p.groupcourseid gc where gc.id=:gcid and p.finished=false ");
@@ -312,7 +321,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getPerformancesByGroupcourseFinalized(long gcid){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select p from Performance p join p.groupcourseid gc where gc.id=:gcid and p.finished=true ");
@@ -331,7 +340,7 @@ public class DatabaseQuerries implements Serializable {
         return performances;
     }
     public Performance getPerformanceByStudentGroupcourse(long studentId,long gcid){
-        Performance performance=null;
+        Performance performance;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select p from Performance p join  p.groupcourseid gc join p.studentId s where gc.id=:gcid and s.id=:studentId ");
@@ -353,7 +362,7 @@ public class DatabaseQuerries implements Serializable {
 
 
     public List getGradesByGroupcourse(long gcid){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select sid.username, g.grade from Grade g join g.performanceId p join p.groupcourseid gc join gc.teachesid ti join ti.course c join p.studentId sid where  gc.id=:gcid");
@@ -373,7 +382,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getGradesByStudentGroupcourse(long studentId,long gcid){
-        List grades=null;
+        List grades;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select g from Grade g join g.performanceId p join p.groupcourseid gc join p.studentId s where gc.id=:gcid and s.id=:studentId ");
@@ -394,7 +403,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getPerformancesYears(Member student){
-        List performances=null;
+        List performances;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select y.year ,avg(g.grade) from Grade g join g.performanceId p join p.groupcourseid gi join gi.teachesid ti join ti.yearid y join p.studentId s where s=:student group by y.year ");
@@ -416,7 +425,7 @@ public class DatabaseQuerries implements Serializable {
 
 
     public Course getCourse(Performance per){
-        Course course=new Course();
+        Course course;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select c from Performance p  join  p.groupcourseid gi join gi.teachesid ti join ti.course c where p.id = :id");
@@ -436,7 +445,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Role getRole(Member user){
-        Role role=new Role();
+        Role role;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select r from Member m join m.roleId r where m.username = :username");
@@ -475,7 +484,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getCoursesByTeacher(long teacherId){
-        List courses=null;
+        List courses;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select c  from Teaches tc join tc.course c join tc.memberid t where t.id=:teacherID");
@@ -495,7 +504,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getCoursesByTeacherNot(){
-        List courses=null;
+        List courses;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select distinct c  from Course c ");
@@ -514,7 +523,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Year yearById(long id){
-        Year year=new Year();
+        Year year;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select y from Year y where y.id=:yid");
@@ -577,7 +586,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getYears(){
-        List years=null;
+        List years;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select y  from Year y ");
@@ -596,7 +605,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getGroups(){
-        List groups=null;
+        List groups;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select g  from Group g ");
@@ -615,7 +624,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getGroupsByTeacherYearCourse(long teacherId,long yearId,long courseId){
-        List groups=null;
+        List groups;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select g  from Groupcourse gc join gc.groupid g join gc.teachesid tc " +
@@ -638,7 +647,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getStudentsByGroup(long groupId){
-        List students=null;
+        List students;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select distinct s from Performance p join p.groupcourseid gc join gc.groupid g join p.studentId s where g.id=:gid");
@@ -658,7 +667,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getCoursesByGroup(long groupId){
-        List courses=null;
+        List courses;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select c from Groupcourse gc join gc.groupid g join gc.teachesid t join t.course c where g.id=:gid");
@@ -678,7 +687,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getTeachersByGroup(Group group){
-        List teach=null;
+        List teach;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select t from Groupcourse gc join gc.groupid g join gc.teachesid t where g.id=:gid");
@@ -742,7 +751,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Group getGroupById(long id){
-        Group group=new Group();
+        Group group;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select g from Group g where g.id=:gid");
@@ -762,7 +771,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Group getActiveGroup(long studentId){
-        Group group=new Group();
+        Group group;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select distinct g from Performance p join p.groupcourseid gc join gc.groupid g join p.studentId sid where sid.id=:sid and p.finished=false");
@@ -782,7 +791,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Group getChangeGroup(long changeId){
-        Group group=new Group();
+        Group group;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select distinct g from Group g where g.id=:changeId");
@@ -802,7 +811,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Teaches getTeaches(Course course, Member teacher){
-        Teaches teaches=new Teaches();
+        Teaches teaches;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c where m.id=:memberid and c.id=:course");
@@ -823,7 +832,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getTeachersDataByGroup(Group group){
-        List teach=null;
+        List teach;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select c,t,y from Groupcourse gc join gc.groupid g join gc.teachesid tc join tc.memberid t join tc.yearid y join tc.course c where g.id=:gid");
@@ -843,7 +852,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getTeachesByCourseYear(long courseId, long yearId){
-        List teach=null;
+        List teach;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select t from Teaches t where t.yearid.id=:yearId and t.course.id=:courseId");
@@ -864,7 +873,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getTeachersDataByCourse(long courseId){
-        List teach=null;
+        List teach;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select c,t,y,tc from Teaches tc join tc.course c join tc.yearid y join tc.memberid t where c.id=:cid");
@@ -883,7 +892,7 @@ public class DatabaseQuerries implements Serializable {
         return teach;
     }
     public List getTeachersByCourse(long courseId){
-        List teachers=null;
+        List teachers;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select m from Teaches t join t.memberid m join t.course c where c.id=:course");
@@ -903,7 +912,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getTeaches(){
-        List teach=null;
+        List teach;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select t from Teaches t");
@@ -922,7 +931,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public Groupcourse getGroupcourse(long teachesId,long groupId){
-        Groupcourse gc=new Groupcourse();
+        Groupcourse gc;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select gc from Groupcourse gc where gc.groupid.id=:gid and gc.teachesid.id=:tid");
@@ -930,7 +939,15 @@ public class DatabaseQuerries implements Serializable {
             query.setParameter("tid",teachesId);
             gc=(Groupcourse)query.getSingleResult();
             utx.commit();
-        } catch (Exception e) {
+
+        } catch(NoResultException e){
+            gc=null;
+            try {
+                utx.rollback();
+            } catch (SystemException e1) {
+                e1.printStackTrace();
+            }
+        }catch (Exception e) {
             e.printStackTrace();
             try {
                 utx.rollback();
@@ -943,7 +960,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getGroupcoursesByGroup(long groupId){
-        List gc=null;
+        List gc;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select gc from Groupcourse gc where gc.groupid.id=:gid");
@@ -963,7 +980,7 @@ public class DatabaseQuerries implements Serializable {
     }
 
     public List getNumberOfPerformancesByStudents(){
-        List students=null;
+        List students;
         try {
             utx.begin();
             Query query = entityManager.createQuery("select m,count(p) from Performance p join p.studentId m group by m.id");

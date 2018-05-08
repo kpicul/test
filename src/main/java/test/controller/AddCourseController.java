@@ -2,6 +2,7 @@ package test.controller;
 
 import test.DatabaseQuerries;
 import test.Session;
+import test.TestStateful;
 import test.database.Member;
 
 import javax.annotation.PostConstruct;

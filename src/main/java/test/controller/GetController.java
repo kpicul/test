@@ -48,19 +48,16 @@ public class GetController {
 
 
 
-    FacesContext fc = FacesContext.getCurrentInstance();
-    ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
+    private FacesContext fc = FacesContext.getCurrentInstance();
+    private ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
 
     public void greet() {
         session.setUser(null);
         Member user = cu.getForUsername(username);
-        //System.out.println(password);
         boolean checkPassword=Helper.checkPass(user,password);
         if (user != null && checkPassword) {
             session.setUser(user);
-            //session1.setAttribute("user",session);
-            //System.out.println("42");
             Role role=cu.getRole(user);
             if(role.getName().equals("Admin")){
                 nav.performNavigation("admin1.xhtml");
@@ -91,7 +88,6 @@ public class GetController {
     }
 
     public void setPassword(String pass){
-        System.out.println(pass);
         this.password=pass; //set to Hash later
     }
 

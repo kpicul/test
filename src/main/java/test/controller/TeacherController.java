@@ -23,8 +23,8 @@ import java.util.Map;
 @ViewScoped
 public class TeacherController implements Serializable{
 
-    FacesContext fc = FacesContext.getCurrentInstance();
-    ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
+    private FacesContext fc = FacesContext.getCurrentInstance();
+    private ConfigurableNavigationHandler nav = (ConfigurableNavigationHandler)fc.getApplication().getNavigationHandler();
 
     @Inject
     private Session session;
@@ -84,7 +84,6 @@ public class TeacherController implements Serializable{
         emptyRedirect();
         checkRole();
         editGradeBool=false;
-        //teacher=session.getUser();
 
     }
 
@@ -200,35 +199,38 @@ public class TeacherController implements Serializable{
         selectedTeaches=mu.getTeachesByCourseYearTeacher(selectedCourseId,selectedYearId,teacher.getId());
     }
     public void setupGrades(){
-        selectedGroupcourse=mu.getGroupcourse(selectedTeaches.getId(),selectedGroupId);
-        Map<String,List<Grade>> gradeMap=new HashMap<String,List<Grade>>();
-        studentResults=new ArrayList<ResultSet>();
-        performanceData=mu.getPerformancesByGroupcourseActive(selectedGroupcourse.getId());
-        String sname="";
-        String data="";
-        ResultSet rs;
-        List<Grade> grads=null;
-        for(Performance p:performanceData){
-            data="";
-            sname=p.getStudentId().getFirstName()+" "+p.getStudentId().getLastName();
-            grads=mu.getGrades(p);
-            for(Grade g:grads){
-                data+=g.getGrade()+" ";
-            }
-            rs=new ResultSet(sname,data);
-            rs.setDescriptionObject(p.getStudentId().getUsername());
-            studentResults.add(rs);
+        if(selectedGroupId!=0 && selectedCourseId!=0 && selectedYearId!=0){
+            selectedGroupcourse=mu.getGroupcourse(selectedTeaches.getId(),selectedGroupId);
         }
-        setupFinalized();
+        if(selectedGroupcourse !=null) {
+            Map<String, List<Grade>> gradeMap = new HashMap<String, List<Grade>>();
+            studentResults = new ArrayList<ResultSet>();
+            performanceData = mu.getPerformancesByGroupcourseActive(selectedGroupcourse.getId());
+            String sname = "";
+            String data = "";
+            ResultSet rs;
+            List<Grade> grads ;
+            for (Performance p : performanceData) {
+                data = "";
+                sname = p.getStudentId().getFirstName() + " " + p.getStudentId().getLastName();
+                grads = mu.getGrades(p);
+                for (Grade g : grads) {
+                    data += g.getGrade() + " ";
+                }
+                rs = new ResultSet(sname, data);
+                rs.setDescriptionObject(p.getStudentId().getUsername());
+                studentResults.add(rs);
+            }
+            setupFinalized();
+        }
     }
 
     public void setupFinalized(){
-        //selectedGroupcourse=mu.getGroupcourse(selectedTeaches.getId(),selectedGroupId);
         Map<String,List<Grade>> gradeMap=new HashMap<String,List<Grade>>();
         finalizedStudents=new ArrayList<ResultSet>();
         performancesFinished=mu.getPerformancesByGroupcourseFinalized(selectedGroupcourse.getId());
         String sname="";
-        List<Grade> grads=null;
+        List<Grade> grads;
         for(Performance p:performancesFinished){
             sname=p.getStudentId().getFirstName()+" "+p.getStudentId().getLastName();
             grads=mu.getGrades(p);
@@ -244,7 +246,6 @@ public class TeacherController implements Serializable{
             rs=new ResultSet(i,glue);
             finalizedStudents.add(rs);
         }
-        System.out.println();
     }
 
     public void editGrades(){

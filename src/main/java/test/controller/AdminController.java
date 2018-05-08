@@ -123,7 +123,6 @@ public class AdminController  implements Serializable {
     }
 
     public void setUserName(String userName) {
-        //System.out.println("SET username: "+userName);
         this.userName = userName;
     }
 
@@ -132,11 +131,9 @@ public class AdminController  implements Serializable {
     }
 
     public void setPassword(String password) {
-        //System.out.println("SET password: "+password);
         if(password.equals("")){
            this.password = Helper.getSHA(password, userName);
         }
-        //this.password=password;
     }
 
 

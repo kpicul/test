@@ -14,6 +14,7 @@ test/database/Group.class
 test/controller/TeacherController.class
 test/Resources.class
 test/DatabaseQuerries.class
+test/TestStateful.class
 test/database/Performance.class
 test/CreateUser.class
 test/database/Course.class

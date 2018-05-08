@@ -3,8 +3,8 @@ package test.controller;
 
 import test.DatabaseQuerries;
 import test.Helper;
+import test.TestStateful;
 import test.database.Member;
-import test.database.Role;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -21,6 +21,9 @@ public class AddUserController implements Serializable {
 
     @Inject
     private DatabaseQuerries db;
+
+    @Inject
+    private TestStateful previousAdded;
 
     private String firstName;
     private String lastName;
@@ -105,5 +108,7 @@ public class AddUserController implements Serializable {
         user.setDateOfBirth(dateOfBirth);
         user.setRoleId(db.getRoleByname(role));
         db.createUser(user);
+        Member pa=previousAdded.getMember();
+        previousAdded.setMember(user);
     }
 }

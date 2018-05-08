@@ -155,7 +155,6 @@ public class EditStudentController implements Serializable {
             }
         }
         students=mu.getStudentsByGroup(selectedGroupId);
-        //teachesDescription=new ArrayList<String>();
         courses=mu.getCoursesByGroup(selectedGroupId);
         setupUnassigned();
 

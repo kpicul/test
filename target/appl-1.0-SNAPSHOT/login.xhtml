@@ -37,12 +37,11 @@
                     </h:inputSecret>
                     <br/>
                     <h:commandButton value="Login" id="login" action="#{getController.greet}">
-
                     </h:commandButton>
                     <br/>
                     <h:panelGroup id="output1">
-                        <h:outputText value="Null"
-                                      rendered="#{not empty login.password}"/>
+                        <h:outputText value="Wrong username or password!"
+                                      rendered="#{not empty getController.password}" style="color:red"/>
                     </h:panelGroup>
                 </h:form>
             </rich:panel>

@@ -46,28 +46,25 @@ public class EditController  implements Serializable {
     public void postConstruct(){
         user=session.getUser();
         emptyRedirect();
-        //System.out.println("POSTCONSTRUCT");
         firstName=user.getFirstName();
         lastName=user.getLastName();
         userName=user.getUsername();
         password=user.getPassword();
-        //int as=777;
         dateOfBirth=user.getDateOfBirth();
     }
 
     public void confirm(){
-
-        user.setUsername(userName);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        mu.updateFirstName(user,firstName);
-        mu.updateLasttName(user,lastName);
-        mu.updateUserName(user,userName);
         if(password!=null){
+            user.setUsername(userName);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            mu.updateFirstName(user,firstName);
+            mu.updateLasttName(user,lastName);
+            mu.updateUserName(user,userName);
             mu.updatepassword(user,password);
             user.setPassword(password);
+            mu.updateDateOfBirth(user,dateOfBirth);
         }
-        mu.updateDateOfBirth(user,dateOfBirth);
     }
     public String getFirstName(){
         return this.firstName;
@@ -91,7 +88,6 @@ public class EditController  implements Serializable {
     }
 
     public void setUserName(String userName) {
-        //System.out.println("SET username: "+userName);
         this.userName = userName;
     }
 
@@ -100,11 +96,12 @@ public class EditController  implements Serializable {
     }
 
     public void setPassword(String password) {
-        //System.out.println("SET password: "+password);
-        if(password!=""){
-            this.password = Helper.getSHA(password, user.getUsername());
+        if(!password.equals("")){
+            this.password = Helper.getSHA(password, this.userName);
         }
-        //this.password=password;
+        else{
+            this.password=null;
+        }
     }
 
 

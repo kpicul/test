@@ -50,7 +50,7 @@
                     <h:commandButton value="Confirm" id="confirm" action="#{editController.confirm}">
                     </h:commandButton>
                     <br/>
-
+                    <h:outputLabel value="Password can't be empty!" rendered="#{empty editController.password}" style="color:red"/>
                 </h:form>
             </rich:panel>
 
