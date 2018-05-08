@@ -19,7 +19,6 @@ package test;
 import test.database.*;
 
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -104,7 +103,6 @@ public class DatabaseQuerries implements Serializable{
                 query.setParameter("id", id);
                 System.out.println("test");
                 user = (Member) query.getSingleResult();
-                //user=null;
             } catch (NoResultException e) {
                 user = null;
             }
@@ -160,27 +158,6 @@ public class DatabaseQuerries implements Serializable{
 
 
 
-    public List getPerformances(Member student){
-        List performances;
-        try {
-            utx.begin();
-            Query query=entityManager.createQuery("select p from Performance p, in (p.studentId) m where m=:student");
-            query.setParameter("student",student);
-            performances=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return performances;
-    }
-
-
 
     public List getPerformancesFinished(Member student){
         List performances;
@@ -221,25 +198,6 @@ public class DatabaseQuerries implements Serializable{
         return students;
     }
 
-    public int getCount(Member student){
-        int count=0;
-        try {
-            utx.begin();
-            Query query=entityManager.createQuery("select count(p.id) from Performance p join p.studentId m where m.id=:studentId group by m.id");
-            query.setParameter("studentId",student.getId());
-            count=(Integer)query.getSingleResult();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return count;
-    }
 
     public List getAllPerformancesByMember(Member student){
         List performances;
@@ -361,46 +319,6 @@ public class DatabaseQuerries implements Serializable{
     }
 
 
-    public List getGradesByGroupcourse(long gcid){
-        List performances;
-        try {
-            utx.begin();
-            Query query=entityManager.createQuery("select sid.username, g.grade from Grade g join g.performanceId p join p.groupcourseid gc join gc.teachesid ti join ti.course c join p.studentId sid where  gc.id=:gcid");
-            query.setParameter("gcid",gcid);
-            performances=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return performances;
-    }
-
-    public List getGradesByStudentGroupcourse(long studentId,long gcid){
-        List grades;
-        try {
-            utx.begin();
-            Query query=entityManager.createQuery("select g from Grade g join g.performanceId p join p.groupcourseid gc join p.studentId s where gc.id=:gcid and s.id=:studentId ");
-            query.setParameter("gcid",gcid);
-            query.setParameter("studentId",studentId);
-            grades=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return grades;
-    }
 
     public List getPerformancesYears(Member student){
         List performances;
@@ -483,25 +401,6 @@ public class DatabaseQuerries implements Serializable{
         return role;
     }
 
-    public List getCoursesByTeacher(long teacherId){
-        List courses;
-        try {
-            utx.begin();
-            Query query=entityManager.createQuery("select c  from Teaches tc join tc.course c join tc.memberid t where t.id=:teacherID");
-            query.setParameter("teacherID",teacherId);
-            courses=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return courses;
-    }
 
     public List getCoursesByTeacherNot(){
         List courses;
@@ -543,7 +442,7 @@ public class DatabaseQuerries implements Serializable{
     }
 
     public List getCoursesByTeacherYear(long teacherId, long yearid){
-        List courses=null;
+        List courses;
         try {
             utx.begin();
             Query query=entityManager.createQuery("select c  from Teaches tc join tc.course c join tc.memberid t  join tc.yearid y where t.id=:teacherID and y.id=:yid");
@@ -686,25 +585,6 @@ public class DatabaseQuerries implements Serializable{
         return courses;
     }
 
-    public List getTeachersByGroup(Group group){
-        List teach;
-        try {
-            utx.begin();
-            Query query=entityManager.createQuery("select t from Groupcourse gc join gc.groupid g join gc.teachesid t where g.id=:gid");
-            query.setParameter("gid",group.getId());
-            teach=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return teach;
-    }
 
 
     public Teaches getTeacherByCourseGroupYear(long courseId, long groupId,long yearId){
@@ -750,25 +630,6 @@ public class DatabaseQuerries implements Serializable{
         return teacher;
     }
 
-    public Group getGroupById(long id){
-        Group group;
-        try {
-            utx.begin();
-            Query query = entityManager.createQuery("select g from Group g where g.id=:gid");
-            query.setParameter("gid",id);
-            group=(Group) query.getSingleResult();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return group;
-    }
 
     public Group getActiveGroup(long studentId){
         Group group;
@@ -790,66 +651,8 @@ public class DatabaseQuerries implements Serializable{
         return group;
     }
 
-    public Group getChangeGroup(long changeId){
-        Group group;
-        try {
-            utx.begin();
-            Query query = entityManager.createQuery("select distinct g from Group g where g.id=:changeId");
-            query.setParameter("changeId",changeId);
-            group=(Group) query.getSingleResult();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return group;
-    }
 
-    public Teaches getTeaches(Course course, Member teacher){
-        Teaches teaches;
-        try {
-            utx.begin();
-            Query query = entityManager.createQuery("select t from Teaches t join t.memberid m join t.course c where m.id=:memberid and c.id=:course");
-            query.setParameter("memberid",teacher.getId());
-            query.setParameter("course",course.getId());
-            teaches=(Teaches)query.getSingleResult();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return teaches;
-    }
 
-    public List getTeachersDataByGroup(Group group){
-        List teach;
-        try {
-            utx.begin();
-            Query query=entityManager.createQuery("select c,t,y from Groupcourse gc join gc.groupid g join gc.teachesid tc join tc.memberid t join tc.yearid y join tc.course c where g.id=:gid");
-            query.setParameter("gid",group.getId());
-            teach=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return teach;
-    }
 
     public List getTeachesByCourseYear(long courseId, long yearId){
         List teach;
@@ -872,44 +675,8 @@ public class DatabaseQuerries implements Serializable{
         return teach;
     }
 
-    public List getTeachersDataByCourse(long courseId){
-        List teach;
-        try {
-            utx.begin();
-            Query query=entityManager.createQuery("select c,t,y,tc from Teaches tc join tc.course c join tc.yearid y join tc.memberid t where c.id=:cid");
-            query.setParameter("cid",courseId);
-            teach=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return teach;
-    }
-    public List getTeachersByCourse(long courseId){
-        List teachers;
-        try {
-            utx.begin();
-            Query query = entityManager.createQuery("select m from Teaches t join t.memberid m join t.course c where c.id=:course");
-            query.setParameter("course",courseId);
-            teachers=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return teachers;
-    }
+
+
 
     public List getTeaches(){
         List teach;
@@ -979,24 +746,6 @@ public class DatabaseQuerries implements Serializable{
         return gc;
     }
 
-    public List getNumberOfPerformancesByStudents(){
-        List students;
-        try {
-            utx.begin();
-            Query query = entityManager.createQuery("select m,count(p) from Performance p join p.studentId m group by m.id");
-            students=query.getResultList();
-            utx.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (SystemException se) {
-                throw new RuntimeException(se);
-            }
-            throw new RuntimeException(e);
-        }
-        return students;
-    }
 
     //Update queries
 
@@ -1312,7 +1061,7 @@ public class DatabaseQuerries implements Serializable{
     }
 
     public Grade addGrade(Performance perfId,int value){
-        Grade grade=null;
+        Grade grade;
         try {
             utx.begin();
             grade=new Grade();

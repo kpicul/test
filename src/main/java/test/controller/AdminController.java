@@ -335,8 +335,6 @@ public class AdminController  implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //session1.invalidate();
-
     }
 
     public void setHello(String hello) {

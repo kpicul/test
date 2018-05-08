@@ -8,6 +8,7 @@ test/controller/GetController.class
 test/controller/EditController.class
 test/controller/StudentController.class
 test/controller/AddYearController.class
+test/controller/AddGroupController.class
 test/database/Groupcourse.class
 test/database/Member.class
 test/database/Group.class

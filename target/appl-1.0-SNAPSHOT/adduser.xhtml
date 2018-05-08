@@ -93,6 +93,21 @@
                         </h:commandButton>
                     </fieldset>
                 </h:form>
+                <br/>
+                <h:form id="addGroup">
+                    <fieldset style="width:1000px">
+                        <legend>Add Group</legend>
+                        <br/>
+                        <h:outputLabel value="Group name: " for="groupname"/>
+                        <h:inputText id="groupname" value="#{addGroupController.groupName}"/>
+                        <br/>
+                        <h:outputLabel value="Study year: " for="year"/>
+                        <h:inputText id="year" value="#{addGroupController.groupYear}"/>
+                        <br/>
+                        <h:commandButton value="Add" action="#{addGroupController.addGroup}">
+                        </h:commandButton>
+                    </fieldset>
+                </h:form>
             </rich:panel>
 
     </ui:define>
